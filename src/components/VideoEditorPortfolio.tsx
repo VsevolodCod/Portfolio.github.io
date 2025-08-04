@@ -19,7 +19,23 @@ import {
   Globe,
   Download,
   Mail,
-  Phone
+  Phone,
+  Users,
+  TrendingUp,
+  Calendar,
+  Quote,
+  ChevronLeft,
+  ChevronRight,
+  MapPin,
+  Briefcase,
+  Trophy,
+  MessageCircle,
+  Heart,
+  ArrowUp,
+  Send,
+  DollarSign,
+  Zap,
+  Target
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
@@ -36,11 +52,6 @@ const VideoEditorPortfolio = () => {
     triggerOnce: true
   });
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const content = {
     ru: {
@@ -58,7 +69,23 @@ const VideoEditorPortfolio = () => {
       contactSubtitle: "Обсудим ваш проект и создадим что-то невероятное вместе",
       contactButton: "Связаться со мной",
       downloadButton: "Скачать портфолио",
-      watchButton: "Смотреть"
+      watchButton: "Смотреть",
+      testimonialsTitle: "Отзывы клиентов",
+      testimonialsSubtitle: "Что говорят о моей работе",
+      timelineTitle: "Мой путь",
+      timelineSubtitle: "Опыт работы и достижения",
+      servicesTitle: "Услуги",
+      servicesSubtitle: "Что я предлагаю",
+      statsTitle: "Достижения в цифрах",
+      awardsTitle: "Награды и сертификаты",
+      getQuote: "Получить предложение",
+      sendMessage: "Отправить сообщение",
+      yourName: "Ваше имя",
+      yourEmail: "Email",
+      projectDescription: "Описание проекта",
+      clients: "Клиентов",
+      hoursEdited: "Часов монтажа",
+      rating: "Рейтинг"
     },
     en: {
       name: "Vadim Fomin",
@@ -75,7 +102,23 @@ const VideoEditorPortfolio = () => {
       contactSubtitle: "Let's discuss your project and create something incredible together",
       contactButton: "Contact me",
       downloadButton: "Download portfolio",
-      watchButton: "Watch"
+      watchButton: "Watch",
+      testimonialsTitle: "Client Reviews",
+      testimonialsSubtitle: "What they say about my work",
+      timelineTitle: "My Journey",
+      timelineSubtitle: "Work experience and achievements",
+      servicesTitle: "Services",
+      servicesSubtitle: "What I offer",
+      statsTitle: "Achievements in Numbers",
+      awardsTitle: "Awards & Certificates",
+      getQuote: "Get Quote",
+      sendMessage: "Send Message",
+      yourName: "Your Name",
+      yourEmail: "Email",
+      projectDescription: "Project Description",
+      clients: "Clients",
+      hoursEdited: "Hours Edited",
+      rating: "Rating"
     }
   };
 
@@ -131,6 +174,108 @@ const VideoEditorPortfolio = () => {
     { name: "Моушн дизайн", level: 82 },
     { name: "Звуковой дизайн", level: 75 }
   ];
+
+  // Additional data для новых секций
+  const testimonials = [
+    {
+      id: 1,
+      name: "Анна Петрова",
+      company: "DigiTech Solutions",
+      text: "Вадим создал для нас потрясающий рекламный ролик. Профессиональный подход, креативность и точное соблюдение дедлайнов. Рекомендую!",
+      rating: 5,
+      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612c602?w=100&h=100&fit=crop&crop=face"
+    },
+    {
+      id: 2,
+      name: "Михаил Волков",
+      company: "Creative Music Label",
+      text: "Работал с Вадимом над музыкальным видео. Результат превзошел все ожидания! Отличное понимание ритма и визуальной эстетики.",
+      rating: 5,
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
+    },
+    {
+      id: 3,
+      name: "Елена Сидорова",
+      company: "WeddingDream Studio",
+      text: "Свадебное видео получилось невероятно трогательным и красивым. Вадим умеет передать эмоции через видео. Спасибо большое!",
+      rating: 5,
+      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face"
+    }
+  ];
+
+  const timeline = [
+    {
+      year: "2024",
+      title: "Freelance Video Editor",
+      company: "Собственная студия",
+      description: "Открыл собственную студию видеопродакшена. Работаю с крупными брендами и частными клиентами."
+    },
+    {
+      year: "2022-2023",
+      title: "Senior Video Editor",
+      company: "MediaPro Agency",
+      description: "Руководил командой монтажеров, работал над крупными рекламными кампаниями."
+    },
+    {
+      year: "2020-2022",
+      title: "Video Editor",
+      company: "Creative Studio X",
+      description: "Специализировался на музыкальных клипах и корпоративных видео."
+    },
+    {
+      year: "2019-2020",
+      title: "Junior Video Editor",
+      company: "StartUp Media",
+      description: "Начало карьеры в видеопродакшене. Изучение основ монтажа и цветокоррекции."
+    }
+  ];
+
+  const services = [
+    {
+      title: "Рекламные ролики",
+      price: "от 15,000₽",
+      features: ["Сценарий", "Съемка", "Монтаж", "Цветокоррекция", "Звуковой дизайн"],
+      icon: Target
+    },
+    {
+      title: "Музыкальные клипы",
+      price: "от 25,000₽",
+      features: ["Концепция", "Режиссура", "Пост-продакшн", "VFX эффекты", "Синхронизация"],
+      icon: Film
+    },
+    {
+      title: "Свадебные фильмы",
+      price: "от 20,000₽",
+      features: ["Съемка церемонии", "Интервью", "Монтаж", "Музыкальное сопровождение", "Цветокоррекция"],
+      icon: Heart
+    }
+  ];
+
+  const stats = [
+    { number: "50+", label: content[language].clients, icon: Users },
+    { number: "1000+", label: content[language].hoursEdited, icon: Clock },
+    { number: "4.9", label: content[language].rating, icon: Star },
+    { number: "1.2M+", label: content[language].views, icon: Eye }
+  ];
+
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+      setShowScrollTop(window.scrollY > 500);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
@@ -283,6 +428,137 @@ const VideoEditorPortfolio = () => {
           </div>
         </section>
 
+        {/* Stats Section */}
+        <section className="bg-gradient-to-r from-primary/5 via-violet-500/5 to-cyan-500/5 py-16">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-foreground mb-4">{content[language].statsTitle}</h2>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50 hover:shadow-lg transition-all duration-300">
+                    <stat.icon className="w-8 h-8 text-primary mx-auto mb-4" />
+                    <div className="text-3xl font-bold text-foreground mb-2">{stat.number}</div>
+                    <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Services Section */}
+        <section className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">{content[language].servicesTitle}</h2>
+            <p className="text-muted-foreground">{content[language].servicesSubtitle}</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <Card key={index} className="bg-card border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center">
+                <CardContent className="p-8">
+                  <service.icon className="w-12 h-12 text-primary mx-auto mb-6" />
+                  <h3 className="text-xl font-semibold text-foreground mb-4">{service.title}</h3>
+                  <div className="text-2xl font-bold text-primary mb-4">{service.price}</div>
+                  <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center justify-center">
+                        <Star className="w-3 h-3 text-primary mr-2" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <Button className="w-full">{content[language].getQuote}</Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Timeline Section */}
+        <section className="bg-gradient-to-b from-background to-muted/20 py-16">
+          <div className="max-w-4xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-foreground mb-4">{content[language].timelineTitle}</h2>
+              <p className="text-muted-foreground">{content[language].timelineSubtitle}</p>
+            </div>
+            
+            <div className="relative">
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-primary to-violet-500"></div>
+              
+              {timeline.map((item, index) => (
+                <div key={index} className={`relative flex items-center mb-12 ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
+                  <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
+                    <Card className="bg-card border-border/50 shadow-lg hover:shadow-xl transition-all duration-300">
+                      <CardContent className="p-6">
+                        <div className="flex items-center mb-3">
+                          <Briefcase className="w-5 h-5 text-primary mr-2" />
+                          <span className="text-sm font-medium text-primary">{item.year}</span>
+                        </div>
+                        <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
+                        <p className="text-sm text-violet-600 mb-3">{item.company}</p>
+                        <p className="text-sm text-muted-foreground">{item.description}</p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                  
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials Section */}
+        <section className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">{content[language].testimonialsTitle}</h2>
+            <p className="text-muted-foreground">{content[language].testimonialsSubtitle}</p>
+          </div>
+          
+          <div className="relative">
+            <Card className="bg-card border-border/50 shadow-xl">
+              <CardContent className="p-8 text-center">
+                <Quote className="w-8 h-8 text-primary mx-auto mb-6" />
+                <p className="text-lg text-foreground mb-6 italic">
+                  "{testimonials[currentTestimonial].text}"
+                </p>
+                <div className="flex items-center justify-center space-x-1 mb-4">
+                  {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 text-yellow-500 fill-current" />
+                  ))}
+                </div>
+                <div className="flex items-center justify-center">
+                  <img 
+                    src={testimonials[currentTestimonial].avatar} 
+                    alt={testimonials[currentTestimonial].name}
+                    className="w-12 h-12 rounded-full mr-4"
+                  />
+                  <div>
+                    <div className="font-semibold text-foreground">{testimonials[currentTestimonial].name}</div>
+                    <div className="text-sm text-muted-foreground">{testimonials[currentTestimonial].company}</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            
+            <div className="flex justify-center space-x-2 mt-6">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentTestimonial(index)}
+                  className={`w-3 h-3 rounded-full transition-colors ${
+                    index === currentTestimonial ? 'bg-primary' : 'bg-muted'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Portfolio Videos Section */}
         <section className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -390,6 +666,25 @@ const VideoEditorPortfolio = () => {
             </div>
           </div>
         </section>
+      </div>
+
+      {/* Floating Elements */}
+      
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-8 right-8 z-50 w-12 h-12 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 animate-fade-in"
+        >
+          <ArrowUp className="w-5 h-5 mx-auto" />
+        </button>
+      )}
+
+      {/* Floating Contact Button */}
+      <div className="fixed bottom-8 left-8 z-50">
+        <Button className="w-14 h-14 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 animate-pulse">
+          <MessageCircle className="w-6 h-6" />
+        </Button>
       </div>
     </div>
   );
