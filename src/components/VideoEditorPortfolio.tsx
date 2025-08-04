@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 import { 
   Camera, 
   Video, 
@@ -12,12 +13,71 @@ import {
   Star,
   Youtube,
   Instagram,
-  Film
+  Film,
+  Sun,
+  Moon,
+  Globe,
+  Download,
+  Mail,
+  Phone
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useTheme } from "next-themes";
+import { useInView } from "react-intersection-observer";
 
 const VideoEditorPortfolio = () => {
   const [selectedVideo, setSelectedVideo] = useState<number | null>(null);
+  const [language, setLanguage] = useState<'ru' | 'en'>('ru');
+  const [scrollY, setScrollY] = useState(0);
+  const { theme, setTheme } = useTheme();
+  
+  const { ref: heroRef, inView: heroInView } = useInView({
+    threshold: 0.3,
+    triggerOnce: true
+  });
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const content = {
+    ru: {
+      name: "Фомин Вадим",
+      profession: "Профессиональный видеомонтажер",
+      description: "Создаю качественный видеоконтент более 5 лет. Специализируюсь на рекламных роликах, музыкальных клипах, свадебных фильмах и корпоративных презентациях. Превращаю идеи в визуальные истории, которые запоминаются.",
+      experience: "5+ лет опыта",
+      projects: "200+ проектов", 
+      views: "1M+ просмотров",
+      skillsTitle: "Навыки и технологии",
+      skillsSubtitle: "Профессиональное владение индустриальными инструментами",
+      portfolioTitle: "Лучшие работы",
+      portfolioSubtitle: "Избранные проекты из моего портфолио",
+      contactTitle: "Готовы к сотрудничеству?",
+      contactSubtitle: "Обсудим ваш проект и создадим что-то невероятное вместе",
+      contactButton: "Связаться со мной",
+      downloadButton: "Скачать портфолио",
+      watchButton: "Смотреть"
+    },
+    en: {
+      name: "Vadim Fomin",
+      profession: "Professional Video Editor",
+      description: "Creating quality video content for over 5 years. I specialize in advertising videos, music videos, wedding films and corporate presentations. I turn ideas into visual stories that are memorable.",
+      experience: "5+ years experience",
+      projects: "200+ projects",
+      views: "1M+ views", 
+      skillsTitle: "Skills & Technologies",
+      skillsSubtitle: "Professional mastery of industry tools",
+      portfolioTitle: "Best Works",
+      portfolioSubtitle: "Selected projects from my portfolio",
+      contactTitle: "Ready to collaborate?",
+      contactSubtitle: "Let's discuss your project and create something incredible together",
+      contactButton: "Contact me",
+      downloadButton: "Download portfolio",
+      watchButton: "Watch"
+    }
+  };
 
   // Mock data для портфолио
   const portfolioVideos = [
@@ -74,82 +134,131 @@ const VideoEditorPortfolio = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
-      {/* Анимированные фоновые элементы */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-20 left-10 text-primary/10 animate-bounce">
-          <Camera size={60} />
+      {/* Controls */}
+      <div className="fixed top-6 right-6 z-50 flex items-center gap-4">
+        <div className="flex items-center gap-2 bg-card/80 backdrop-blur-md rounded-full px-4 py-2 border border-border/50">
+          <Globe className="w-4 h-4 text-muted-foreground" />
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            onClick={() => setLanguage(language === 'ru' ? 'en' : 'ru')}
+            className="text-xs hover:bg-transparent"
+          >
+            {language.toUpperCase()}
+          </Button>
         </div>
-        <div className="absolute top-40 right-20 text-info/15 animate-pulse">
-          <Video size={45} />
-        </div>
-        <div className="absolute bottom-32 left-20 text-warning/10 animate-spin" style={{ animationDuration: '8s' }}>
-          <Film size={70} />
-        </div>
-        <div className="absolute top-60 left-1/2 text-success/10 animate-bounce" style={{ animationDelay: '1s' }}>
-          <Youtube size={50} />
-        </div>
-        <div className="absolute bottom-20 right-40 text-destructive/15 animate-pulse" style={{ animationDelay: '2s' }}>
-          <Edit size={40} />
-        </div>
-        <div className="absolute top-32 right-1/3 text-primary/10 animate-spin" style={{ animationDuration: '12s' }}>
-          <Instagram size={35} />
+        
+        <div className="flex items-center gap-2 bg-card/80 backdrop-blur-md rounded-full px-4 py-2 border border-border/50">
+          <Sun className="w-4 h-4 text-muted-foreground" />
+          <Switch
+            checked={theme === 'dark'}
+            onCheckedChange={(checked) => setTheme(checked ? 'dark' : 'light')}
+          />
+          <Moon className="w-4 h-4 text-muted-foreground" />
         </div>
       </div>
 
-      <div className="relative z-10 p-6 space-y-12">
-        {/* Hero Section */}
-        <section className="text-center py-20">
-          <div className="max-w-4xl mx-auto space-y-8">
-            {/* Место для фотографии */}
-            <div className="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-primary to-info border-4 border-primary/20 shadow-2xl flex items-center justify-center overflow-hidden">
-              {/* ИНСТРУКЦИЯ: Чтобы добавить фотографию Вадима:
-                  1. Положите фото в папку src/assets/ (например, vadim-photo.jpg)
-                  2. Замените эту секцию на:
-                  <img 
-                    src="/src/assets/vadim-photo.jpg" 
-                    alt="Фомин Вадим - Видеомонтажер" 
-                    className="w-full h-full object-cover"
-                  />
-              */}
-              <div className="text-6xl font-bold text-primary-foreground">ВФ</div>
-            </div>
-            
-            <div className="space-y-4">
-              <h1 className="text-5xl font-bold text-foreground bg-gradient-to-r from-primary to-info bg-clip-text text-transparent animate-fade-in">
-                Фомин Вадим
+      {/* Hero Section with Background Image */}
+      <section 
+        ref={heroRef}
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      >
+        {/* Background Image with Parallax */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            transform: `translateY(${scrollY * 0.5}px)`,
+            backgroundImage: `url('/lovable-uploads/83501283-d02d-4bde-b431-0e5098a0aa8a.png')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+        
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-background/95 via-background/85 to-background/95 dark:from-background/90 dark:via-background/70 dark:to-background/90" />
+        
+        {/* Animated Elements */}
+        <div className="absolute inset-0 z-20 pointer-events-none">
+          <div className="absolute top-20 left-10 text-primary/20 animate-float">
+            <Camera size={60} />
+          </div>
+          <div className="absolute top-40 right-20 text-primary/15 animate-float" style={{ animationDelay: '1s' }}>
+            <Video size={45} />
+          </div>
+          <div className="absolute bottom-32 left-20 text-primary/10 animate-float" style={{ animationDelay: '2s' }}>
+            <Film size={70} />
+          </div>
+          <div className="absolute top-60 left-1/2 text-primary/15 animate-float" style={{ animationDelay: '0.5s' }}>
+            <Youtube size={50} />
+          </div>
+          <div className="absolute bottom-20 right-40 text-primary/20 animate-float" style={{ animationDelay: '1.5s' }}>
+            <Edit size={40} />
+          </div>
+          <div className="absolute top-32 right-1/3 text-primary/10 animate-float" style={{ animationDelay: '3s' }}>
+            <Instagram size={35} />
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-30 text-center px-6 max-w-4xl mx-auto">
+          <div 
+            className={`space-y-8 transition-all duration-1000 ${
+              heroInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
+            <div className="space-y-6">
+              <h1 className="text-6xl md:text-7xl font-bold text-foreground">
+                <span className="bg-gradient-to-r from-primary to-violet-600 bg-clip-text text-transparent">
+                  {content[language].name}
+                </span>
               </h1>
-              <p className="text-2xl text-primary font-semibold animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                Профессиональный видеомонтажер
+              
+              <p className="text-2xl md:text-3xl text-primary font-semibold">
+                {content[language].profession}
               </p>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                Создаю качественный видеоконтент более 5 лет. Специализируюсь на рекламных роликах, 
-                музыкальных клипах, свадебных фильмах и корпоративных презентациях. 
-                Превращаю идеи в визуальные истории, которые запоминаются.
+              
+              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                {content[language].description}
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4 animate-fade-in" style={{ animationDelay: '0.6s' }}>
-              <Badge className="bg-primary text-primary-foreground px-4 py-2 text-sm">
+            <div className="flex flex-wrap justify-center gap-4">
+              <Badge className="bg-primary/10 text-primary border border-primary/20 px-6 py-3 text-sm backdrop-blur-sm">
                 <Award className="w-4 h-4 mr-2" />
-                5+ лет опыта
+                {content[language].experience}
               </Badge>
-              <Badge className="bg-success text-success-foreground px-4 py-2 text-sm">
+              <Badge className="bg-violet-500/10 text-violet-600 border border-violet-500/20 px-6 py-3 text-sm backdrop-blur-sm">
                 <Star className="w-4 h-4 mr-2" />
-                200+ проектов
+                {content[language].projects}
               </Badge>
-              <Badge className="bg-info text-info-foreground px-4 py-2 text-sm">
+              <Badge className="bg-cyan-500/10 text-cyan-600 border border-cyan-500/20 px-6 py-3 text-sm backdrop-blur-sm">
                 <Eye className="w-4 h-4 mr-2" />
-                1M+ просмотров
+                {content[language].views}
               </Badge>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-4 pt-6">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 shadow-lg">
+                <Mail className="w-4 h-4 mr-2" />
+                {content[language].contactButton}
+              </Button>
+              <Button size="lg" variant="outline" className="px-8 backdrop-blur-sm border-primary/20 hover:bg-primary/10">
+                <Download className="w-4 h-4 mr-2" />
+                {content[language].downloadButton}
+              </Button>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
+
+      <div className="relative z-10 space-y-20">
 
         {/* Skills Section */}
-        <section className="max-w-6xl mx-auto">
+        <section className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Навыки и технологии</h2>
-            <p className="text-muted-foreground">Профессиональное владение индустриальными инструментами</p>
+            <h2 className="text-3xl font-bold text-foreground mb-4">{content[language].skillsTitle}</h2>
+            <p className="text-muted-foreground">{content[language].skillsSubtitle}</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -175,10 +284,10 @@ const VideoEditorPortfolio = () => {
         </section>
 
         {/* Portfolio Videos Section */}
-        <section className="max-w-7xl mx-auto">
+        <section className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Лучшие работы</h2>
-            <p className="text-muted-foreground">Избранные проекты из моего портфолио</p>
+            <h2 className="text-3xl font-bold text-foreground mb-4">{content[language].portfolioTitle}</h2>
+            <p className="text-muted-foreground">{content[language].portfolioSubtitle}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -223,7 +332,7 @@ const VideoEditorPortfolio = () => {
                       </div>
                     </div>
                     <Button size="sm" variant="outline" className="hover:bg-primary hover:text-primary-foreground">
-                      Смотреть
+                      {content[language].watchButton}
                     </Button>
                   </div>
                 </CardContent>
@@ -263,18 +372,20 @@ const VideoEditorPortfolio = () => {
         )}
 
         {/* Contact Section */}
-        <section className="max-w-4xl mx-auto text-center py-16">
+        <section className="max-w-4xl mx-auto text-center py-16 px-6">
           <div className="space-y-6">
-            <h2 className="text-3xl font-bold text-foreground">Готовы к сотрудничеству?</h2>
+            <h2 className="text-3xl font-bold text-foreground">{content[language].contactTitle}</h2>
             <p className="text-lg text-muted-foreground">
-              Обсудим ваш проект и создадим что-то невероятное вместе
+              {content[language].contactSubtitle}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8">
-                Связаться со мной
+                <Mail className="w-4 h-4 mr-2" />
+                {content[language].contactButton}
               </Button>
               <Button size="lg" variant="outline" className="px-8">
-                Скачать портфолио
+                <Download className="w-4 h-4 mr-2" />
+                {content[language].downloadButton}
               </Button>
             </div>
           </div>

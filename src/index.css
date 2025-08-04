@@ -8,33 +8,34 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    /* Light theme */
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
 
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
 
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
 
-    --primary: 200 98% 39%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 20% 98%;
 
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
 
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 210 20% 98%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 200 98% 39%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262.1 83.3% 57.8%;
 
     /* Custom design tokens for delivery dashboard */
     --success: 142 76% 36%;
@@ -46,13 +47,14 @@ All colors MUST be HSL.
     --info: 200 98% 39%;
     --info-foreground: 0 0% 98%;
     
-    --gradient-primary: linear-gradient(135deg, hsl(200 98% 39%), hsl(220 91% 53%));
-    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%), hsl(160 84% 39%));
-    --gradient-warning: linear-gradient(135deg, hsl(48 96% 53%), hsl(35 91% 54%));
-    --gradient-card: linear-gradient(145deg, hsl(240 3.7% 15.9%), hsl(240 5% 21%));
+    /* Portfolio design tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(262.1 83.3% 57.8%), hsl(220 91% 53%));
+    --gradient-hero: linear-gradient(135deg, hsl(262.1 83.3% 57.8% / 0.1), hsl(220 91% 53% / 0.1));
+    --gradient-overlay: linear-gradient(135deg, hsl(0 0% 0% / 0.7), hsl(262.1 83.3% 57.8% / 0.3));
     
-    --shadow-glow: 0 0 40px hsl(200 98% 39% / 0.3);
-    --shadow-card: 0 10px 30px -10px hsl(0 0% 0% / 0.3);
+    --shadow-glow: 0 0 40px hsl(262.1 83.3% 57.8% / 0.3);
+    --shadow-card: 0 10px 30px -10px hsl(0 0% 0% / 0.1);
+    --shadow-hero: 0 25px 50px -12px hsl(262.1 83.3% 57.8% / 0.25);
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
