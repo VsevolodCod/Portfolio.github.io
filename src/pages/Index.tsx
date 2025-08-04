@@ -1,7 +1,7 @@
-import DeliveryDashboard from "@/components/DeliveryDashboard";
+import VideoEditorPortfolio from "@/components/VideoEditorPortfolio";
 
 const Index = () => {
-  return <DeliveryDashboard />;
+  return <VideoEditorPortfolio />;
 };
 
 export default Index;
