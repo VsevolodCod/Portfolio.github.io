@@ -183,7 +183,7 @@ const VideoEditorPortfolio = () => {
   const partners = [
     {
       name: "Алексей Леденёв",
-      photo: "/src/assets/Алексей Леденёв.jpg",
+      photo: import.meta.env.BASE_URL + "Алексей Леденёв.jpg",
       description: (
         <>
           Привет! Меня зовут Алексей, я reels продюсер🎬<br/>
@@ -201,7 +201,7 @@ const VideoEditorPortfolio = () => {
     },
     {
       name: "Никита Волгин",
-      photo: "/src/assets/Никита Волгин.jpg",
+      photo: import.meta.env.BASE_URL + "Никита Волгин.jpg",
       description: (
         <>
           Основатель канала <a href="https://t.me/volgin_404" target="_blank" rel="noopener noreferrer" className="underline">404</a>
@@ -211,7 +211,7 @@ const VideoEditorPortfolio = () => {
     },
     {
       name: "Сергей Копыл",
-      photo: "/src/assets/Сергей Копыл.jpg",
+      photo: import.meta.env.BASE_URL + "Сергей Копыл.jpg",
       description: (
         <>
           Режиссёр<br/>
@@ -321,7 +321,7 @@ const VideoEditorPortfolio = () => {
       {/* Audio Element */}
       <audio
         ref={audioRef}
-        src="/src/assets/на фон.mp3"
+        src={import.meta.env.BASE_URL + "на фон.mp3"}
         onEnded={handleMusicEnded}
         loop
         preload="auto"
@@ -376,7 +376,7 @@ const VideoEditorPortfolio = () => {
           className="absolute inset-0 z-0"
           style={{
             transform: `translateY(${scrollY * 0.5}px)`,
-            backgroundImage: `url('/src/assets/vadim-photo.jpg')`,
+            backgroundImage: `url('${import.meta.env.BASE_URL}vadim-photo.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
