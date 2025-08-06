@@ -35,9 +35,11 @@ import {
   Send,
   DollarSign,
   Zap,
-  Target
+  Target,
+  Bell,
+  BellOff
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 import { useInView } from "react-intersection-observer";
 
@@ -45,6 +47,8 @@ const VideoEditorPortfolio = () => {
   const [selectedVideo, setSelectedVideo] = useState<number | null>(null);
   const [language, setLanguage] = useState<'ru' | 'en'>('ru');
   const [scrollY, setScrollY] = useState(0);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const { theme, setTheme } = useTheme();
   
   const { ref: heroRef, inView: heroInView } = useInView({
@@ -57,9 +61,9 @@ const VideoEditorPortfolio = () => {
     ru: {
       name: "Фомин Вадим",
       profession: "Профессиональный видеомонтажер",
-      description: "Создаю качественный видеоконтент более 5 лет. Специализируюсь на рекламных роликах, музыкальных клипах, свадебных фильмах и корпоративных презентациях. Превращаю идеи в визуальные истории, которые запоминаются.",
-      experience: "5+ лет опыта",
-      projects: "200+ проектов", 
+      description: "Создаю качественный видеоконтент более 2 лет. Специализируюсь на рекламных роликах, рилсах, обзорах и корпоративных презентациях. Превращаю уже снятые материалы в визуальные истории, которые запоминаются.",
+      experience: "2+ лет опыта",
+      projects: "20+ проектов", 
       views: "1M+ просмотров",
       skillsTitle: "Навыки и технологии",
       skillsSubtitle: "Профессиональное владение индустриальными инструментами",
@@ -167,39 +171,54 @@ const VideoEditorPortfolio = () => {
   ];
 
   const skills = [
-    { name: "Adobe Premiere Pro", level: 95 },
-    { name: "After Effects", level: 90 },
-    { name: "DaVinci Resolve", level: 85 },
-    { name: "Цветокоррекция", level: 88 },
-    { name: "Моушн дизайн", level: 82 },
-    { name: "Звуковой дизайн", level: 75 }
+    { name: "Adobe Premiere Pro", level: 100 },
+    { name: "After Effects", level: 100 },
+    { name: "DaVinci Resolve", level: 100 },
+    { name: "Цветокоррекция", level: 100 },
+    { name: "Моушн дизайн", level: 100 },
+    { name: "Звуковой дизайн", level: 100 }
   ];
 
   // Additional data для новых секций
-  const testimonials = [
+  const partners = [
     {
-      id: 1,
-      name: "Анна Петрова",
-      company: "DigiTech Solutions",
-      text: "Вадим создал для нас потрясающий рекламный ролик. Профессиональный подход, креативность и точное соблюдение дедлайнов. Рекомендую!",
-      rating: 5,
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612c602?w=100&h=100&fit=crop&crop=face"
+      name: "Алексей Леденёв",
+      photo: "/src/assets/Алексей Леденёв.jpg",
+      description: (
+        <>
+          Привет! Меня зовут Алексей, я reels продюсер🎬<br/>
+          <ul className="list-disc ml-4 mt-2 text-sm text-muted-foreground">
+            <li>Основатель <a href="https://www.instagram.com/greenscreenvideos_?igsh=MWVkdDU0ZXJ2bjMyeg==" target="_blank" rel="noopener noreferrer" className="underline">аккаунта с зелёными роликами</a></li>
+            <li>2 года в продюсировании коротких роликов</li>
+            <li>100+ млн просмотров клиентам</li>
+            <li>500+ тыс целевых подписчиков</li>
+            <li>26 000 подписчиков клиенту с одного ролика</li>
+            <li>С одного рилса клиент продал услуги на 5 млн</li>
+          </ul>
+        </>
+      ),
+      link: "https://t.me/aleksei_ledenyov"
     },
     {
-      id: 2,
-      name: "Михаил Волков",
-      company: "Creative Music Label",
-      text: "Работал с Вадимом над музыкальным видео. Результат превзошел все ожидания! Отличное понимание ритма и визуальной эстетики.",
-      rating: 5,
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
+      name: "Никита Волгин",
+      photo: "/src/assets/Никита Волгин.jpg",
+      description: (
+        <>
+          Основатель канала <a href="https://t.me/volgin_404" target="_blank" rel="noopener noreferrer" className="underline">404</a>
+        </>
+      ),
+      link: "https://t.me/volgin_404"
     },
     {
-      id: 3,
-      name: "Елена Сидорова",
-      company: "WeddingDream Studio",
-      text: "Свадебное видео получилось невероятно трогательным и красивым. Вадим умеет передать эмоции через видео. Спасибо большое!",
-      rating: 5,
-      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face"
+      name: "Сергей Копыл",
+      photo: "/src/assets/Сергей Копыл.jpg",
+      description: (
+        <>
+          Режиссёр<br/>
+          <a href="https://t.me/kopyl_sergey" target="_blank" rel="noopener noreferrer" className="underline">Телеграм-канал</a>
+        </>
+      ),
+      link: "https://t.me/kopyl_sergey"
     }
   ];
 
@@ -244,9 +263,9 @@ const VideoEditorPortfolio = () => {
       icon: Film
     },
     {
-      title: "Свадебные фильмы",
-      price: "от 20,000₽",
-      features: ["Съемка церемонии", "Интервью", "Монтаж", "Музыкальное сопровождение", "Цветокоррекция"],
+      title: "Рилсы",
+      price: "от 1000₽",
+      features: ["Монтаж", "Музыкальное сопровождение", "Цветокоррекция"],
       icon: Heart
     }
   ];
@@ -258,12 +277,32 @@ const VideoEditorPortfolio = () => {
     { number: "1.2M+", label: content[language].views, icon: Eye }
   ];
 
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  // Удаляем testimonials и связанные с ними состояния
   const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Функции для управления музыкой
+  const toggleMusic = () => {
+    if (audioRef.current) {
+      if (isMusicPlaying) {
+        audioRef.current.pause();
+        setIsMusicPlaying(false);
+      } else {
+        audioRef.current.play();
+        setIsMusicPlaying(true);
+      }
+    }
+  };
+
+  const handleMusicEnded = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+      // setCurrentTestimonial((prev) => (prev + 1) % testimonials.length); // Удалено
     }, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -279,6 +318,15 @@ const VideoEditorPortfolio = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Audio Element */}
+      <audio
+        ref={audioRef}
+        src="/src/assets/на фон.mp3"
+        onEnded={handleMusicEnded}
+        loop
+        preload="auto"
+      />
+      
       {/* Controls */}
       <div className="fixed top-6 right-6 z-50 flex items-center gap-4">
         <div className="flex items-center gap-2 bg-card/80 backdrop-blur-md rounded-full px-4 py-2 border border-border/50">
@@ -301,6 +349,21 @@ const VideoEditorPortfolio = () => {
           />
           <Moon className="w-4 h-4 text-muted-foreground" />
         </div>
+        
+        <div className="flex items-center gap-2 bg-card/80 backdrop-blur-md rounded-full px-4 py-2 border border-border/50">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            onClick={toggleMusic}
+            className="text-xs hover:bg-transparent"
+          >
+            {isMusicPlaying ? (
+              <Bell className="w-4 h-4 text-primary animate-pulse" />
+            ) : (
+              <BellOff className="w-4 h-4 text-muted-foreground" />
+            )}
+          </Button>
+        </div>
       </div>
 
       {/* Hero Section with Background Image */}
@@ -313,7 +376,7 @@ const VideoEditorPortfolio = () => {
           className="absolute inset-0 z-0"
           style={{
             transform: `translateY(${scrollY * 0.5}px)`,
-            backgroundImage: `url('/lovable-uploads/83501283-d02d-4bde-b431-0e5098a0aa8a.png')`,
+            backgroundImage: `url('/src/assets/vadim-photo.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
@@ -512,51 +575,57 @@ const VideoEditorPortfolio = () => {
           </div>
         </section>
 
-        {/* Testimonials Section */}
-        <section className="max-w-4xl mx-auto px-6">
+        {/* Partners Section */}
+        <section className="max-w-5xl mx-auto px-6 py-16 relative overflow-hidden">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">{content[language].testimonialsTitle}</h2>
-            <p className="text-muted-foreground">{content[language].testimonialsSubtitle}</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 animate-fade-in">Со мной сотрудничают</h2>
+            <p className="text-muted-foreground text-lg animate-fade-in delay-100">Люди, с которыми я горжусь работать</p>
           </div>
-          
-          <div className="relative">
-            <Card className="bg-card border-border/50 shadow-xl">
-              <CardContent className="p-8 text-center">
-                <Quote className="w-8 h-8 text-primary mx-auto mb-6" />
-                <p className="text-lg text-foreground mb-6 italic">
-                  "{testimonials[currentTestimonial].text}"
-                </p>
-                <div className="flex items-center justify-center space-x-1 mb-4">
-                  {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-yellow-500 fill-current" />
-                  ))}
-                </div>
-                <div className="flex items-center justify-center">
-                  <img 
-                    src={testimonials[currentTestimonial].avatar} 
-                    alt={testimonials[currentTestimonial].name}
-                    className="w-12 h-12 rounded-full mr-4"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+            {partners.map((p, i) => (
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                key={p.name}
+                className="group bg-card border border-border/50 rounded-2xl shadow-xl p-8 flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 hover:shadow-2xl animate-fade-in"
+                style={{ animationDelay: `${i * 120}ms` }}
+              >
+                <div className="relative mb-4">
+                  <img
+                    src={p.photo}
+                    alt={p.name}
+                    className="w-28 h-28 object-cover rounded-full border-4 border-primary shadow-lg group-hover:scale-110 transition-transform duration-300"
                   />
-                  <div>
-                    <div className="font-semibold text-foreground">{testimonials[currentTestimonial].name}</div>
-                    <div className="text-sm text-muted-foreground">{testimonials[currentTestimonial].company}</div>
-                  </div>
+                  <span className="absolute -bottom-2 right-2 bg-primary text-primary-foreground rounded-full px-2 py-1 text-xs shadow animate-bounce">
+                    {i === 0 ? 'Reels' : i === 1 ? '404' : 'Режиссёр'}
+                  </span>
                 </div>
-              </CardContent>
-            </Card>
-            
-            <div className="flex justify-center space-x-2 mt-6">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    index === currentTestimonial ? 'bg-primary' : 'bg-muted'
-                  }`}
-                />
-              ))}
-            </div>
+                <div className="font-semibold text-xl text-foreground mb-2">{p.name}</div>
+                <div className="text-muted-foreground text-sm mb-2">{p.description}</div>
+                <span className="inline-block mt-2 text-primary underline opacity-80 group-hover:opacity-100 transition">Перейти в Telegram</span>
+              </a>
+            ))}
           </div>
+          {/* Simple animated particles (пример) */}
+          <div className="absolute inset-0 pointer-events-none z-0">
+            <svg className="absolute top-10 left-10 animate-float-slow" width="40" height="40"><circle cx="20" cy="20" r="20" fill="#a5b4fc" fillOpacity="0.2"/></svg>
+            <svg className="absolute bottom-10 right-20 animate-float" width="24" height="24"><circle cx="12" cy="12" r="12" fill="#f472b6" fillOpacity="0.18"/></svg>
+            <svg className="absolute top-1/2 left-1/2 animate-float-fast" width="16" height="16"><circle cx="8" cy="8" r="8" fill="#34d399" fillOpacity="0.15"/></svg>
+          </div>
+          <style>{`
+            @keyframes float { 0%{transform:translateY(0)} 50%{transform:translateY(-16px)} 100%{transform:translateY(0)} }
+            @keyframes float-slow { 0%{transform:translateY(0)} 50%{transform:translateY(-8px)} 100%{transform:translateY(0)} }
+            @keyframes float-fast { 0%{transform:translateY(0)} 50%{transform:translateY(-24px)} 100%{transform:translateY(0)} }
+            .animate-float { animation: float 6s ease-in-out infinite; }
+            .animate-float-slow { animation: float-slow 10s ease-in-out infinite; }
+            .animate-float-fast { animation: float-fast 4s ease-in-out infinite; }
+            .animate-fade-in { opacity:0; animation: fadeIn 1s forwards; }
+            .animate-fade-in.delay-100 { animation-delay: .1s; }
+            @keyframes fadeIn { to { opacity: 1; } }
+            .animate-bounce { animation: bounce 1.2s infinite alternate; }
+            @keyframes bounce { to { transform: translateY(-8px); } }
+          `}</style>
         </section>
 
         {/* Portfolio Videos Section */}
@@ -680,12 +749,7 @@ const VideoEditorPortfolio = () => {
         </button>
       )}
 
-      {/* Floating Contact Button */}
-      <div className="fixed bottom-8 left-8 z-50">
-        <Button className="w-14 h-14 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 animate-pulse">
-          <MessageCircle className="w-6 h-6" />
-        </Button>
-      </div>
+      
     </div>
   );
 };
