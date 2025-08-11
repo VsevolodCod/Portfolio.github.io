@@ -1,3 +1,4 @@
+import AchievementPath from "./AchievementPath";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -541,38 +542,13 @@ const VideoEditorPortfolio = () => {
           </div>
         </section>
 
-        {/* Timeline Section */}
-        <section className="bg-gradient-to-b from-background to-muted/20 py-16">
-          <div className="max-w-4xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-4">{content[language].timelineTitle}</h2>
-              <p className="text-muted-foreground">{content[language].timelineSubtitle}</p>
-            </div>
-            
-            <div className="relative">
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-primary to-violet-500"></div>
-              
-              {timeline.map((item, index) => (
-                <div key={index} className={`relative flex items-center mb-12 ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-                  <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
-                    <Card className="bg-card border-border/50 shadow-lg hover:shadow-xl transition-all duration-300">
-                      <CardContent className="p-6">
-                        <div className="flex items-center mb-3">
-                          <Briefcase className="w-5 h-5 text-primary mr-2" />
-                          <span className="text-sm font-medium text-primary">{item.year}</span>
-                        </div>
-                        <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
-                        <p className="text-sm text-violet-600 mb-3">{item.company}</p>
-                        <p className="text-sm text-muted-foreground">{item.description}</p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                  
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background"></div>
-                </div>
-              ))}
-            </div>
+        {/* Achievement Path Section */}
+        <section>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-foreground mb-4">{content[language].timelineTitle}</h2>
+            <p className="text-muted-foreground">{content[language].timelineSubtitle}</p>
           </div>
+          <AchievementPath />
         </section>
 
         {/* Partners Section */}

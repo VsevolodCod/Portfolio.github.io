@@ -1,7 +1,7 @@
-import ProgressTimeline from "@/components/ProgressTimeline";
+import VideoEditorPortfolio from "@/components/VideoEditorPortfolio";
 
 const Index = () => {
-  return <ProgressTimeline />;
+  return <VideoEditorPortfolio />;
 };
 
 export default Index;
