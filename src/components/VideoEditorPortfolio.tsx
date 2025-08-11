@@ -165,7 +165,7 @@ const VideoEditorPortfolio = () => {
       description: "Короткометражный документальный фильм о местных художниках. Интервью, b-roll съемка, профессиональный звук.",
       duration: "12:20",
       views: "5.3K",
-      category: "Документали��тика",
+      category: "Документалистика",
       thumbnail: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=400&h=225&fit=crop",
       videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
     }
@@ -227,7 +227,7 @@ const VideoEditorPortfolio = () => {
     {
       year: "2024",
       title: "Freelance Video Editor",
-      company: "Собст��енная студия",
+      company: "Собственная студия",
       description: "Открыл собственную студию видеопродакшена. Работаю с крупными брендами и частными клиентами."
     },
     {
@@ -266,7 +266,7 @@ const VideoEditorPortfolio = () => {
     {
       title: "Рилсы",
       price: "от 1000₽",
-      features: ["Монтаж", "Музыкальное сопровождение", "Цветокоррекция"],
+      features: ["Монтаж", "Музыкальное сопров��ждение", "Цветокоррекция"],
       icon: Heart
     }
   ];
@@ -465,23 +465,23 @@ const VideoEditorPortfolio = () => {
       <div className="relative z-10 space-y-20">
 
         {/* Skills Section */}
-        <section className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">{content[language].skillsTitle}</h2>
-            <p className="text-muted-foreground">{content[language].skillsSubtitle}</p>
+        <section className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">{content[language].skillsTitle}</h2>
+            <p className="text-sm sm:text-base text-muted-foreground">{content[language].skillsSubtitle}</p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {skills.map((skill, index) => (
               <Card key={index} className="bg-card border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <CardContent className="p-6">
-                  <div className="space-y-3">
+                <CardContent className="p-4 sm:p-6">
+                  <div className="space-y-2 sm:space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="font-medium text-foreground">{skill.name}</span>
-                      <span className="text-sm text-muted-foreground">{skill.level}%</span>
+                      <span className="font-medium text-foreground text-sm sm:text-base">{skill.name}</span>
+                      <span className="text-xs sm:text-sm text-muted-foreground">{skill.level}%</span>
                     </div>
                     <div className="w-full bg-secondary/30 rounded-full h-2">
-                      <div 
+                      <div
                         className="bg-gradient-to-r from-primary to-info h-2 rounded-full transition-all duration-1000 ease-out"
                         style={{ width: `${skill.level}%` }}
                       />
@@ -494,19 +494,19 @@ const VideoEditorPortfolio = () => {
         </section>
 
         {/* Stats Section */}
-        <section className="bg-gradient-to-r from-primary/5 via-violet-500/5 to-cyan-500/5 py-16">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-4">{content[language].statsTitle}</h2>
+        <section className="bg-gradient-to-r from-primary/5 via-violet-500/5 to-cyan-500/5 py-12 sm:py-16">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">{content[language].statsTitle}</h2>
             </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50 hover:shadow-lg transition-all duration-300">
-                    <stat.icon className="w-8 h-8 text-primary mx-auto mb-4" />
-                    <div className="text-3xl font-bold text-foreground mb-2">{stat.number}</div>
-                    <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  <div className="bg-card/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-border/50 hover:shadow-lg transition-all duration-300">
+                    <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary mx-auto mb-3 sm:mb-4" />
+                    <div className="text-2xl sm:text-3xl font-bold text-foreground mb-1 sm:mb-2">{stat.number}</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">{stat.label}</div>
                   </div>
                 </div>
               ))}
@@ -515,28 +515,28 @@ const VideoEditorPortfolio = () => {
         </section>
 
         {/* Services Section */}
-        <section className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">{content[language].servicesTitle}</h2>
-            <p className="text-muted-foreground">{content[language].servicesSubtitle}</p>
+        <section className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">{content[language].servicesTitle}</h2>
+            <p className="text-sm sm:text-base text-muted-foreground">{content[language].servicesSubtitle}</p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {services.map((service, index) => (
               <Card key={index} className="bg-card border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center">
-                <CardContent className="p-8">
-                  <service.icon className="w-12 h-12 text-primary mx-auto mb-6" />
-                  <h3 className="text-xl font-semibold text-foreground mb-4">{service.title}</h3>
-                  <div className="text-2xl font-bold text-primary mb-4">{service.price}</div>
-                  <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+                <CardContent className="p-6 sm:p-8">
+                  <service.icon className="w-10 h-10 sm:w-12 sm:h-12 text-primary mx-auto mb-4 sm:mb-6" />
+                  <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-3 sm:mb-4">{service.title}</h3>
+                  <div className="text-xl sm:text-2xl font-bold text-primary mb-3 sm:mb-4">{service.price}</div>
+                  <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">
                     {service.features.map((feature, idx) => (
                       <li key={idx} className="flex items-center justify-center">
-                        <Star className="w-3 h-3 text-primary mr-2" />
+                        <Star className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
                         {feature}
                       </li>
                     ))}
                   </ul>
-                  <Button className="w-full">{content[language].getQuote}</Button>
+                  <Button className="w-full text-sm sm:text-base">{content[language].getQuote}</Button>
                 </CardContent>
               </Card>
             ))}
@@ -545,9 +545,9 @@ const VideoEditorPortfolio = () => {
 
         {/* Achievement Path Section */}
         <section>
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-foreground mb-4">{content[language].timelineTitle}</h2>
-            <p className="text-muted-foreground">{content[language].timelineSubtitle}</p>
+          <div className="text-center mb-6 sm:mb-8 px-4 sm:px-6">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">{content[language].timelineTitle}</h2>
+            <p className="text-sm sm:text-base text-muted-foreground">{content[language].timelineSubtitle}</p>
           </div>
           <AchievementPath />
         </section>
