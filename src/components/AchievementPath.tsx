@@ -100,7 +100,7 @@ const achievementData: YearData[] = [
         id: "2024-4",
         year: 2024,
         title: "Команда топ-специалиста",
-        description: "Вошел в команду т��пового СНГ-специалиста",
+        description: "Вошел в команду топового СНГ-специалиста",
         icon: <Award className="w-4 h-4" />,
         color: "from-violet-300 to-violet-400"
       }
@@ -238,11 +238,11 @@ const calculateAllPositions = () => {
   // Уменьшение расстояния до 2024 года
   currentT += 0.02; // Маленький отступ
 
-  // 3. 2024 год - точно ��а кривой
+  // 3. 2024 год - точно а кривой
   positions.years[2024] = getPointOnCurve(yearTs[2024]);
   currentT += step;
 
-  // 4. Достижения 2024 года (4 штук��)
+  // 4. Достижения 2024 года (4 штуки)
   positions.achievements[2024] = [];
   for (let i = 0; i < 4; i++) {
     positions.achievements[2024].push(getPointOnCurve(currentT));

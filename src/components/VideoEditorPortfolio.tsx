@@ -138,7 +138,7 @@ const VideoEditorPortfolio = () => {
       views: "15.2K",
       category: "Реклама",
       thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=225&fit=crop",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" // Зам��ните на реальные видео
+      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" 
     },
     {
       id: 2,
@@ -153,7 +153,7 @@ const VideoEditorPortfolio = () => {
     {
       id: 3,
       title: "Музыкальный клип",
-      description: "Творческий музыкальный видеоклип с синхронизацией и ��изуальными эффектами. Эксперименты с цветом и ритмом.",
+      description: "Творческий музыкальный видеоклип с синхронизацией и визуальными эффектами. Эксперименты с цветом и ритмом.",
       duration: "3:45",
       views: "23.1K",
       category: "Музыка",
@@ -163,7 +163,7 @@ const VideoEditorPortfolio = () => {
     {
       id: 4,
       title: "Документальный фильм",
-      description: "Короткометражный документальный фильм о ме��тных художниках. Интервью, b-roll съемка, профессиональный звук.",
+      description: "Короткометражный документальный фильм о местных художниках. Интервью, b-roll съемка, профессиональный звук.",
       duration: "12:20",
       views: "5.3K",
       category: "Документалистика",
@@ -191,7 +191,7 @@ const VideoEditorPortfolio = () => {
           Привет! Меня зовут Алексей, я reels продюсер🎬<br/>
           <ul className="list-disc ml-4 mt-2 text-sm text-muted-foreground">
             <li>Основатель <a href="https://www.instagram.com/greenscreenvideos_?igsh=MWVkdDU0ZXJ2bjMyeg==" target="_blank" rel="noopener noreferrer" className="underline">аккаунта с зелёными роликами</a></li>
-            <li>2 года в продюсировании корот��их роликов</li>
+            <li>2 года в продюсировании коротких роликов</li>
             <li>100+ млн просмотров клиентам</li>
             <li>500+ тыс целевых подписчиков</li>
             <li>26 000 подписчиков клиенту с одного ролика</li>
@@ -206,7 +206,7 @@ const VideoEditorPortfolio = () => {
       photo: import.meta.env.BASE_URL + "Никита Волгин.jpg",
       description: (
         <>
-          ��снователь канала <a href="https://t.me/volgin_404" target="_blank" rel="noopener noreferrer" className="underline">404</a>
+          основатель канала <a href="https://t.me/volgin_404" target="_blank" rel="noopener noreferrer" className="underline">404</a>
         </>
       ),
       link: "https://t.me/volgin_404"
@@ -217,7 +217,7 @@ const VideoEditorPortfolio = () => {
       description: (
         <>
           Режиссёр<br/>
-          <a href="https://t.me/kopyl_sergey" target="_blank" rel="noopener noreferrer" className="underline">Телеграм-кан��л</a>
+          <a href="https://t.me/kopyl_sergey" target="_blank" rel="noopener noreferrer" className="underline">Телеграм-канал</a>
         </>
       ),
       link: "https://t.me/kopyl_sergey"
@@ -253,9 +253,9 @@ const VideoEditorPortfolio = () => {
 
   const services = [
     {
-      title: "Рекламные ролик��",
+      title: "Рекламные ролики",
       price: "от 15,000₽",
-      features: ["Сценарий", "Съемка", "Монтаж", "Цветокоррекция", "Зву��овой дизайн"],
+      features: ["Сценарий", "Съемка", "Монтаж", "Цветокоррекция", "Звуковой дизайн"],
       icon: Target
     },
     {
@@ -267,7 +267,7 @@ const VideoEditorPortfolio = () => {
     {
       title: "Рилсы",
       price: "от 1000₽",
-      features: ["Монтаж", "Музыкальное сопров��ждение", "Цветокоррекция"],
+      features: ["Монтаж", "Музыкальное сопровождение", "Цветокоррекция"],
       icon: Heart
     }
   ];
@@ -647,7 +647,7 @@ const VideoEditorPortfolio = () => {
         {/* Partners Section */}
         <section className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 relative overflow-hidden">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4 animate-fade-in">Со мной сотрудни��ают</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4 animate-fade-in">Со мной сотрудничают</h2>
             <p className="text-muted-foreground text-base sm:text-lg animate-fade-in delay-100">Люди, с которыми я горжусь работать</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 relative z-10">
