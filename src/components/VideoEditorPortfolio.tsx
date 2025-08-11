@@ -49,6 +49,7 @@ const VideoEditorPortfolio = () => {
   const [language, setLanguage] = useState<'ru' | 'en'>('ru');
   const [scrollY, setScrollY] = useState(0);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const [isControlsOpen, setIsControlsOpen] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const { theme, setTheme } = useTheme();
   
@@ -84,7 +85,7 @@ const VideoEditorPortfolio = () => {
       statsTitle: "Достижения в цифрах",
       awardsTitle: "Награды и сертификаты",
       getQuote: "Получить предложение",
-      sendMessage: "Отправить ��ообщение",
+      sendMessage: "Отправить сообщение",
       yourName: "Ваше имя",
       yourEmail: "Email",
       projectDescription: "Описание проекта",
@@ -142,7 +143,7 @@ const VideoEditorPortfolio = () => {
     {
       id: 2,
       title: "Свадебный клип",
-      description: "Эмоциона��ьный свадебный ролик с кинематографической обработкой. Акцент на атмосферу и передачу чувств.",
+      description: "Эмоциональный свадебный ролик с кинематографической обработкой. Акцент на атмосферу и передачу чувств.",
       duration: "4:15",
       views: "8.7K",
       category: "Свадьба",
@@ -190,7 +191,7 @@ const VideoEditorPortfolio = () => {
           Привет! Меня зовут Алексей, я reels продюсер🎬<br/>
           <ul className="list-disc ml-4 mt-2 text-sm text-muted-foreground">
             <li>Основатель <a href="https://www.instagram.com/greenscreenvideos_?igsh=MWVkdDU0ZXJ2bjMyeg==" target="_blank" rel="noopener noreferrer" className="underline">аккаунта с зелёными роликами</a></li>
-            <li>2 года в продюсировании коротких роликов</li>
+            <li>2 года в продюсировании корот��их роликов</li>
             <li>100+ млн просмотров клиентам</li>
             <li>500+ тыс целевых подписчиков</li>
             <li>26 000 подписчиков клиенту с одного ролика</li>
@@ -254,7 +255,7 @@ const VideoEditorPortfolio = () => {
     {
       title: "Рекламные ролики",
       price: "от 15,000₽",
-      features: ["Сценарий", "Съемка", "Монтаж", "Цветокоррекция", "Звуковой дизайн"],
+      features: ["Сценарий", "Съемка", "Монтаж", "Цветокоррекция", "Зву��овой дизайн"],
       icon: Target
     },
     {
@@ -313,9 +314,22 @@ const VideoEditorPortfolio = () => {
       setScrollY(window.scrollY);
       setShowScrollTop(window.scrollY > 500);
     };
+
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest('.mobile-controls-area') && isControlsOpen) {
+        setIsControlsOpen(false);
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isControlsOpen]);
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
@@ -328,43 +342,109 @@ const VideoEditorPortfolio = () => {
         preload="auto"
       />
       
-      {/* Controls */}
-      <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-4">
-        <div className="flex items-center gap-1 sm:gap-2 bg-card/80 backdrop-blur-md rounded-full px-2 sm:px-4 py-1 sm:py-2 border border-border/50">
-          <Globe className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground" />
+      {/* Mobile Controls Toggle */}
+      <div className="fixed top-4 right-4 z-50 sm:hidden">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setIsControlsOpen(!isControlsOpen)}
+          className="bg-card/80 backdrop-blur-md rounded-full p-2 border border-border/50 hover:bg-card/90"
+        >
+          <svg
+            className={`w-4 h-4 text-foreground transition-transform duration-300 ${isControlsOpen ? 'rotate-180' : ''}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </Button>
+      </div>
+
+      {/* Desktop Controls */}
+      <div className="hidden sm:flex fixed top-6 right-6 z-50 items-center gap-4">
+        <div className="flex items-center gap-2 bg-card/80 backdrop-blur-md rounded-full px-4 py-2 border border-border/50">
+          <Globe className="w-4 h-4 text-muted-foreground" />
           <Button
             variant="ghost"
             size="sm"
             onClick={() => setLanguage(language === 'ru' ? 'en' : 'ru')}
-            className="text-xs hover:bg-transparent p-1 sm:p-2"
+            className="text-xs hover:bg-transparent p-2"
           >
             {language.toUpperCase()}
           </Button>
         </div>
-        
-        <div className="flex items-center gap-1 sm:gap-2 bg-card/80 backdrop-blur-md rounded-full px-2 sm:px-4 py-1 sm:py-2 border border-border/50">
-          <Sun className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground" />
+
+        <div className="flex items-center gap-2 bg-card/80 backdrop-blur-md rounded-full px-4 py-2 border border-border/50">
+          <Sun className="w-4 h-4 text-muted-foreground" />
           <Switch
             checked={theme === 'dark'}
             onCheckedChange={(checked) => setTheme(checked ? 'dark' : 'light')}
-            className="scale-75 sm:scale-100"
           />
-          <Moon className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground" />
+          <Moon className="w-4 h-4 text-muted-foreground" />
         </div>
-        
-        <div className="flex items-center gap-1 sm:gap-2 bg-card/80 backdrop-blur-md rounded-full px-2 sm:px-4 py-1 sm:py-2 border border-border/50">
+
+        <div className="flex items-center gap-2 bg-card/80 backdrop-blur-md rounded-full px-4 py-2 border border-border/50">
           <Button
             variant="ghost"
             size="sm"
             onClick={toggleMusic}
-            className="text-xs hover:bg-transparent p-1 sm:p-2"
+            className="text-xs hover:bg-transparent p-2"
           >
             {isMusicPlaying ? (
-              <Bell className="w-3 h-3 sm:w-4 sm:h-4 text-primary animate-pulse" />
+              <Bell className="w-4 h-4 text-primary animate-pulse" />
             ) : (
-              <BellOff className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground" />
+              <BellOff className="w-4 h-4 text-muted-foreground" />
             )}
           </Button>
+        </div>
+      </div>
+
+      {/* Mobile Controls Panel */}
+      <div className={`fixed top-16 right-4 z-40 sm:hidden transition-all duration-300 transform ${
+        isControlsOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
+      }`}>
+        <div className="bg-card/95 backdrop-blur-md rounded-2xl border border-border/50 shadow-lg p-3 space-y-3">
+          {/* Language Toggle */}
+          <div className="flex items-center gap-2 bg-background/50 rounded-full px-3 py-2">
+            <Globe className="w-3 h-3 text-muted-foreground" />
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setLanguage(language === 'ru' ? 'en' : 'ru')}
+              className="text-xs hover:bg-transparent p-1 min-w-8"
+            >
+              {language.toUpperCase()}
+            </Button>
+          </div>
+
+          {/* Theme Toggle */}
+          <div className="flex items-center gap-2 bg-background/50 rounded-full px-3 py-2">
+            <Sun className="w-3 h-3 text-muted-foreground" />
+            <Switch
+              checked={theme === 'dark'}
+              onCheckedChange={(checked) => setTheme(checked ? 'dark' : 'light')}
+              className="scale-75"
+            />
+            <Moon className="w-3 h-3 text-muted-foreground" />
+          </div>
+
+          {/* Music Toggle */}
+          <div className="flex items-center gap-2 bg-background/50 rounded-full px-3 py-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleMusic}
+              className="text-xs hover:bg-transparent p-1 flex items-center gap-1"
+            >
+              {isMusicPlaying ? (
+                <Bell className="w-3 h-3 text-primary animate-pulse" />
+              ) : (
+                <BellOff className="w-3 h-3 text-muted-foreground" />
+              )}
+              <span className="text-xs">{isMusicPlaying ? 'ON' : 'OFF'}</span>
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -584,7 +664,7 @@ const VideoEditorPortfolio = () => {
               </a>
             ))}
           </div>
-          {/* Simple animated particles (приме��) */}
+          {/* Simple animated particles (пример) */}
           <div className="absolute inset-0 pointer-events-none z-0">
             <svg className="absolute top-10 left-10 animate-float-slow" width="40" height="40"><circle cx="20" cy="20" r="20" fill="#a5b4fc" fillOpacity="0.2"/></svg>
             <svg className="absolute bottom-10 right-20 animate-float" width="24" height="24"><circle cx="12" cy="12" r="12" fill="#f472b6" fillOpacity="0.18"/></svg>
