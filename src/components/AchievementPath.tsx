@@ -100,7 +100,7 @@ const achievementData: YearData[] = [
         id: "2024-4",
         year: 2024,
         title: "Команда топ-специалиста",
-        description: "Вошел в команду топового СНГ-специалиста",
+        description: "Вошел в команду т��пового СНГ-специалиста",
         icon: <Award className="w-4 h-4" />,
         color: "from-violet-300 to-violet-400"
       }
@@ -242,7 +242,7 @@ const calculateAllPositions = () => {
   positions.years[2024] = getPointOnCurve(yearTs[2024]);
   currentT += step;
 
-  // 4. Достижения 2024 года (4 штуки)
+  // 4. Достижения 2024 года (4 штук��)
   positions.achievements[2024] = [];
   for (let i = 0; i < 4; i++) {
     positions.achievements[2024].push(getPointOnCurve(currentT));
@@ -342,17 +342,6 @@ const AchievementPath: React.FC = () => {
           strokeLinecap="round"
         />
 
-        {/* Path Dots for years - используем точные позиции */}
-        {(() => {
-          const yearTs = getYearPositions();
-          return (
-            <>
-              <circle cx={getPointOnCurve(yearTs[2023]).x} cy={getPointOnCurve(yearTs[2023]).y} r="2" fill="#10b981" className="animate-pulse drop-shadow-lg" />
-              <circle cx={getPointOnCurve(yearTs[2024]).x} cy={getPointOnCurve(yearTs[2024]).y} r="2" fill="#3b82f6" className="animate-pulse drop-shadow-lg" style={{animationDelay: '0.6s'}} />
-              <circle cx={getPointOnCurve(yearTs[2025]).x} cy={getPointOnCurve(yearTs[2025]).y} r="2" fill="#f59e0b" className="animate-pulse drop-shadow-lg" style={{animationDelay: '1.2s'}} />
-            </>
-          );
-        })()}
       </svg>
 
       {/* Year Nodes (Main points) */}
@@ -400,27 +389,6 @@ const AchievementPath: React.FC = () => {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: yearData.year - 2022 + Math.random() * 0.5, duration: 0.4 }}
           >
-            <svg 
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                width: '200px',
-                height: '200px',
-                left: '-100px',
-                top: '-100px'
-              }}
-            >
-              <line
-                x1="100"
-                y1="100"
-                x2={100 + (parseFloat(yearData.position.x) - parseFloat(achievement.position.x)) * 3}
-                y2={100 + (parseFloat(yearData.position.y) - parseFloat(achievement.position.y)) * 3}
-                stroke={`url(#sPathGradient)`}
-                strokeWidth="1"
-                strokeDasharray="4,4"
-                opacity="0.6"
-                className="animate-pulse"
-              />
-            </svg>
 
             <motion.div
               className={`relative w-14 h-14 rounded-full bg-gradient-to-br ${achievement.color}
@@ -546,9 +514,9 @@ const AchievementPath: React.FC = () => {
               opacity: [0.2, 0.8, 0.2],
             }}
             transition={{
-              duration: 4 + Math.random() * 3,
+              duration: 8 + Math.random() * 4,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: Math.random() * 4,
             }}
           />
         ))}
