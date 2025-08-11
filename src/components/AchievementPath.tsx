@@ -152,7 +152,7 @@ const achievementData: YearData[] = [
 const getPointOnCurve = (t: number): { x: number; y: number } => {
   // Точки кривой Безье для более выраженной S-образной формы с лучшим вертикальным растяжением
   const P0 = { x: 10, y: 2.8 };   // Начало - левый верх
-  const P1 = { x: 30, y: 1 };   // Контрольная точка 1 - подъем вверх
+  const P1 = { x: 30, y: 1 };   // Контрольная точ��а 1 - подъем вверх
   const P2 = { x: 70, y: 20 };  // Контрольная точка 2 - движение вправо
   const P3 = { x: 50, y: 50 };  // Средняя точка - центр S
   const P4 = { x: 30, y: 80 };  // Контрольная точка 3 - влево и вниз
@@ -333,7 +333,7 @@ const AchievementPath: React.FC = () => {
         
         {/* S-shaped Main Path */}
         <path
-          d="M 15,5 C 30,1 70,20 50,50 C 30,80 70,99 85,95"
+          d="M 15,8 C 25,5 65,25 50,50 C 35,75 70,95 85,88"
           stroke="url(#sPathGradient)"
           strokeWidth="1.5"
           fill="none"
