@@ -238,7 +238,7 @@ const calculateAllPositions = () => {
   // Уменьшение расстояния до 2024 года
   currentT += 0.02; // Маленький отступ
 
-  // 3. 2024 год - точно на кривой
+  // 3. 2024 год - точно ��а кривой
   positions.years[2024] = getPointOnCurve(yearTs[2024]);
   currentT += step;
 
@@ -298,14 +298,14 @@ const AchievementPath: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-[200vh] bg-gradient-to-br from-background via-muted/10 to-background overflow-hidden" onMouseMove={handleMouseMove}>
+    <div className="relative w-full h-[200vh] sm:h-[150vh] md:h-[200vh] bg-gradient-to-br from-background via-muted/10 to-background overflow-hidden" onMouseMove={handleMouseMove}>
       {/* Animated Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-16 left-16 w-48 h-48 bg-green-200/15 dark:bg-green-800/15 rounded-full animate-float blur-2xl" />
-        <div className="absolute top-1/4 right-24 w-56 h-56 bg-blue-200/15 dark:bg-blue-800/15 rounded-full animate-float-delayed blur-2xl" />
-        <div className="absolute top-2/3 left-1/4 w-52 h-52 bg-purple-200/15 dark:bg-purple-800/15 rounded-full animate-float blur-2xl" />
-        <div className="absolute bottom-24 right-1/3 w-44 h-44 bg-yellow-200/15 dark:bg-yellow-800/15 rounded-full animate-float-delayed blur-2xl" />
-        <div className="absolute top-1/2 left-1/2 w-60 h-60 bg-gradient-to-r from-emerald-200/10 to-blue-200/10 dark:from-emerald-800/10 dark:to-blue-800/10 rounded-full animate-float blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute top-8 left-4 sm:top-16 sm:left-16 w-24 h-24 sm:w-48 sm:h-48 bg-green-200/15 dark:bg-green-800/15 rounded-full animate-float blur-2xl" />
+        <div className="absolute top-1/4 right-4 sm:right-24 w-32 h-32 sm:w-56 sm:h-56 bg-blue-200/15 dark:bg-blue-800/15 rounded-full animate-float-delayed blur-2xl" />
+        <div className="absolute top-2/3 left-1/4 w-28 h-28 sm:w-52 sm:h-52 bg-purple-200/15 dark:bg-purple-800/15 rounded-full animate-float blur-2xl" />
+        <div className="absolute bottom-12 right-1/3 sm:bottom-24 w-24 h-24 sm:w-44 sm:h-44 bg-yellow-200/15 dark:bg-yellow-800/15 rounded-full animate-float-delayed blur-2xl" />
+        <div className="absolute top-1/2 left-1/2 w-32 h-32 sm:w-60 sm:h-60 bg-gradient-to-r from-emerald-200/10 to-blue-200/10 dark:from-emerald-800/10 dark:to-blue-800/10 rounded-full animate-float blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
       </div>
 
       {/* S-shaped Path SVG */}
@@ -349,8 +349,8 @@ const AchievementPath: React.FC = () => {
         <motion.div
           key={yearData.year}
           className="absolute pointer-events-auto"
-          style={{ 
-            left: yearData.position.x, 
+          style={{
+            left: yearData.position.x,
             top: yearData.position.y,
             transform: 'translate(-50%, -50%)'
           }}
@@ -359,15 +359,15 @@ const AchievementPath: React.FC = () => {
           transition={{ delay: yearIndex * 0.4, duration: 0.6 }}
         >
           <motion.div
-            className={`relative w-24 h-24 rounded-full bg-gradient-to-br ${yearData.yearColor}
+            className={`relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br ${yearData.yearColor}
               shadow-xl cursor-pointer flex items-center justify-center text-white
-              hover:shadow-2xl transition-all duration-300 border-3 border-white dark:border-gray-800`}
+              hover:shadow-2xl transition-all duration-300 border-2 sm:border-3 border-white dark:border-gray-800`}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onHoverStart={() => setHoveredItem({ type: 'year', data: yearData })}
             onHoverEnd={() => setHoveredItem(null)}
           >
-            <div className="text-lg font-bold">{yearData.year}</div>
+            <div className="text-sm sm:text-base md:text-lg font-bold">{yearData.year}</div>
             <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${yearData.yearColor}
               opacity-20 animate-pulse blur-sm scale-125`} />
           </motion.div>
@@ -391,17 +391,17 @@ const AchievementPath: React.FC = () => {
           >
 
             <motion.div
-              className={`relative w-14 h-14 rounded-full bg-gradient-to-br ${achievement.color}
+              className={`relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br ${achievement.color}
                 shadow-lg cursor-pointer flex items-center justify-center text-white
-                hover:shadow-xl transition-all duration-300 border-2 border-white dark:border-gray-700`}
+                hover:shadow-xl transition-all duration-300 border border-white dark:border-gray-700`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onHoverStart={() => setHoveredItem({ type: 'achievement', data: achievement })}
               onHoverEnd={() => setHoveredItem(null)}
             >
-              <div className="w-4 h-4">{achievement.icon}</div>
-              <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                <Check className="w-3 h-3 text-white" />
+              <div className="w-3 h-3 sm:w-4 sm:h-4">{achievement.icon}</div>
+              <div className="absolute -top-0.5 -right-0.5 sm:-top-1 sm:-right-1 w-4 h-4 sm:w-5 sm:h-5 bg-green-500 rounded-full flex items-center justify-center">
+                <Check className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
               </div>
             </motion.div>
           </motion.div>
@@ -413,28 +413,29 @@ const AchievementPath: React.FC = () => {
         <motion.div
           className="fixed pointer-events-none z-50"
           style={{
-            left: mousePosition.x + 20,
-            top: mousePosition.y - 10,
+            left: window.innerWidth > 768 ? mousePosition.x + 20 : '50%',
+            top: window.innerWidth > 768 ? mousePosition.y - 10 : '50%',
+            transform: window.innerWidth <= 768 ? 'translate(-50%, -50%)' : 'none',
           }}
           initial={{ opacity: 0, scale: 0.8, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 10 }}
           transition={{ duration: 0.2 }}
         >
-          <div className="bg-card/95 dark:bg-card/95 backdrop-blur-md border border-border/50 
-            rounded-xl shadow-2xl p-6 max-w-sm">
+          <div className="bg-card/95 dark:bg-card/95 backdrop-blur-md border border-border/50
+            rounded-xl shadow-2xl p-4 sm:p-6 max-w-xs sm:max-w-sm mx-4 sm:mx-0">
             
             {hoveredItem.type === 'year' ? (
               <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`p-3 rounded-lg bg-gradient-to-br ${hoveredItem.data.yearColor} text-white`}>
-                    <Star className="w-6 h-6" />
+                <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  <div className={`p-2 sm:p-3 rounded-lg bg-gradient-to-br ${hoveredItem.data.yearColor} text-white`}>
+                    <Star className="w-4 h-4 sm:w-6 sm:h-6" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-foreground text-xl">
+                    <h3 className="font-bold text-foreground text-lg sm:text-xl">
                       {hoveredItem.data.year}
                     </h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       {hoveredItem.data.title}
                     </p>
                   </div>
@@ -462,12 +463,12 @@ const AchievementPath: React.FC = () => {
               </div>
             ) : (
               <div>
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
                   <div className={`p-2 rounded-lg bg-gradient-to-br ${hoveredItem.data.color} text-white`}>
                     {hoveredItem.data.icon}
                   </div>
                   <div>
-                    <h3 className="font-bold text-foreground text-lg">
+                    <h3 className="font-bold text-foreground text-base sm:text-lg">
                       {hoveredItem.data.title}
                     </h3>
                     <p className="text-xs text-muted-foreground">
