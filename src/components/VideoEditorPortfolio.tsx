@@ -138,7 +138,7 @@ const VideoEditorPortfolio = () => {
       views: "15.2K",
       category: "Реклама",
       thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=225&fit=crop",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" 
+      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" // Зам��ните на реальные видео
     },
     {
       id: 2,
@@ -153,7 +153,7 @@ const VideoEditorPortfolio = () => {
     {
       id: 3,
       title: "Музыкальный клип",
-      description: "Творческий музыкальный видеоклип с синхронизацией и визуальными эффектами. Эксперименты с цветом и ритмом.",
+      description: "Творческий музыкальный видеоклип с синхронизацией и ��изуальными эффектами. Эксперименты с цветом и ритмом.",
       duration: "3:45",
       views: "23.1K",
       category: "Музыка",
@@ -163,7 +163,7 @@ const VideoEditorPortfolio = () => {
     {
       id: 4,
       title: "Документальный фильм",
-      description: "Короткометражный документальный фильм о местных художниках. Интервью, b-roll съемка, профессиональный звук.",
+      description: "Короткометражный документальный фильм о ме��тных художниках. Интервью, b-roll съемка, профессиональный звук.",
       duration: "12:20",
       views: "5.3K",
       category: "Документалистика",
@@ -191,7 +191,7 @@ const VideoEditorPortfolio = () => {
           Привет! Меня зовут Алексей, я reels продюсер🎬<br/>
           <ul className="list-disc ml-4 mt-2 text-sm text-muted-foreground">
             <li>Основатель <a href="https://www.instagram.com/greenscreenvideos_?igsh=MWVkdDU0ZXJ2bjMyeg==" target="_blank" rel="noopener noreferrer" className="underline">аккаунта с зелёными роликами</a></li>
-            <li>2 года в продюсировании коротких роликов</li>
+            <li>2 года в продюсировании корот��их роликов</li>
             <li>100+ млн просмотров клиентам</li>
             <li>500+ тыс целевых подписчиков</li>
             <li>26 000 подписчиков клиенту с одного ролика</li>
@@ -206,7 +206,7 @@ const VideoEditorPortfolio = () => {
       photo: import.meta.env.BASE_URL + "Никита Волгин.jpg",
       description: (
         <>
-          основатель канала <a href="https://t.me/volgin_404" target="_blank" rel="noopener noreferrer" className="underline">404</a>
+          ��снователь канала <a href="https://t.me/volgin_404" target="_blank" rel="noopener noreferrer" className="underline">404</a>
         </>
       ),
       link: "https://t.me/volgin_404"
@@ -217,7 +217,7 @@ const VideoEditorPortfolio = () => {
       description: (
         <>
           Режиссёр<br/>
-          <a href="https://t.me/kopyl_sergey" target="_blank" rel="noopener noreferrer" className="underline">Телеграм-канал</a>
+          <a href="https://t.me/kopyl_sergey" target="_blank" rel="noopener noreferrer" className="underline">Телеграм-кан��л</a>
         </>
       ),
       link: "https://t.me/kopyl_sergey"
@@ -253,9 +253,9 @@ const VideoEditorPortfolio = () => {
 
   const services = [
     {
-      title: "Рекламные ролики",
+      title: "Рекламные ролик��",
       price: "от 15,000₽",
-      features: ["Сценарий", "Съемка", "Монтаж", "Цветокоррекция", "Звуковой дизайн"],
+      features: ["Сценарий", "Съемка", "Монтаж", "Цветокоррекция", "Зву��овой дизайн"],
       icon: Target
     },
     {
@@ -267,7 +267,7 @@ const VideoEditorPortfolio = () => {
     {
       title: "Рилсы",
       price: "от 1000₽",
-      features: ["Монтаж", "Музыкальное сопровождение", "Цветокоррекция"],
+      features: ["Монтаж", "Музыкальное сопров��ждение", "Цветокоррекция"],
       icon: Heart
     }
   ];
@@ -413,10 +413,11 @@ const VideoEditorPortfolio = () => {
           isControlsOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
         }`}
         style={{
-          display: isControlsOpen ? 'block' : 'none'
+          display: isControlsOpen ? 'block' : 'block' // Всегда показываем для отладки
         }}
       >
         <div className="bg-card/95 backdrop-blur-md rounded-2xl border border-border/50 shadow-lg p-3 space-y-3">
+          {console.log('Panel state:', isControlsOpen)}
           {/* Language Toggle */}
           <div className="flex items-center gap-2 bg-background/50 rounded-full px-3 py-2">
             <Globe className="w-3 h-3 text-muted-foreground" />
@@ -556,32 +557,322 @@ const VideoEditorPortfolio = () => {
 
       <div className="relative z-10 space-y-20">
 
-        {/* Skills Section */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">{content[language].skillsTitle}</h2>
-            <p className="text-sm sm:text-base text-muted-foreground">{content[language].skillsSubtitle}</p>
+        {/* Skills Section - Redesigned with Infographics */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+              {content[language].skillsTitle}
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              {content[language].skillsSubtitle}
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {skills.map((skill, index) => (
-              <Card key={index} className="bg-card border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <CardContent className="p-4 sm:p-6">
-                  <div className="space-y-2 sm:space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium text-foreground text-sm sm:text-base">{skill.name}</span>
-                      <span className="text-xs sm:text-sm text-muted-foreground">{skill.level}%</span>
+          {/* Skills Grid with Visual Elements */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Adobe Premiere Pro */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+              <Card className="relative bg-card/80 backdrop-blur-sm border-border/20 rounded-2xl overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-full blur-2xl" />
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18L19.82 8 12 11.82 4.18 8 12 4.18zM4 9.18l7 3.5v6.64l-7-3.5V9.18zm16 0v6.64l-7 3.5v-6.64l7-3.5z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-lg">Adobe Premiere Pro</h3>
+                        <p className="text-sm text-muted-foreground">Video Editing</p>
+                      </div>
                     </div>
-                    <div className="w-full bg-secondary/30 rounded-full h-2">
-                      <div
-                        className="bg-gradient-to-r from-primary to-info h-2 rounded-full transition-all duration-1000 ease-out"
-                        style={{ width: `${skill.level}%` }}
-                      />
+                    <div className="text-2xl font-bold text-purple-500">95%</div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-sm">
+                      <span>Proficiency</span>
+                      <span className="text-purple-500">Expert</span>
                     </div>
+                    <div className="w-full bg-secondary/20 rounded-full h-3">
+                      <div className="bg-gradient-to-r from-purple-500 to-blue-500 h-3 rounded-full transition-all duration-1000" 
+                           style={{ width: '95%' }} />
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <span className="px-2 py-1 bg-purple-500/10 text-purple-500 text-xs rounded-full">Color Grading</span>
+                    <span className="px-2 py-1 bg-blue-500/10 text-blue-500 text-xs rounded-full">Audio Sync</span>
+                    <span className="px-2 py-1 bg-purple-500/10 text-purple-500 text-xs rounded-full">Transitions</span>
                   </div>
                 </CardContent>
               </Card>
-            ))}
+            </div>
+
+            {/* After Effects */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+              <Card className="relative bg-card/80 backdrop-blur-sm border-border/20 rounded-2xl overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-2xl" />
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-lg">After Effects</h3>
+                        <p className="text-sm text-muted-foreground">Motion Graphics</p>
+                      </div>
+                    </div>
+                    <div className="text-2xl font-bold text-blue-500">90%</div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-sm">
+                      <span>Animation</span>
+                      <span className="text-blue-500">Advanced</span>
+                    </div>
+                    <div className="w-full bg-secondary/20 rounded-full h-3">
+                      <div className="bg-gradient-to-r from-blue-500 to-cyan-500 h-3 rounded-full transition-all duration-1000" 
+                           style={{ width: '90%' }} />
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <span className="px-2 py-1 bg-blue-500/10 text-blue-500 text-xs rounded-full">VFX</span>
+                    <span className="px-2 py-1 bg-cyan-500/10 text-cyan-500 text-xs rounded-full">3D Animation</span>
+                    <span className="px-2 py-1 bg-blue-500/10 text-blue-500 text-xs rounded-full">Compositing</span>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* DaVinci Resolve */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-600/20 to-orange-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+              <Card className="relative bg-card/80 backdrop-blur-sm border-border/20 rounded-2xl overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-full blur-2xl" />
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-lg">DaVinci Resolve</h3>
+                        <p className="text-sm text-muted-foreground">Color Grading</p>
+                      </div>
+                    </div>
+                    <div className="text-2xl font-bold text-amber-500">85%</div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-sm">
+                      <span>Color Science</span>
+                      <span className="text-amber-500">Professional</span>
+                    </div>
+                    <div className="w-full bg-secondary/20 rounded-full h-3">
+                      <div className="bg-gradient-to-r from-amber-500 to-orange-500 h-3 rounded-full transition-all duration-1000" 
+                           style={{ width: '85%' }} />
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <span className="px-2 py-1 bg-amber-500/10 text-amber-500 text-xs rounded-full">HDR</span>
+                    <span className="px-2 py-1 bg-orange-500/10 text-orange-500 text-xs rounded-full">LUTs</span>
+                    <span className="px-2 py-1 bg-amber-500/10 text-amber-500 text-xs rounded-full">Nodes</span>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Color Correction */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/20 to-teal-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+              <Card className="relative bg-card/80 backdrop-blur-sm border-border/20 rounded-2xl overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-full blur-2xl" />
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-lg">Color Correction</h3>
+                        <p className="text-sm text-muted-foreground">Color Theory</p>
+                      </div>
+                    </div>
+                    <div className="text-2xl font-bold text-emerald-500">92%</div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-sm">
+                      <span>Color Balance</span>
+                      <span className="text-emerald-500">Master</span>
+                    </div>
+                    <div className="w-full bg-secondary/20 rounded-full h-3">
+                      <div className="bg-gradient-to-r from-emerald-500 to-teal-500 h-3 rounded-full transition-all duration-1000" 
+                           style={{ width: '92%' }} />
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <span className="px-2 py-1 bg-emerald-500/10 text-emerald-500 text-xs rounded-full">Scopes</span>
+                    <span className="px-2 py-1 bg-teal-500/10 text-teal-500 text-xs rounded-full">Curves</span>
+                    <span className="px-2 py-1 bg-emerald-500/10 text-emerald-500 text-xs rounded-full">Wheels</span>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Motion Design */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-rose-600/20 to-pink-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+              <Card className="relative bg-card/80 backdrop-blur-sm border-border/20 rounded-2xl overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-rose-500/10 to-pink-500/10 rounded-full blur-2xl" />
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 bg-gradient-to-br from-rose-500 to-pink-500 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-lg">Motion Design</h3>
+                        <p className="text-sm text-muted-foreground">Animation</p>
+                      </div>
+                    </div>
+                    <div className="text-2xl font-bold text-rose-500">88%</div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-sm">
+                      <span>Keyframes</span>
+                      <span className="text-rose-500">Advanced</span>
+                    </div>
+                    <div className="w-full bg-secondary/20 rounded-full h-3">
+                      <div className="bg-gradient-to-r from-rose-500 to-pink-500 h-3 rounded-full transition-all duration-1000" 
+                           style={{ width: '88%' }} />
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <span className="px-2 py-1 bg-rose-500/10 text-rose-500 text-xs rounded-full">Easing</span>
+                    <span className="px-2 py-1 bg-pink-500/10 text-pink-500 text-xs rounded-full">Timing</span>
+                    <span className="px-2 py-1 bg-rose-500/10 text-rose-500 text-xs rounded-full">Dynamics</span>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Sound Design */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+              <Card className="relative bg-card/80 backdrop-blur-sm border-border/20 rounded-2xl overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-full blur-2xl" />
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-lg">Sound Design</h3>
+                        <p className="text-sm text-muted-foreground">Audio Engineering</p>
+                      </div>
+                    </div>
+                    <div className="text-2xl font-bold text-indigo-500">87%</div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-sm">
+                      <span>Audio Mixing</span>
+                      <span className="text-indigo-500">Professional</span>
+                    </div>
+                    <div className="w-full bg-secondary/20 rounded-full h-3">
+                      <div className="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full transition-all duration-1000" 
+                           style={{ width: '87%' }} />
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <span className="px-2 py-1 bg-indigo-500/10 text-indigo-500 text-xs rounded-full">EQ</span>
+                    <span className="px-2 py-1 bg-purple-500/10 text-purple-500 text-xs rounded-full">Compression</span>
+                    <span className="px-2 py-1 bg-indigo-500/10 text-indigo-500 text-xs rounded-full">Reverb</span>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Skills Summary Chart */}
+          <div className="mt-12">
+            <Card className="bg-card/80 backdrop-blur-sm border-border/20 rounded-2xl overflow-hidden">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-center mb-6">Распределение навыков</h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                  <div className="text-center">
+                    <div className="relative w-24 h-24 mx-auto mb-3">
+                      <svg className="w-24 h-24 transform -rotate-90">
+                        <circle cx="48" cy="48" r="40" stroke="currentColor" strokeWidth="8" fill="none" 
+                                className="text-secondary/20" />
+                        <circle cx="48" cy="48" r="40" stroke="currentColor" strokeWidth="8" fill="none"
+                                strokeDasharray="251.2" strokeDashoffset="12.56"
+                                className="text-purple-500" />
+                      </svg>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-2xl font-bold">95%</span>
+                      </div>
+                    </div>
+                    <p className="font-medium">Premiere Pro</p>
+                  </div>
+
+                  <div className="text-center">
+                    <div className="relative w-24 h-24 mx-auto mb-3">
+                      <svg className="w-24 h-24 transform -rotate-90">
+                        <circle cx="48" cy="48" r="40" stroke="currentColor" strokeWidth="8" fill="none" 
+                                className="text-secondary/20" />
+                        <circle cx="48" cy="48" r="40" stroke="currentColor" strokeWidth="8" fill="none"
+                                strokeDasharray="251.2" strokeDashoffset="25.12"
+                                className="text-blue-500" />
+                      </svg>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-2xl font-bold">90%</span>
+                      </div>
+                    </div>
+                    <p className="font-medium">After Effects</p>
+                  </div>
+
+                  <div className="text-center">
+                    <div className="relative w-24 h-24 mx-auto mb-3">
+                      <svg className="w-24 h-24 transform -rotate-90">
+                        <circle cx="48" cy="48" r="40" stroke="currentColor" strokeWidth="8" fill="none" 
+                                className="text-secondary/20" />
+                        <circle cx="48" cy="48" r="40" stroke="currentColor" strokeWidth="8" fill="none"
+                                strokeDasharray="251.2" strokeDashoffset="37.68"
+                                className="text-amber-500" />
+                      </svg>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-2xl font-bold">85%</span>
+                      </div>
+                    </div>
+                    <p className="font-medium">DaVinci Resolve</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
@@ -647,7 +938,7 @@ const VideoEditorPortfolio = () => {
         {/* Partners Section */}
         <section className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 relative overflow-hidden">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4 animate-fade-in">Со мной сотрудничают</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4 animate-fade-in">Со мной сотрудни��ают</h2>
             <p className="text-muted-foreground text-base sm:text-lg animate-fade-in delay-100">Люди, с которыми я горжусь работать</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 relative z-10">
