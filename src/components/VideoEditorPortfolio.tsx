@@ -165,7 +165,7 @@ const VideoEditorPortfolio = () => {
       description: "Короткометражный документальный фильм о местных художниках. Интервью, b-roll съемка, профессиональный звук.",
       duration: "12:20",
       views: "5.3K",
-      category: "Документалистика",
+      category: "Документали��тика",
       thumbnail: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=400&h=225&fit=crop",
       videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
     }
@@ -227,7 +227,7 @@ const VideoEditorPortfolio = () => {
     {
       year: "2024",
       title: "Freelance Video Editor",
-      company: "Собственная студия",
+      company: "Собст��енная студия",
       description: "Открыл собственную студию видеопродакшена. Работаю с крупными брендами и частными клиентами."
     },
     {
@@ -329,39 +329,40 @@ const VideoEditorPortfolio = () => {
       />
       
       {/* Controls */}
-      <div className="fixed top-6 right-6 z-50 flex items-center gap-4">
-        <div className="flex items-center gap-2 bg-card/80 backdrop-blur-md rounded-full px-4 py-2 border border-border/50">
-          <Globe className="w-4 h-4 text-muted-foreground" />
-          <Button 
-            variant="ghost" 
-            size="sm" 
+      <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-4">
+        <div className="flex items-center gap-1 sm:gap-2 bg-card/80 backdrop-blur-md rounded-full px-2 sm:px-4 py-1 sm:py-2 border border-border/50">
+          <Globe className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground" />
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => setLanguage(language === 'ru' ? 'en' : 'ru')}
-            className="text-xs hover:bg-transparent"
+            className="text-xs hover:bg-transparent p-1 sm:p-2"
           >
             {language.toUpperCase()}
           </Button>
         </div>
         
-        <div className="flex items-center gap-2 bg-card/80 backdrop-blur-md rounded-full px-4 py-2 border border-border/50">
-          <Sun className="w-4 h-4 text-muted-foreground" />
+        <div className="flex items-center gap-1 sm:gap-2 bg-card/80 backdrop-blur-md rounded-full px-2 sm:px-4 py-1 sm:py-2 border border-border/50">
+          <Sun className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground" />
           <Switch
             checked={theme === 'dark'}
             onCheckedChange={(checked) => setTheme(checked ? 'dark' : 'light')}
+            className="scale-75 sm:scale-100"
           />
-          <Moon className="w-4 h-4 text-muted-foreground" />
+          <Moon className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground" />
         </div>
         
-        <div className="flex items-center gap-2 bg-card/80 backdrop-blur-md rounded-full px-4 py-2 border border-border/50">
-          <Button 
-            variant="ghost" 
-            size="sm" 
+        <div className="flex items-center gap-1 sm:gap-2 bg-card/80 backdrop-blur-md rounded-full px-2 sm:px-4 py-1 sm:py-2 border border-border/50">
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={toggleMusic}
-            className="text-xs hover:bg-transparent"
+            className="text-xs hover:bg-transparent p-1 sm:p-2"
           >
             {isMusicPlaying ? (
-              <Bell className="w-4 h-4 text-primary animate-pulse" />
+              <Bell className="w-3 h-3 sm:w-4 sm:h-4 text-primary animate-pulse" />
             ) : (
-              <BellOff className="w-4 h-4 text-muted-foreground" />
+              <BellOff className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground" />
             )}
           </Button>
         </div>
@@ -410,49 +411,49 @@ const VideoEditorPortfolio = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-30 text-center px-6 max-w-4xl mx-auto">
-          <div 
-            className={`space-y-8 transition-all duration-1000 ${
+        <div className="relative z-30 text-center px-4 sm:px-6 max-w-4xl mx-auto">
+          <div
+            className={`space-y-6 sm:space-y-8 transition-all duration-1000 ${
               heroInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <div className="space-y-6">
-              <h1 className="text-6xl md:text-7xl font-bold text-foreground">
+            <div className="space-y-4 sm:space-y-6">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground">
                 <span className="bg-gradient-to-r from-primary to-violet-600 bg-clip-text text-transparent">
                   {content[language].name}
                 </span>
               </h1>
-              
-              <p className="text-2xl md:text-3xl text-primary font-semibold">
+
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-primary font-semibold">
                 {content[language].profession}
               </p>
-              
-              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 {content[language].description}
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4">
-              <Badge className="bg-primary/10 text-primary border border-primary/20 px-6 py-3 text-sm backdrop-blur-sm">
-                <Award className="w-4 h-4 mr-2" />
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
+              <Badge className="bg-primary/10 text-primary border border-primary/20 px-3 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm backdrop-blur-sm">
+                <Award className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                 {content[language].experience}
               </Badge>
-              <Badge className="bg-violet-500/10 text-violet-600 border border-violet-500/20 px-6 py-3 text-sm backdrop-blur-sm">
-                <Star className="w-4 h-4 mr-2" />
+              <Badge className="bg-violet-500/10 text-violet-600 border border-violet-500/20 px-3 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm backdrop-blur-sm">
+                <Star className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                 {content[language].projects}
               </Badge>
-              <Badge className="bg-cyan-500/10 text-cyan-600 border border-cyan-500/20 px-6 py-3 text-sm backdrop-blur-sm">
-                <Eye className="w-4 h-4 mr-2" />
+              <Badge className="bg-cyan-500/10 text-cyan-600 border border-cyan-500/20 px-3 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm backdrop-blur-sm">
+                <Eye className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                 {content[language].views}
               </Badge>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4 pt-6">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 shadow-lg">
+            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 pt-4 sm:pt-6">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 sm:px-8 shadow-lg w-full sm:w-auto">
                 <Mail className="w-4 h-4 mr-2" />
                 {content[language].contactButton}
               </Button>
-              <Button size="lg" variant="outline" className="px-8 backdrop-blur-sm border-primary/20 hover:bg-primary/10">
+              <Button size="lg" variant="outline" className="px-6 sm:px-8 backdrop-blur-sm border-primary/20 hover:bg-primary/10 w-full sm:w-auto">
                 <Download className="w-4 h-4 mr-2" />
                 {content[language].downloadButton}
               </Button>
