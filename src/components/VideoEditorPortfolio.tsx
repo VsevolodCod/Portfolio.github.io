@@ -417,7 +417,6 @@ const VideoEditorPortfolio = () => {
         }}
       >
         <div className="bg-card/95 backdrop-blur-md rounded-2xl border border-border/50 shadow-lg p-3 space-y-3">
-          {console.log('Panel state:', isControlsOpen)}
           {/* Language Toggle */}
           <div className="flex items-center gap-2 bg-background/50 rounded-full px-3 py-2">
             <Globe className="w-3 h-3 text-muted-foreground" />

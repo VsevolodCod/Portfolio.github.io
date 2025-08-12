@@ -148,16 +148,16 @@ const achievementData: YearData[] = [
   }
 ];
 
-// Функция для вычисления точки на кривой Безье (улучшенная S-кривая для большего вертикального растяжения)
+// Функция для вычисления точки на кривой Безье (оптимизированная S-кривая)
 const getPointOnCurve = (t: number): { x: number; y: number } => {
-  // Точки кривой Безье для более выраженной S-образной формы с лучшим вертикальным растяжением
-  const P0 = { x: 10, y: 2.8 };   // Начало - левый верх
-  const P1 = { x: 30, y: 1 };   // Контрольная точка 1 - подъем вверх
-  const P2 = { x: 70, y: 20 };  // Контрольная точка 2 - движение вправо
+  // Точки кривой Безье для плавной S-образной формы
+  const P0 = { x: 15, y: 5 };   // Начало - левый верх
+  const P1 = { x: 25, y: 2 };   // Контрольная точка 1 - подъем вверх
+  const P2 = { x: 75, y: 25 };  // Контрольная точка 2 - движение вправо
   const P3 = { x: 50, y: 50 };  // Средняя точка - центр S
-  const P4 = { x: 30, y: 80 };  // Контрольная точка 3 - влево и вниз
-  const P5 = { x: 70, y: 99 };  // Контрольная точка 4 - вправо
-  const P6 = { x: 85, y: 92 };  // Конец - правый низ
+  const P4 = { x: 25, y: 75 };  // Контрольная точка 3 - влево и вниз
+  const P5 = { x: 75, y: 98 };  // Контрольная точка 4 - вправо
+  const P6 = { x: 85, y: 95 };  // Конец - правый низ
 
   if (t <= 0.5) {
     const u = t * 2;
@@ -213,19 +213,18 @@ const getYearPositions = () => {
   };
 };
 
-// Функция для расчета всех позиций в правильной последовательности
+// Функция для расчета всех позиций точно на кривой
 const calculateAllPositions = () => {
   const positions: any = {
     years: {} as Record<number, {x: number, y: number}>,
     achievements: {} as Record<number, {x: number, y: number}[]>
   };
 
-  const yearTs = getYearPositions();
-  const step = 0.06; // Уменьшенный шаг
-  let currentT = 0.03; // Начало кривой
+  const step = 0.08; // Равномерный шаг по кривой
+  let currentT = 0.05; // Начало кривой
 
   // 1. 2023 год - начало кривой
-  positions.years[2023] = getPointOnCurve(yearTs[2023]);
+  positions.years[2023] = getPointOnCurve(currentT);
   currentT += step;
 
   // 2. Достижения 2023 года (3 штуки)
@@ -235,11 +234,8 @@ const calculateAllPositions = () => {
     currentT += step;
   }
 
-  // Уменьшение расстояния до 2024 года
-  currentT += 0.02; // Маленький отступ
-
-  // 3. 2024 год - точно а кривой
-  positions.years[2024] = getPointOnCurve(yearTs[2024]);
+  // 3. 2024 год
+  positions.years[2024] = getPointOnCurve(currentT);
   currentT += step;
 
   // 4. Достижения 2024 года (4 штуки)
@@ -249,17 +245,17 @@ const calculateAllPositions = () => {
     currentT += step;
   }
 
-  // 5. Достижения 2025 года (4 штуки) - убеждаемся что они на кривой
+  // 5. Достижения 2025 года (4 штуки)
   positions.achievements[2025] = [];
   for (let i = 0; i < 4; i++) {
-    if (currentT <= 0.95) { // Проверяем что не выходим за границы кривой
+    if (currentT <= 0.90) {
       positions.achievements[2025].push(getPointOnCurve(currentT));
       currentT += step;
     }
   }
 
   // 6. 2025 год - конец кривой
-  positions.years[2025] = getPointOnCurve(yearTs[2025]);
+  positions.years[2025] = getPointOnCurve(0.95);
 
   return positions;
 };
@@ -298,15 +294,7 @@ const AchievementPath: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div className="relative w-full h-[200vh] sm:h-[150vh] md:h-[200vh] bg-gradient-to-br from-background via-muted/10 to-background overflow-hidden" onMouseMove={handleMouseMove}>
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-8 left-4 sm:top-16 sm:left-16 w-24 h-24 sm:w-48 sm:h-48 bg-green-200/15 dark:bg-green-800/15 rounded-full animate-float blur-2xl" />
-        <div className="absolute top-1/4 right-4 sm:right-24 w-32 h-32 sm:w-56 sm:h-56 bg-blue-200/15 dark:bg-blue-800/15 rounded-full animate-float-delayed blur-2xl" />
-        <div className="absolute top-2/3 left-1/4 w-28 h-28 sm:w-52 sm:h-52 bg-purple-200/15 dark:bg-purple-800/15 rounded-full animate-float blur-2xl" />
-        <div className="absolute bottom-12 right-1/3 sm:bottom-24 w-24 h-24 sm:w-44 sm:h-44 bg-yellow-200/15 dark:bg-yellow-800/15 rounded-full animate-float-delayed blur-2xl" />
-        <div className="absolute top-1/2 left-1/2 w-32 h-32 sm:w-60 sm:h-60 bg-gradient-to-r from-emerald-200/10 to-blue-200/10 dark:from-emerald-800/10 dark:to-blue-800/10 rounded-full animate-float blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
-      </div>
+    <div className="relative w-full h-[120vh] sm:h-[100vh] md:h-[120vh] bg-background overflow-hidden" onMouseMove={handleMouseMove}>
 
       {/* S-shaped Path SVG */}
       <svg 
@@ -333,12 +321,11 @@ const AchievementPath: React.FC = (): JSX.Element => {
         
         {/* S-shaped Main Path */}
         <path
-          d="M 15,5 C 30,1 70,20 50,50 C 30,80 70,99 85,95"
+          d="M 15,5 C 25,2 75,25 50,50 C 25,75 75,98 85,95"
           stroke="url(#sPathGradient)"
-          strokeWidth="1.5"
+          strokeWidth="2"
           fill="none"
-          filter="url(#glowEffect)"
-          className="animate-pulse"
+          className="drop-shadow-sm"
           strokeLinecap="round"
         />
 
@@ -359,17 +346,15 @@ const AchievementPath: React.FC = (): JSX.Element => {
           transition={{ delay: yearIndex * 0.4, duration: 0.6 }}
         >
           <motion.div
-            className={`relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br ${yearData.yearColor}
-              shadow-xl cursor-pointer flex items-center justify-center text-white
-              hover:shadow-2xl transition-all duration-300 border-2 sm:border-3 border-white dark:border-gray-800`}
-            whileHover={{ scale: 1.1 }}
+            className={`relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br ${yearData.yearColor}
+              shadow-lg cursor-pointer flex items-center justify-center text-white
+              hover:shadow-xl transition-all duration-200 border-2 border-white dark:border-background`}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onHoverStart={() => setHoveredItem({ type: 'year', data: yearData })}
             onHoverEnd={() => setHoveredItem(null)}
           >
-            <div className="text-sm sm:text-base md:text-lg font-bold">{yearData.year}</div>
-            <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${yearData.yearColor}
-              opacity-20 animate-pulse blur-sm scale-125`} />
+            <div className="text-xs sm:text-sm md:text-base font-bold">{yearData.year}</div>
           </motion.div>
         </motion.div>
       ))}
@@ -391,17 +376,17 @@ const AchievementPath: React.FC = (): JSX.Element => {
           >
 
             <motion.div
-              className={`relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br ${achievement.color}
-                shadow-lg cursor-pointer flex items-center justify-center text-white
-                hover:shadow-xl transition-all duration-300 border border-white dark:border-gray-700`}
-              whileHover={{ scale: 1.05 }}
+              className={`relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br ${achievement.color}
+                shadow-md cursor-pointer flex items-center justify-center text-white
+                hover:shadow-lg transition-all duration-200 border border-white dark:border-background`}
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onHoverStart={() => setHoveredItem({ type: 'achievement', data: achievement })}
               onHoverEnd={() => setHoveredItem(null)}
             >
               <div className="w-3 h-3 sm:w-4 sm:h-4">{achievement.icon}</div>
-              <div className="absolute -top-0.5 -right-0.5 sm:-top-1 sm:-right-1 w-4 h-4 sm:w-5 sm:h-5 bg-green-500 rounded-full flex items-center justify-center">
-                <Check className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
+              <div className="absolute -top-0.5 -right-0.5 w-3 h-3 sm:w-4 sm:h-4 bg-green-500 rounded-full flex items-center justify-center">
+                <Check className="w-1.5 h-1.5 sm:w-2 sm:h-2 text-white" />
               </div>
             </motion.div>
           </motion.div>
@@ -500,28 +485,6 @@ const AchievementPath: React.FC = (): JSX.Element => {
         </motion.div>
       )}
 
-      {/* Floating Particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-primary/30 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [-30, 30, -30],
-              opacity: [0.2, 0.8, 0.2],
-            }}
-            transition={{
-              duration: 8 + Math.random() * 4,
-              repeat: Infinity,
-              delay: Math.random() * 4,
-            }}
-          />
-        ))}
-      </div>
     </div>
   );
 };
