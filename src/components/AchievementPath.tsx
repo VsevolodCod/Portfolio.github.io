@@ -220,37 +220,56 @@ const calculateAllPositions = () => {
     achievements: {} as Record<number, {x: number, y: number}[]>
   };
 
-  const step = 0.08; // Равномерный шаг по кривой
+  const step = 0.07; // Равномерный шаг по кривой
   let currentT = 0.05; // Начало кривой
 
+  // Инициализируем массивы достижений
+  positions.achievements[2023] = [];
+  positions.achievements[2024] = [];
+  positions.achievements[2025] = [];
+
   // 1. 2023 год - начало кривой
-  positions.years[2023] = getPointOnCurve(currentT);
+  positions.years[2023] = getPointOnCurve(Math.min(currentT, 0.95));
   currentT += step;
 
   // 2. Достижения 2023 года (3 штуки)
-  positions.achievements[2023] = [];
   for (let i = 0; i < 3; i++) {
-    positions.achievements[2023].push(getPointOnCurve(currentT));
-    currentT += step;
+    if (currentT <= 0.95) {
+      positions.achievements[2023].push(getPointOnCurve(currentT));
+      currentT += step;
+    } else {
+      // Fallback позиция если вышли за границы
+      positions.achievements[2023].push(getPointOnCurve(0.95 - (3-i) * 0.02));
+    }
   }
 
   // 3. 2024 год
-  positions.years[2024] = getPointOnCurve(currentT);
-  currentT += step;
+  if (currentT <= 0.95) {
+    positions.years[2024] = getPointOnCurve(currentT);
+    currentT += step;
+  } else {
+    positions.years[2024] = getPointOnCurve(0.5);
+  }
 
   // 4. Достижения 2024 года (4 штуки)
-  positions.achievements[2024] = [];
   for (let i = 0; i < 4; i++) {
-    positions.achievements[2024].push(getPointOnCurve(currentT));
-    currentT += step;
+    if (currentT <= 0.95) {
+      positions.achievements[2024].push(getPointOnCurve(currentT));
+      currentT += step;
+    } else {
+      // Fallback позиция
+      positions.achievements[2024].push(getPointOnCurve(0.95 - (4-i) * 0.02));
+    }
   }
 
   // 5. Достижения 2025 года (4 штуки)
-  positions.achievements[2025] = [];
   for (let i = 0; i < 4; i++) {
     if (currentT <= 0.90) {
       positions.achievements[2025].push(getPointOnCurve(currentT));
       currentT += step;
+    } else {
+      // Fallback позиция для последних элементов
+      positions.achievements[2025].push(getPointOnCurve(0.90 - (4-i) * 0.02));
     }
   }
 
@@ -270,21 +289,24 @@ const AchievementPath: React.FC = (): JSX.Element => {
 
     return achievementData.map((yearData) => {
       const yearPosition = allPositions.years[yearData.year];
-      const achievementPositions = allPositions.achievements[yearData.year];
+      const achievementPositions = allPositions.achievements[yearData.year] || [];
 
       return {
         ...yearData,
         position: {
-          x: `${yearPosition.x}%`,
-          y: `${yearPosition.y}%`
+          x: `${yearPosition?.x || 50}%`,
+          y: `${yearPosition?.y || 50}%`
         },
-        achievements: yearData.achievements.map((achievement, idx) => ({
-          ...achievement,
-          position: {
-            x: `${achievementPositions[idx].x}%`,
-            y: `${achievementPositions[idx].y}%`
-          }
-        }))
+        achievements: yearData.achievements.map((achievement, idx) => {
+          const pos = achievementPositions[idx] || { x: 50, y: 50 };
+          return {
+            ...achievement,
+            position: {
+              x: `${pos.x}%`,
+              y: `${pos.y}%`
+            }
+          };
+        })
       };
     });
   }, []);
