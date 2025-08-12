@@ -417,7 +417,7 @@ const VideoEditorPortfolio = () => {
         }}
       >
         <div className="bg-card/95 backdrop-blur-md rounded-2xl border border-border/50 shadow-lg p-3 space-y-3">
-          {console.log('Panel state:', isControlsOpen)}
+          {/* Panel state debugging removed */}
           {/* Language Toggle */}
           <div className="flex items-center gap-2 bg-background/50 rounded-full px-3 py-2">
             <Globe className="w-3 h-3 text-muted-foreground" />
@@ -877,22 +877,66 @@ const VideoEditorPortfolio = () => {
         </section>
 
         {/* Stats Section */}
-        <section className="bg-gradient-to-r from-primary/5 via-violet-500/5 to-cyan-500/5 py-12 sm:py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="text-center mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">{content[language].statsTitle}</h2>
+        <section className="relative py-16 sm:py-24 overflow-hidden">
+          {/* Animated Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-purple-500/10 to-cyan-500/10">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary))_0%,transparent_50%),radial-gradient(circle_at_80%_80%,hsl(var(--primary))_0%,transparent_50%)] opacity-20"></div>
+            <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
+          </div>
+          
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12 sm:mb-16">
+              <div className="inline-flex items-center justify-center p-2 bg-primary/10 rounded-full mb-6">
+                <TrendingUp className="w-6 h-6 text-primary" />
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary via-purple-600 to-cyan-600 bg-clip-text text-transparent mb-4">
+                {content[language].statsTitle}
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Цифры, которые говорят о качестве моей работы
+              </p>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
               {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="bg-card/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-border/50 hover:shadow-lg transition-all duration-300">
-                    <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary mx-auto mb-3 sm:mb-4" />
-                    <div className="text-2xl sm:text-3xl font-bold text-foreground mb-1 sm:mb-2">{stat.number}</div>
-                    <div className="text-xs sm:text-sm text-muted-foreground">{stat.label}</div>
+                <div key={index} className="group relative">
+                  {/* Glowing border effect */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 via-purple-500/50 to-cyan-500/50 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-all duration-700 animate-pulse"></div>
+                  
+                  <div className="relative bg-card/80 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 group-hover:scale-105 transform">
+                    {/* Icon with glow effect */}
+                    <div className="relative mb-6">
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                      <div className="relative w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-gradient-to-r from-primary/10 to-purple-500/10 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-500">
+                        <stat.icon className="w-8 h-8 sm:w-10 sm:h-10 text-primary group-hover:scale-110 transition-transform duration-300" />
+                      </div>
+                    </div>
+                    
+                    {/* Number with gradient */}
+                    <div className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+                      {stat.number}
+                    </div>
+                    
+                    {/* Label */}
+                    <div className="text-sm sm:text-base text-muted-foreground font-medium group-hover:text-foreground transition-colors duration-300">
+                      {stat.label}
+                    </div>
+                    
+                    {/* Decorative elements */}
+                    <div className="absolute top-4 right-4 w-2 h-2 bg-primary/30 rounded-full animate-pulse"></div>
+                    <div className="absolute bottom-4 left-4 w-1 h-1 bg-purple-500/40 rounded-full animate-ping"></div>
                   </div>
                 </div>
               ))}
+            </div>
+            
+            {/* Bottom decoration */}
+            <div className="flex justify-center mt-12 sm:mt-16">
+              <div className="flex space-x-2">
+                {[...Array(4)].map((_, i) => (
+                  <div key={i} className="w-2 h-2 bg-primary/30 rounded-full animate-pulse" style={{ animationDelay: `${i * 0.2}s` }}></div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
