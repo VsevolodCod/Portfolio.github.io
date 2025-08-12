@@ -138,7 +138,7 @@ const VideoEditorPortfolio = () => {
       views: "15.2K",
       category: "Реклама",
       thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=225&fit=crop",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" // Зам��ните на реальные видео
+      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" 
     },
     {
       id: 2,
@@ -153,7 +153,7 @@ const VideoEditorPortfolio = () => {
     {
       id: 3,
       title: "Музыкальный клип",
-      description: "Творческий музыкальный видеоклип с синхронизацией и ��изуальными эффектами. Эксперименты с цветом и ритмом.",
+      description: "Творческий музыкальный видеоклип с синхронизацией и визуальными эффектами. Эксперименты с цветом и ритмом.",
       duration: "3:45",
       views: "23.1K",
       category: "Музыка",
@@ -163,7 +163,7 @@ const VideoEditorPortfolio = () => {
     {
       id: 4,
       title: "Документальный фильм",
-      description: "Короткометражный документальный фильм о ме��тных художниках. Интервью, b-roll съемка, профессиональный звук.",
+      description: "Короткометражный документальный фильм о местных художниках. Интервью, b-roll съемка, профессиональный звук.",
       duration: "12:20",
       views: "5.3K",
       category: "Документалистика",
@@ -191,7 +191,7 @@ const VideoEditorPortfolio = () => {
           Привет! Меня зовут Алексей, я reels продюсер🎬<br/>
           <ul className="list-disc ml-4 mt-2 text-sm text-muted-foreground">
             <li>Основатель <a href="https://www.instagram.com/greenscreenvideos_?igsh=MWVkdDU0ZXJ2bjMyeg==" target="_blank" rel="noopener noreferrer" className="underline">аккаунта с зелёными роликами</a></li>
-            <li>2 года в продюсировании корот��их роликов</li>
+            <li>2 года в продюсировании коротких роликов</li>
             <li>100+ млн просмотров клиентам</li>
             <li>500+ тыс целевых подписчиков</li>
             <li>26 000 подписчиков клиенту с одного ролика</li>
@@ -206,7 +206,7 @@ const VideoEditorPortfolio = () => {
       photo: import.meta.env.BASE_URL + "Никита Волгин.jpg",
       description: (
         <>
-          ��снователь канала <a href="https://t.me/volgin_404" target="_blank" rel="noopener noreferrer" className="underline">404</a>
+          основатель канала <a href="https://t.me/volgin_404" target="_blank" rel="noopener noreferrer" className="underline">404</a>
         </>
       ),
       link: "https://t.me/volgin_404"
@@ -217,7 +217,7 @@ const VideoEditorPortfolio = () => {
       description: (
         <>
           Режиссёр<br/>
-          <a href="https://t.me/kopyl_sergey" target="_blank" rel="noopener noreferrer" className="underline">Телеграм-кан��л</a>
+          <a href="https://t.me/kopyl_sergey" target="_blank" rel="noopener noreferrer" className="underline">Телеграм-канал</a>
         </>
       ),
       link: "https://t.me/kopyl_sergey"
@@ -253,21 +253,21 @@ const VideoEditorPortfolio = () => {
 
   const services = [
     {
-      title: "Рекламные ролик��",
+      title: "Горизонтальные ролики",
       price: "от 15,000₽",
-      features: ["Сценарий", "Съемка", "Монтаж", "Цветокоррекция", "Зву��овой дизайн"],
+      features: ["Сценарий", "Монтаж", "Цветокоррекция", "Звуковой дизайн"],
       icon: Target
     },
     {
-      title: "Музыкальные клипы",
-      price: "от 25,000₽",
-      features: ["Концепция", "Режиссура", "Пост-продакшн", "VFX эффекты", "Синхронизация"],
+      title: "Говорящая голова",
+      price: "от 2000₽",
+      features: ["Монтаж", "Цветокоррекция", "Музыкальное сопровождение", "Спец эффекты/вставки"],
       icon: Film
     },
     {
       title: "Рилсы",
-      price: "от 1000₽",
-      features: ["Монтаж", "Музыкальное сопров��ждение", "Цветокоррекция"],
+      price: "от 1500₽",
+      features: ["Монтаж", "Цветокоррекция", "Музыкальное сопровождение"],
       icon: Heart
     }
   ];
@@ -417,7 +417,7 @@ const VideoEditorPortfolio = () => {
         }}
       >
         <div className="bg-card/95 backdrop-blur-md rounded-2xl border border-border/50 shadow-lg p-3 space-y-3">
-          {console.log('Panel state:', isControlsOpen)}
+          {/* Panel state debugging removed */}
           {/* Language Toggle */}
           <div className="flex items-center gap-2 bg-background/50 rounded-full px-3 py-2">
             <Globe className="w-3 h-3 text-muted-foreground" />
@@ -877,52 +877,170 @@ const VideoEditorPortfolio = () => {
         </section>
 
         {/* Stats Section */}
-        <section className="bg-gradient-to-r from-primary/5 via-violet-500/5 to-cyan-500/5 py-12 sm:py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="text-center mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">{content[language].statsTitle}</h2>
+        <section className="relative py-16 sm:py-24 overflow-hidden">
+          {/* Animated Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-purple-500/15 to-cyan-500/20">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary))_0%,transparent_50%),radial-gradient(circle_at_80%_80%,hsl(var(--primary))_0%,transparent_50%)] opacity-30"></div>
+            <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
+          </div>
+          
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12 sm:mb-16">
+              <div className="inline-flex items-center justify-center p-2 bg-primary/10 rounded-full mb-6">
+                <TrendingUp className="w-6 h-6 text-primary" />
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary via-purple-600 to-cyan-600 bg-clip-text text-transparent mb-4">
+                {content[language].statsTitle}
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Цифры, которые говорят о качестве моей работы
+              </p>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
               {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="bg-card/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-border/50 hover:shadow-lg transition-all duration-300">
-                    <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary mx-auto mb-3 sm:mb-4" />
-                    <div className="text-2xl sm:text-3xl font-bold text-foreground mb-1 sm:mb-2">{stat.number}</div>
-                    <div className="text-xs sm:text-sm text-muted-foreground">{stat.label}</div>
+                <div key={index} className="group relative">
+                  {/* Glowing border effect */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 via-purple-500/50 to-cyan-500/50 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                  
+                  <div className="relative bg-card/80 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 group-hover:scale-105 transform">
+                    {/* Icon with glow effect */}
+                    <div className="relative mb-6">
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                      <div className="relative w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-gradient-to-r from-primary/10 to-purple-500/10 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-500">
+                        <stat.icon className="w-8 h-8 sm:w-10 sm:h-10 text-primary group-hover:scale-110 transition-transform duration-300" />
+                      </div>
+                    </div>
+                    
+                    {/* Number with gradient */}
+                    <div className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+                      {stat.number}
+                    </div>
+                    
+                    {/* Label */}
+                    <div className="text-sm sm:text-base text-muted-foreground font-medium group-hover:text-foreground transition-colors duration-300">
+                      {stat.label}
+                    </div>
+                    
+                    {/* Decorative elements with slower animation */}
+                    <div className="absolute top-4 right-4 w-2 h-2 bg-primary/30 rounded-full" style={{ animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
+                    <div className="absolute bottom-4 left-4 w-1 h-1 bg-purple-500/40 rounded-full" style={{ animation: 'ping 6s cubic-bezier(0, 0, 0.2, 1) infinite' }}></div>
                   </div>
                 </div>
               ))}
+            </div>
+            
+            {/* Bottom decoration with slower animation */}
+            <div className="flex justify-center mt-12 sm:mt-16">
+              <div className="flex space-x-2">
+                {[...Array(4)].map((_, i) => (
+                  <div key={i} className="w-2 h-2 bg-primary/30 rounded-full" style={{ animation: 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite', animationDelay: `${i * 0.5}s` }}></div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* Services Section */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">{content[language].servicesTitle}</h2>
-            <p className="text-sm sm:text-base text-muted-foreground">{content[language].servicesSubtitle}</p>
+        <section className="relative py-16 sm:py-24 overflow-hidden">
+          {/* Creative Background */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-tr from-violet-500/10 via-transparent to-cyan-500/10"></div>
+            <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-purple-500/15 to-transparent rounded-full blur-3xl"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-cyan-500/10 to-transparent rounded-full blur-2xl"></div>
           </div>
+          
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12 sm:mb-16">
+              <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-primary/10 to-purple-500/10 rounded-2xl mb-6 border border-primary/20">
+                <Briefcase className="w-6 h-6 text-primary mr-2" />
+                <span className="text-primary font-semibold">Профессиональные услуги</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-foreground via-primary to-purple-600 bg-clip-text text-transparent">
+                  {content[language].servicesTitle}
+                </span>
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{content[language].servicesSubtitle}</p>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="bg-card border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center">
-                <CardContent className="p-6 sm:p-8">
-                  <service.icon className="w-10 h-10 sm:w-12 sm:h-12 text-primary mx-auto mb-4 sm:mb-6" />
-                  <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-3 sm:mb-4">{service.title}</h3>
-                  <div className="text-xl sm:text-2xl font-bold text-primary mb-3 sm:mb-4">{service.price}</div>
-                  <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center justify-center">
-                        <Star className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button className="w-full text-sm sm:text-base">{content[language].getQuote}</Button>
-                </CardContent>
-              </Card>
-            ))}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10">
+              {services.map((service, index) => (
+                <div key={index} className="group relative">
+                  {/* Animated border */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/40 via-purple-500/40 to-cyan-500/40 rounded-3xl blur opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                  
+                  <div className="relative h-full">
+                    {/* Card */}
+                    <div className="relative bg-card/70 backdrop-blur-2xl rounded-3xl border border-border/50 overflow-hidden group-hover:border-primary/30 transition-all duration-500 h-full">
+                      {/* Gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      
+                      {/* Content */}
+                      <div className="relative p-8 sm:p-10 flex flex-col h-full">
+                        {/* Icon Section */}
+                        <div className="relative mb-8">
+                          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-2xl blur-xl scale-110 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                          <div className="relative w-20 h-20 bg-gradient-to-br from-primary/10 to-purple-500/10 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-primary/20">
+                            <service.icon className="w-10 h-10 text-primary group-hover:scale-110 transition-transform duration-300" />
+                          </div>
+                          {/* Floating particles */}
+                          <div className="absolute -top-2 -right-2 w-3 h-3 bg-primary/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ animation: 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite' }}></div>
+                        </div>
+                        
+                        {/* Title */}
+                        <h3 className="text-2xl sm:text-3xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
+                          {service.title}
+                        </h3>
+                        
+                        {/* Price */}
+                        <div className="mb-6">
+                          <span className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                            {service.price}
+                          </span>
+                        </div>
+                        
+                        {/* Features */}
+                        <div className="flex-grow mb-8">
+                          <ul className="space-y-3">
+                            {service.features.map((feature, idx) => (
+                              <li key={idx} className="flex items-center text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                                <div className="w-5 h-5 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-full flex items-center justify-center mr-3 group-hover:from-primary/40 group-hover:to-purple-500/40 transition-all duration-300">
+                                  <Star className="w-3 h-3 text-primary" />
+                                </div>
+                                <span className="text-sm sm:text-base">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        
+                        {/* CTA Button */}
+                        <div className="relative">
+                          <Button className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-primary-foreground border-0 py-6 text-base font-semibold group-hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                            <span className="relative z-10">{content[language].getQuote}</span>
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          </Button>
+                        </div>
+                      </div>
+                      
+                      {/* Decorative corner elements */}
+                      <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-primary/20 group-hover:border-primary/40 transition-colors duration-300"></div>
+                      <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-primary/20 group-hover:border-primary/40 transition-colors duration-300"></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Bottom CTA */}
+            <div className="text-center mt-16">
+              <p className="text-muted-foreground mb-6">Не нашли подходящий пакет?</p>
+              <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 hover:border-primary text-primary">
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Обсудить индивидуальный проект
+              </Button>
+            </div>
           </div>
         </section>
 
@@ -938,7 +1056,7 @@ const VideoEditorPortfolio = () => {
         {/* Partners Section */}
         <section className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 relative overflow-hidden">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4 animate-fade-in">Со мной сотрудни��ают</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4 animate-fade-in">Со мной сотрудничают</h2>
             <p className="text-muted-foreground text-base sm:text-lg animate-fade-in delay-100">Люди, с которыми я горжусь работать</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 relative z-10">
