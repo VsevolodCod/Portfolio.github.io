@@ -65,14 +65,14 @@ const VideoEditorPortfolio = () => {
     ru: {
       name: "Фомин Вадим",
       profession: "Профессиональный видеомонтажер",
-      description: "Создаю качественный видеоконтент более 2 лет. Специализируюсь на рекламных роликах, рилсах, обз��рах и корпоративных презентациях. Превращаю уже снятые материалы в визуальные истории, которые запоминаются.",
+      description: "Создаю качественный видеоконтент более 2 лет. Специализируюсь на рекламных роликах, рилсах, обзорах и корпоративных презентациях. Превращаю уже снятые материалы в визуальные истории, которые запоминаются.",
       experience: "2+ лет опыта",
       projects: "20+ проектов", 
       views: "1M+ просмотров",
       skillsTitle: "Навыки и технологии",
       skillsSubtitle: "Профессиональное владение индустриальными инструментами",
       portfolioTitle: "Лучшие работы",
-      portfolioSubtitle: "Избранные проекты из моего пор��фолио",
+      portfolioSubtitle: "Избранные проекты из моего порофолио",
       contactTitle: "Готовы к сотрудничеству?",
       contactSubtitle: "Обсудим ваш проект и создадим что-то невероятное вместе",
       contactButton: "Связаться со мной",
@@ -237,7 +237,7 @@ const VideoEditorPortfolio = () => {
       year: "2022-2023",
       title: "Senior Video Editor",
       company: "MediaPro Agency",
-      description: "Руко��одил командой монтажеров, работал над крупными рекламными кампаниями."
+      description: "Руководил командой монтажеров, работал над крупными рекламными кампаниями."
     },
     {
       year: "2020-2022",
@@ -428,7 +428,7 @@ const VideoEditorPortfolio = () => {
           isControlsOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
         }`}
         style={{
-          display: isControlsOpen ? 'block' : 'block' // Всегда показываем для о��ладки
+          display: isControlsOpen ? 'block' : 'block' 
         }}
       >
         <div className="bg-card/95 backdrop-blur-md rounded-2xl border border-border/50 shadow-lg p-3 space-y-3">
@@ -539,7 +539,6 @@ const VideoEditorPortfolio = () => {
                     {content[language].name}
                   </span>
                 </h1>
-                {/* Д��бавляем декоративные элементы вокруг имени */}
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full"></div>
                 <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full"></div>
               </div>
@@ -957,7 +956,7 @@ const VideoEditorPortfolio = () => {
                 {content[language].statsTitle}
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Цифры, которые говорят о качестве моей раб��ты
+                Цифры, которые говорят о качестве моей работы
               </p>
             </div>
 
@@ -1122,7 +1121,7 @@ const VideoEditorPortfolio = () => {
                                                 <p className="text-muted-foreground">Видео будет добавлено</p>
                                               </div>
                                               <h5 className="font-semibold mb-2">Пример 2</h5>
-                                              <p className="text-sm text-muted-foreground">Описание примера работ��</p>
+                                              <p className="text-sm text-muted-foreground">Описание примера работы</p>
                                             </div>
                                           </div>
                                         </DialogContent>
@@ -1345,7 +1344,7 @@ const VideoEditorPortfolio = () => {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 p-4 sm:p-6 bg-card/50 backdrop-blur-xl rounded-2xl border border-border/30 mx-4 sm:mx-0">
                 <div className="text-center">
                   <div className="text-xl sm:text-2xl font-bold text-primary">3+</div>
-                  <div className="text-xs sm:text-sm text-muted-foreground">Па��тнёров</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">Партнёров</div>
                 </div>
                 <div className="hidden sm:block w-px h-8 bg-border/50"></div>
                 <div className="sm:hidden w-8 h-px bg-border/50"></div>
