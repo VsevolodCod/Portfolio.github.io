@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { 
   Camera, 
   Video, 
@@ -38,7 +39,8 @@ import {
   Zap,
   Target,
   Bell,
-  BellOff
+  BellOff,
+  ExternalLink
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
@@ -253,30 +255,33 @@ const VideoEditorPortfolio = () => {
 
   const services = [
     {
-      title: "Горизонтальные ролики",
-      price: "от 15,000₽",
-      features: ["Сценарий", "Монтаж", "Цветокоррекция", "Звуковой дизайн"],
-      icon: Film,
-      subcategories: [
-        {
-          title: "Рекламные ролики",
-          features: ["Сценарий", "Монтаж", "Цветокоррекция", "Звуковой дизайн", "Спец эффекты", "Графика и анимация"]
-        },
-        {
-          title: "Обычные ролики",
-          features: ["Монтаж", "Цветокоррекция", "Звуковой дизайн", "Музыкальное сопровождение", "Титры и надписи"]
-        }
-      ]
-    },
-    {
       title: "Рилсы",
       price: "от 1500₽",
-      features: ["Монтаж", "Цветокоррекция", "Музыкальное сопровождение"],
+      features: ["Монтаж", "Цветокоррекция", "Музыкальное сопровождение", "Оптимизация под формат"],
       icon: Heart,
       subcategories: [
         {
           title: "Говорящая голова",
-          features: ["Монтаж", "Цветокоррекция", "Музыкальное сопровождение", "Спец эффекты/вставки", "Оптимизация под формат"]
+          features: ["Монтаж", "Цветокоррекция", "Музыкальное сопровождение", "Спец эффекты/вставки", "Оптимизация под формат"],
+          hasExamples: true
+        }
+      ]
+    },
+    {
+      title: "Горизонтальные ролики",
+      price: "от 15,000₽",
+      features: ["Профессиональное качество", "Полный цикл производства", "Индивидуальный подход"],
+      icon: Film,
+      subcategories: [
+        {
+          title: "Рекламные ролики",
+          features: ["Сценарий", "Монтаж", "Цветокоррекция", "Звуковой дизайн", "Спец эффекты", "Графика и анимация"],
+          hasExamples: true
+        },
+        {
+          title: "Обычные ролики",
+          features: ["Монтаж", "Цветокоррекция", "Звуковой дизайн", "Музыкальное сопровождение", "Титры и надписи"],
+          hasExamples: true
         }
       ]
     }
@@ -977,7 +982,7 @@ const VideoEditorPortfolio = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
               {services.map((service, index) => (
-                <div key={index} className="group relative">
+                <div key={index} className={`group relative ${index === 1 ? 'lg:row-span-2' : ''}`}>
                   {/* Animated border */}
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/40 via-purple-500/40 to-cyan-500/40 rounded-3xl blur opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
                   
@@ -1025,24 +1030,71 @@ const VideoEditorPortfolio = () => {
                           </ul>
                         </div>
 
-                        {/* Subcategories */}
+                        {/* Subcategories with Examples */}
                         {service.subcategories && (
-                          <div className="mt-6 space-y-4">
+                          <div className="mt-6 space-y-6">
                             {service.subcategories.map((sub, subIndex) => (
-                              <div key={subIndex} className="border-t border-border/30 pt-4">
-                                <h4 className="font-semibold text-lg mb-3 text-primary">
-                                  {sub.title}
-                                </h4>
-                                <ul className="space-y-2">
-                                  {sub.features.map((subFeature, subFeatureIdx) => (
-                                    <li key={subFeatureIdx} className="flex items-center text-sm text-muted-foreground">
-                                      <div className="w-4 h-4 bg-gradient-to-r from-primary/15 to-purple-500/15 rounded-full flex items-center justify-center mr-2">
-                                        <Star className="w-2 h-2 text-primary" />
-                                      </div>
-                                      <span>{subFeature}</span>
-                                    </li>
-                                  ))}
-                                </ul>
+                              <div key={subIndex} className="relative">
+                                {/* Subcategory card */}
+                                <div className="bg-gradient-to-br from-card/50 to-card/30 rounded-2xl p-6 border border-border/20 backdrop-blur-sm group-hover:border-primary/20 transition-all duration-300">
+                                  <div className="flex items-center justify-between mb-4">
+                                    <h4 className="font-semibold text-xl text-primary group-hover:text-primary/80 transition-colors duration-300">
+                                      {sub.title}
+                                    </h4>
+                                    {sub.hasExamples && (
+                                      <Dialog>
+                                        <DialogTrigger asChild>
+                                          <Button 
+                                            variant="outline" 
+                                            size="sm"
+                                            className="bg-primary/10 hover:bg-primary/20 border-primary/30 text-primary hover:text-primary/80 transition-all duration-300 group/btn"
+                                          >
+                                            <Play className="w-4 h-4 mr-2 group-hover/btn:scale-110 transition-transform duration-200" />
+                                            Примеры
+                                            <ExternalLink className="w-3 h-3 ml-1 opacity-60" />
+                                          </Button>
+                                        </DialogTrigger>
+                                        <DialogContent className="max-w-4xl">
+                                          <DialogHeader>
+                                            <DialogTitle className="text-2xl bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                                              Примеры работ: {sub.title}
+                                            </DialogTitle>
+                                          </DialogHeader>
+                                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                                            <div className="bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-xl p-6 border border-border/20">
+                                              <div className="aspect-video bg-secondary/20 rounded-lg mb-4 flex items-center justify-center">
+                                                <p className="text-muted-foreground">Видео будет добавлено</p>
+                                              </div>
+                                              <h5 className="font-semibold mb-2">Пример 1</h5>
+                                              <p className="text-sm text-muted-foreground">Описание примера работы</p>
+                                            </div>
+                                            <div className="bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-xl p-6 border border-border/20">
+                                              <div className="aspect-video bg-secondary/20 rounded-lg mb-4 flex items-center justify-center">
+                                                <p className="text-muted-foreground">Видео будет добавлено</p>
+                                              </div>
+                                              <h5 className="font-semibold mb-2">Пример 2</h5>
+                                              <p className="text-sm text-muted-foreground">Описание примера работы</p>
+                                            </div>
+                                          </div>
+                                        </DialogContent>
+                                      </Dialog>
+                                    )}
+                                  </div>
+                                  
+                                  <ul className="space-y-3">
+                                    {sub.features.map((subFeature, subFeatureIdx) => (
+                                      <li key={subFeatureIdx} className="flex items-center text-sm text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">
+                                        <div className="w-4 h-4 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-full flex items-center justify-center mr-3 group-hover:from-primary/30 group-hover:to-purple-500/30 transition-all duration-300">
+                                          <Star className="w-2.5 h-2.5 text-primary" />
+                                        </div>
+                                        <span>{subFeature}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                  
+                                  {/* Decorative gradient line */}
+                                  <div className="mt-4 h-0.5 bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
+                                </div>
                               </div>
                             ))}
                           </div>
