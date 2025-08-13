@@ -255,24 +255,6 @@ const VideoEditorPortfolio = () => {
 
   const services = [
     {
-      title: "Горизонтальные ролики",
-      price: "от 15,000₽",
-      features: ["Профессиональное качество", "Полный цикл производства", "Индивидуальный подход"],
-      icon: Film,
-      subcategories: [
-        {
-          title: "Рекламные ролики",
-          features: ["Сценарий", "Монтаж", "Цветокоррекция", "Звуковой дизайн", "Спец эффекты", "Графика и анимация"],
-          hasExamples: true
-        },
-        {
-          title: "Обычные ролики",
-          features: ["Монтаж", "Цветокоррекция", "Звуковой дизайн", "Музыкальное сопровождение", "Титры и надписи"],
-          hasExamples: true
-        }
-      ]
-    },
-    {
       title: "Рилсы",
       price: "от 1500₽",
       features: ["Монтаж", "Цветокоррекция", "Музыкальное сопровождение", "Оптимизация под формат"],
@@ -281,6 +263,24 @@ const VideoEditorPortfolio = () => {
         {
           title: "Говорящая голова",
           features: ["Монтаж", "Цветокоррекция", "Музыкальное сопровождение", "Спец эффекты/вставки", "Оптимизация под формат"],
+          hasExamples: true
+        }
+      ]
+    },
+    {
+      title: "Горизонтальные видео",
+      price: "от 15,000₽",
+      features: ["Профессиональное качество", "Полный цикл производства", "Индивидуальный подход"],
+      icon: Film,
+      subcategories: [
+        {
+          title: "Рекламные видео",
+          features: ["Сторителлинг", "Монтаж", "Цветокоррекция", "Звуковой дизайн", "Спец эффекты", "Графика и анимация"],
+          hasExamples: true
+        },
+        {
+          title: "Обычные видео",
+          features: ["Сторителлинг", "Монтаж", "Цветокоррекция", "Звуковой дизайн", "Музыкальное сопровождение", "Титры и надписи"],
           hasExamples: true
         }
       ]
@@ -1032,7 +1032,7 @@ const VideoEditorPortfolio = () => {
 
                         {/* Subcategories with Examples */}
                         {service.subcategories && (
-                          <div className="mt-3 space-y-6">
+                          <div className="mt-6 space-y-6">
                             {service.subcategories.map((sub, subIndex) => (
                               <div key={subIndex} className="relative">
                                 {/* Subcategory card */}
@@ -1101,11 +1101,13 @@ const VideoEditorPortfolio = () => {
                         )}
                         
                         {/* CTA Button */}
-                        <div className="relative mt-auto pt-8">
-                          <Button className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-primary-foreground border-0 py-6 text-base font-semibold group-hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-                            <span className="relative z-10">{content[language].getQuote}</span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                          </Button>
+                          <div className="mt-8 mb-8">
+                            <div className="relative">
+                              <Button className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-primary-foreground border-0 py-6 text-base font-semibold group-hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">                              
+                              <span className="relative z-10">{content[language].getQuote}</span>
+                              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                              </Button>
+                            </div>
                         </div>
                       </div>
                       
