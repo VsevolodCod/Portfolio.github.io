@@ -65,14 +65,14 @@ const VideoEditorPortfolio = () => {
     ru: {
       name: "Фомин Вадим",
       profession: "Профессиональный видеомонтажер",
-      description: "Создаю качественный видеоконтент более 2 лет. Специализируюсь на рекламных роликах, рилсах, обзорах и корпоративных презентациях. Превращаю уже снятые материалы в визуальные истории, которые запоминаются.",
+      description: "Создаю качественный видеоконтент более 2 лет. Специализируюсь на рекламных роликах, рилсах, обз��рах и корпоративных презентациях. Превращаю уже снятые материалы в визуальные истории, которые запоминаются.",
       experience: "2+ лет опыта",
       projects: "20+ проектов", 
       views: "1M+ просмотров",
       skillsTitle: "Навыки и технологии",
       skillsSubtitle: "Профессиональное владение индустриальными инструментами",
       portfolioTitle: "Лучшие работы",
-      portfolioSubtitle: "Избранные проекты из моего портфолио",
+      portfolioSubtitle: "Избранные проекты из моего пор��фолио",
       contactTitle: "Готовы к сотрудничеству?",
       contactSubtitle: "Обсудим ваш проект и создадим что-то невероятное вместе",
       contactButton: "Связаться со мной",
@@ -237,7 +237,7 @@ const VideoEditorPortfolio = () => {
       year: "2022-2023",
       title: "Senior Video Editor",
       company: "MediaPro Agency",
-      description: "Руководил командой монтажеров, работал над крупными рекламными кампаниями."
+      description: "Руко��одил командой монтажеров, работал над крупными рекламными кампаниями."
     },
     {
       year: "2020-2022",
@@ -428,7 +428,7 @@ const VideoEditorPortfolio = () => {
           isControlsOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
         }`}
         style={{
-          display: isControlsOpen ? 'block' : 'block' // Всегда показываем для отладки
+          display: isControlsOpen ? 'block' : 'block' // Всегда показываем для о��ладки
         }}
       >
         <div className="bg-card/95 backdrop-blur-md rounded-2xl border border-border/50 shadow-lg p-3 space-y-3">
@@ -908,7 +908,7 @@ const VideoEditorPortfolio = () => {
                 {content[language].statsTitle}
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Цифры, которые говорят о качестве моей работы
+                Цифры, которые говорят о качестве моей раб��ты
               </p>
             </div>
 
@@ -1073,7 +1073,7 @@ const VideoEditorPortfolio = () => {
                                                 <p className="text-muted-foreground">Видео будет добавлено</p>
                                               </div>
                                               <h5 className="font-semibold mb-2">Пример 2</h5>
-                                              <p className="text-sm text-muted-foreground">Описание примера работы</p>
+                                              <p className="text-sm text-muted-foreground">Описание примера работ��</p>
                                             </div>
                                           </div>
                                         </DialogContent>
@@ -1140,56 +1140,236 @@ const VideoEditorPortfolio = () => {
           <AchievementPath />
         </section>
 
-        {/* Partners Section */}
-        <section className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 relative overflow-hidden">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4 animate-fade-in">Со мной сотрудничают</h2>
-            <p className="text-muted-foreground text-base sm:text-lg animate-fade-in delay-100">Люди, с которыми я горжусь работать</p>
+        {/* Partners Section - Ultra Beautiful Design */}
+        <section className="relative py-20 sm:py-32 overflow-hidden">
+          {/* Background with Multiple Animated Layers */}
+          <div className="absolute inset-0">
+            {/* Gradient mesh background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-cyan-500/3 to-pink-500/5"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,theme(colors.primary)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_right,theme(colors.purple.500)_0%,transparent_50%),radial-gradient(ellipse_at_center,theme(colors.cyan.500)_0%,transparent_70%)] opacity-10"></div>
+
+            {/* Subtle animated grid pattern */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+
+            {/* Gentle floating orbs */}
+            <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-primary/15 to-purple-500/15 rounded-full blur-2xl opacity-70"></div>
+            <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-cyan-500/10 to-pink-500/10 rounded-full blur-3xl opacity-60"></div>
+            <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-gradient-to-br from-yellow-500/8 to-orange-500/8 rounded-full blur-xl opacity-50"></div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 relative z-10">
-            {partners.map((p, i) => (
-              <a
-                href={p.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                key={p.name}
-                className="group bg-card border border-border/50 rounded-2xl shadow-xl p-6 sm:p-8 flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 hover:shadow-2xl animate-fade-in"
-                style={{ animationDelay: `${i * 120}ms` }}
-              >
-                <div className="relative mb-4">
-                  <img
-                    src={p.photo}
-                    alt={p.name}
-                    className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-cover rounded-full border-3 sm:border-4 border-primary shadow-lg group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <span className="absolute -bottom-2 right-2 bg-primary text-primary-foreground rounded-full px-2 py-1 text-xs shadow animate-bounce">
-                    {i === 0 ? 'Reels' : i === 1 ? '404' : 'Режиссёр'}
-                  </span>
+
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+            {/* Enhanced Title Section */}
+            <div className="text-center mb-16 sm:mb-20">
+              {/* Subtitle badge */}
+              <div className="inline-flex items-center justify-center p-3 mb-6 bg-gradient-to-r from-primary/10 via-purple-500/10 to-cyan-500/10 rounded-full border border-primary/20 backdrop-blur-sm">
+                <Users className="w-5 h-5 text-primary mr-2" />
+                <span className="text-primary font-semibold text-sm">Trusted Partners</span>
+              </div>
+
+              {/* Main title with subtle effects */}
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 relative">
+                <span className="bg-gradient-to-r from-primary via-purple-600 to-cyan-600 bg-clip-text text-transparent">
+                  Со мной сотрудничают
+                </span>
+
+                {/* Subtle decorative elements around title */}
+                <div className="absolute -top-2 -left-2 w-3 h-3 bg-primary/20 rounded-full opacity-60"></div>
+                <div className="absolute -bottom-2 -right-2 w-2 h-2 bg-purple-500/25 rounded-full opacity-50"></div>
+                <div className="absolute top-1/2 -right-6 w-1.5 h-1.5 bg-cyan-500/30 rounded-full opacity-40"></div>
+              </h2>
+
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                Талантливые профессионалы, с которыми я создаю
+                <span className="text-primary font-semibold"> выдающиеся проекты</span>
+              </p>
+
+              {/* Decorative line */}
+              <div className="mt-8 flex justify-center">
+                <div className="h-1 w-32 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full opacity-60"></div>
+              </div>
+            </div>
+
+            {/* Partners Cards with Advanced Design */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 relative z-10">
+              {partners.map((partner, index) => (
+                <div
+                  key={partner.name}
+                  className="group relative transform transition-all duration-700 hover:scale-105 h-full"
+                  style={{
+                    animationDelay: `${index * 200}ms`,
+                    animation: 'slideUpFade 1s ease-out forwards'
+                  }}
+                >
+                  {/* Animated border gradient - теперь точно подстраивается под размер карточки */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/60 via-purple-500/60 to-cyan-500/60 rounded-3xl blur-sm opacity-0 group-hover:opacity-100 transition-all duration-1000 scale-105"></div>
+
+                  {/* Main card */}
+                  <div className="relative bg-card/80 backdrop-blur-xl rounded-3xl border border-border/30 overflow-hidden group-hover:border-primary/30 transition-all duration-500 shadow-xl hover:shadow-2xl h-full flex flex-col">
+                    {/* Top gradient overlay */}
+                    <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+
+                    {/* Card content */}
+                    <div className="relative p-4 sm:p-6 lg:p-8 flex-1 flex flex-col">
+                      {/* Profile section */}
+                      <div className="relative mb-6 text-center">
+                        {/* Photo container with multiple effects */}
+                        <div className="relative inline-block">
+                          {/* Animated ring - упрощено для мобильных */}
+                          <div className="absolute -inset-2 sm:-inset-3 bg-gradient-to-r from-primary/30 via-purple-500/30 to-cyan-500/30 rounded-full animate-spin [animation-duration:8s]"></div>
+                          <div className="absolute -inset-1 sm:-inset-2 bg-gradient-to-r from-cyan-500/20 via-primary/20 to-purple-500/20 rounded-full animate-spin [animation-duration:6s] [animation-direction:reverse]"></div>
+
+                          {/* Photo */}
+                          <div className="relative">
+                            <img
+                              src={partner.photo}
+                              alt={partner.name}
+                              className="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 object-cover rounded-full border-3 sm:border-4 border-card shadow-2xl group-hover:scale-110 transition-all duration-500 relative z-10"
+                            />
+
+                            {/* Glow effect behind photo */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-full blur-xl scale-125 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                          </div>
+
+                          {/* Floating badge with enhanced styling */}
+                          <div className="absolute -bottom-3 -right-1 sm:-bottom-4 sm:-right-2 z-20">
+                            <div className="relative">
+                              <div className="absolute inset-0 bg-gradient-to-r from-primary to-purple-500 rounded-full blur-sm opacity-70"></div>
+                              <span className="relative bg-gradient-to-r from-primary to-purple-500 text-white rounded-full px-2 py-1 sm:px-3 sm:py-2 text-xs font-bold shadow-lg border border-white/20">
+                                {index === 0 ? '🎬 Reels' : index === 1 ? '📺 404' : '🎭 Режиссёр'}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Name with gradient */}
+                      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-center mb-3 sm:mb-4 group-hover:text-primary transition-colors duration-300">
+                        <span className="bg-gradient-to-r from-foreground to-primary bg-clip-text group-hover:text-transparent transition-all duration-300">
+                          {partner.name}
+                        </span>
+                      </h3>
+
+                      {/* Description */}
+                      <div className="text-muted-foreground text-center mb-6 sm:mb-8 leading-relaxed group-hover:text-foreground/80 transition-colors duration-300 flex-1 text-sm sm:text-base">
+                        {partner.description}
+                      </div>
+
+                      {/* CTA Button */}
+                      <div className="text-center mt-auto">
+                        <a
+                          href={partner.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-primary/10 to-purple-500/10 hover:from-primary hover:to-purple-500 text-primary hover:text-white rounded-xl sm:rounded-2xl border border-primary/30 hover:border-transparent transition-all duration-500 group-hover:scale-105 group-hover:shadow-xl font-semibold backdrop-blur-sm text-sm sm:text-base w-full"
+                        >
+                          <Send className="w-3 h-3 sm:w-4 sm:h-4 mr-2 group-hover:translate-x-1 transition-transform duration-300" />
+                          <span className="hidden sm:inline">Написать в Telegram</span>
+                          <span className="sm:hidden">Telegram</span>
+                          <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 ml-2 opacity-60" />
+                        </a>
+                      </div>
+
+                      {/* Bottom decorative elements */}
+                      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+                        <div className="flex space-x-1">
+                          <div className="w-1 h-1 bg-primary/40 rounded-full opacity-60"></div>
+                          <div className="w-1 h-1 bg-purple-500/40 rounded-full opacity-70"></div>
+                          <div className="w-1 h-1 bg-cyan-500/40 rounded-full opacity-60"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Corner decorations */}
+                    <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-primary/20 group-hover:border-primary/60 transition-all duration-300 rounded-tr-lg"></div>
+                    <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-primary/20 group-hover:border-primary/60 transition-all duration-300 rounded-bl-lg"></div>
+                  </div>
                 </div>
-                <div className="font-semibold text-lg sm:text-xl text-foreground mb-2">{p.name}</div>
-                <div className="text-muted-foreground text-xs sm:text-sm mb-2">{p.description}</div>
-                <span className="inline-block mt-2 text-primary underline opacity-80 group-hover:opacity-100 transition text-sm">Перейти в Telegram</span>
-              </a>
-            ))}
+              ))}
+            </div>
+
+            {/* Bottom section with stats */}
+            <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 p-4 sm:p-6 bg-card/50 backdrop-blur-xl rounded-2xl border border-border/30 mx-4 sm:mx-0">
+                <div className="text-center">
+                  <div className="text-xl sm:text-2xl font-bold text-primary">3+</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">Партнёров</div>
+                </div>
+                <div className="hidden sm:block w-px h-8 bg-border/50"></div>
+                <div className="sm:hidden w-8 h-px bg-border/50"></div>
+                <div className="text-center">
+                  <div className="text-xl sm:text-2xl font-bold text-purple-500">100M+</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">Просмотров</div>
+                </div>
+                <div className="hidden sm:block w-px h-8 bg-border/50"></div>
+                <div className="sm:hidden w-8 h-px bg-border/50"></div>
+                <div className="text-center">
+                  <div className="text-xl sm:text-2xl font-bold text-cyan-500">500K+</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">Подписчиков</div>
+                </div>
+              </div>
+            </div>
           </div>
-          {/* Simple animated particles (пример) */}
-          <div className="absolute inset-0 pointer-events-none z-0">
-            <svg className="absolute top-10 left-10 animate-float-slow" width="40" height="40"><circle cx="20" cy="20" r="20" fill="#a5b4fc" fillOpacity="0.2"/></svg>
-            <svg className="absolute bottom-10 right-20 animate-float" width="24" height="24"><circle cx="12" cy="12" r="12" fill="#f472b6" fillOpacity="0.18"/></svg>
-            <svg className="absolute top-1/2 left-1/2 animate-float-fast" width="16" height="16"><circle cx="8" cy="8" r="8" fill="#34d399" fillOpacity="0.15"/></svg>
-          </div>
+
+          {/* Enhanced CSS animations with mobile optimizations */}
           <style>{`
-            @keyframes float { 0%{transform:translateY(0)} 50%{transform:translateY(-16px)} 100%{transform:translateY(0)} }
-            @keyframes float-slow { 0%{transform:translateY(0)} 50%{transform:translateY(-8px)} 100%{transform:translateY(0)} }
-            @keyframes float-fast { 0%{transform:translateY(0)} 50%{transform:translateY(-24px)} 100%{transform:translateY(0)} }
-            .animate-float { animation: float 6s ease-in-out infinite; }
-            .animate-float-slow { animation: float-slow 10s ease-in-out infinite; }
-            .animate-float-fast { animation: float-fast 4s ease-in-out infinite; }
-            .animate-fade-in { opacity:0; animation: fadeIn 1s forwards; }
-            .animate-fade-in.delay-100 { animation-delay: .1s; }
-            @keyframes fadeIn { to { opacity: 1; } }
-            .animate-bounce { animation: bounce 1.2s infinite alternate; }
-            @keyframes bounce { to { transform: translateY(-8px); } }
+            @keyframes slideUpFade {
+              0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+              }
+              100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+              }
+            }
+
+            @keyframes float {
+              0%, 100% { transform: translateY(0px) rotate(0deg); }
+              50% { transform: translateY(-20px) rotate(180deg); }
+            }
+
+            @keyframes glowPulse {
+              0%, 100% { opacity: 0.5; transform: scale(1); }
+              50% { opacity: 1; transform: scale(1.05); }
+            }
+
+            .animate-float {
+              animation: float 8s ease-in-out infinite;
+            }
+
+            .animate-glow {
+              animation: glowPulse 3s ease-in-out infinite;
+            }
+
+            /* Mobile performance optimizations */
+            @media (max-width: 768px) {
+              * {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                -webkit-perspective: 1000px;
+                perspective: 1000px;
+              }
+
+              .group:hover .group-hover\\:scale-105 {
+                transform: scale(1.02) !important;
+              }
+
+              .animate-spin {
+                animation-duration: 12s !important;
+              }
+            }
+
+            /* Reduce motion for users who prefer it */
+            @media (prefers-reduced-motion: reduce) {
+              .animate-float,
+              .animate-glow,
+              .animate-spin,
+              .animate-pulse {
+                animation: none !important;
+              }
+            }
           `}</style>
         </section>
 
