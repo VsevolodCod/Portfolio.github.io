@@ -493,8 +493,9 @@ const VideoEditorPortfolio = () => {
           }}
         />
         
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-background/95 via-background/85 to-background/95 dark:from-background/90 dark:via-background/70 dark:to-background/90" />
+        {/* Gradient Overlay - Улучшено для лучшей видимости на белом фоне */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-background/90 via-background/70 to-background/90 dark:from-background/90 dark:via-background/70 dark:to-background/90" />
+        <div className="absolute inset-0 z-15 bg-gradient-to-br from-transparent via-background/20 to-transparent" />
         
         {/* Animated Elements */}
         <div className="absolute inset-0 z-20 pointer-events-none">
@@ -519,52 +520,100 @@ const VideoEditorPortfolio = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-30 text-center px-4 sm:px-6 max-w-4xl mx-auto">
+        <div className="relative z-30 text-center px-4 sm:px-6 max-w-5xl mx-auto">
           <div
-            className={`space-y-6 sm:space-y-8 transition-all duration-1000 ${
+            className={`space-y-8 sm:space-y-12 transition-all duration-1000 ${
               heroInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <div className="space-y-4 sm:space-y-6">
-              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground">
-                <span className="bg-gradient-to-r from-primary to-violet-600 bg-clip-text text-transparent">
-                  {content[language].name}
-                </span>
-              </h1>
-
-              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-primary font-semibold">
-                {content[language].profession}
-              </p>
-
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                {content[language].description}
-              </p>
+            {/* Hero Badge */}
+            <div className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-primary/10 via-purple-500/10 to-cyan-500/10 rounded-full border border-primary/20 backdrop-blur-xl mb-6">
+              <Star className="w-5 h-5 text-primary mr-2" />
+              <span className="text-primary font-semibold text-sm">Профессиональный видеомонтажер</span>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
-              <Badge className="bg-primary/10 text-primary border border-primary/20 px-3 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm backdrop-blur-sm">
-                <Award className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                {content[language].experience}
-              </Badge>
-              <Badge className="bg-violet-500/10 text-violet-600 border border-violet-500/20 px-3 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm backdrop-blur-sm">
-                <Star className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                {content[language].projects}
-              </Badge>
-              <Badge className="bg-cyan-500/10 text-cyan-600 border border-cyan-500/20 px-3 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm backdrop-blur-sm">
-                <Eye className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                {content[language].views}
-              </Badge>
+            <div className="space-y-6 sm:space-y-8">
+              <div className="relative">
+                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground mb-4">
+                  <span className="bg-gradient-to-r from-primary via-purple-600 to-cyan-600 bg-clip-text text-transparent">
+                    {content[language].name}
+                  </span>
+                </h1>
+                {/* Д��бавляем декоративные элементы вокруг имени */}
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full"></div>
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full"></div>
+              </div>
+
+              <div className="space-y-4">
+                <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-primary font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                  {content[language].profession}
+                </p>
+
+                <div className="max-w-4xl mx-auto bg-card/60 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-border/30">
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground leading-relaxed">
+                    {content[language].description}
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 pt-4 sm:pt-6">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 sm:px-8 shadow-lg w-full sm:w-auto">
-                <Mail className="w-4 h-4 mr-2" />
-                {content[language].contactButton}
-              </Button>
-              <Button size="lg" variant="outline" className="px-6 sm:px-8 backdrop-blur-sm border-primary/20 hover:bg-primary/10 w-full sm:w-auto">
-                <Download className="w-4 h-4 mr-2" />
-                {content[language].downloadButton}
-              </Button>
+            {/* Улучшенные значки достижений */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto mt-8">
+              <div className="group relative bg-card/70 backdrop-blur-xl rounded-2xl p-6 border border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-105">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <Award className="w-8 h-8 text-primary" />
+                  </div>
+                  <p className="text-2xl font-bold text-primary mb-1">2+</p>
+                  <p className="text-sm text-muted-foreground font-medium">лет опыта</p>
+                </div>
+              </div>
+
+              <div className="group relative bg-card/70 backdrop-blur-xl rounded-2xl p-6 border border-violet-500/20 hover:border-violet-500/40 transition-all duration-500 hover:scale-105">
+                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-violet-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <Star className="w-8 h-8 text-violet-600" />
+                  </div>
+                  <p className="text-2xl font-bold text-violet-600 mb-1">20+</p>
+                  <p className="text-sm text-muted-foreground font-medium">проектов</p>
+                </div>
+              </div>
+
+              <div className="group relative bg-card/70 backdrop-blur-xl rounded-2xl p-6 border border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-500 hover:scale-105">
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <Eye className="w-8 h-8 text-cyan-600" />
+                  </div>
+                  <p className="text-2xl font-bold text-cyan-600 mb-1">1M+</p>
+                  <p className="text-sm text-muted-foreground font-medium">просмотров</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Улучшенные кнопки CTA */}
+            <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 pt-8 sm:pt-10 max-w-2xl mx-auto">
+              <div className="group relative flex-1">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-purple-600 to-cyan-600 rounded-2xl blur opacity-60 group-hover:opacity-100 transition-all duration-500"></div>
+                <a href="https://t.me/vadimfom1n" target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" className="relative w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-primary-foreground px-8 py-6 text-lg font-semibold rounded-2xl border-0 group-hover:scale-105 transition-all duration-300 shadow-2xl">
+                    <Mail className="w-5 h-5 mr-3" />
+                    {content[language].contactButton}
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </Button>
+                </a>
+              </div>
+
+              <div className="group relative flex-1">
+                <a href="https://t.me/vadimfom1n" target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" variant="outline" className="w-full px-8 py-6 text-lg font-semibold rounded-2xl backdrop-blur-xl border-2 border-primary/30 hover:bg-primary/10 hover:border-primary/60 transition-all duration-300 group-hover:scale-105 bg-card/50">
+                    <Download className="w-5 h-5 mr-3" />
+                    {content[language].downloadButton}
+                  </Button>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -1103,10 +1152,12 @@ const VideoEditorPortfolio = () => {
                         {/* CTA Button */}
                           <div className="mt-8 mb-8">
                             <div className="relative">
+                            <a href="https://t.me/vadimfom1n" target="_blank" rel="noopener noreferrer">
                               <Button className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-primary-foreground border-0 py-6 text-base font-semibold group-hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">                              
                               <span className="relative z-10">{content[language].getQuote}</span>
                               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                               </Button>
+                            </a> 
                             </div>
                         </div>
                       </div>
@@ -1122,11 +1173,13 @@ const VideoEditorPortfolio = () => {
             
             {/* Bottom CTA */}
             <div className="text-center mt-16">
-              <p className="text-muted-foreground mb-6">Не нашли подходящий пакет?</p>
-              <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 hover:border-primary text-primary">
-                <MessageCircle className="w-5 h-5 mr-2" />
-                Обсудить индивидуальный проект
-              </Button>
+                <p className="text-muted-foreground mb-6">Не нашли подходящий пакет?</p>
+              <a href="https://t.me/vadimfom1n" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 hover:border-primary text-primary">
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  Обсудить индивидуальный проект
+                </Button>
+              </a>
             </div>
           </div>
         </section>
@@ -1263,7 +1316,7 @@ const VideoEditorPortfolio = () => {
                           className="inline-flex items-center justify-center px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-primary/10 to-purple-500/10 hover:from-primary hover:to-purple-500 text-primary hover:text-white rounded-xl sm:rounded-2xl border border-primary/30 hover:border-transparent transition-all duration-500 group-hover:scale-105 group-hover:shadow-xl font-semibold backdrop-blur-sm text-sm sm:text-base w-full"
                         >
                           <Send className="w-3 h-3 sm:w-4 sm:h-4 mr-2 group-hover:translate-x-1 transition-transform duration-300" />
-                          <span className="hidden sm:inline">Написать в Telegram</span>
+                          <span className="hidden sm:inline">Telegram</span>
                           <span className="sm:hidden">Telegram</span>
                           <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 ml-2 opacity-60" />
                         </a>
@@ -1292,7 +1345,7 @@ const VideoEditorPortfolio = () => {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 p-4 sm:p-6 bg-card/50 backdrop-blur-xl rounded-2xl border border-border/30 mx-4 sm:mx-0">
                 <div className="text-center">
                   <div className="text-xl sm:text-2xl font-bold text-primary">3+</div>
-                  <div className="text-xs sm:text-sm text-muted-foreground">Партнёров</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">Па��тнёров</div>
                 </div>
                 <div className="hidden sm:block w-px h-8 bg-border/50"></div>
                 <div className="sm:hidden w-8 h-px bg-border/50"></div>
@@ -1373,61 +1426,159 @@ const VideoEditorPortfolio = () => {
           `}</style>
         </section>
 
-        {/* Portfolio Videos Section */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">{content[language].portfolioTitle}</h2>
-            <p className="text-sm sm:text-base text-muted-foreground">{content[language].portfolioSubtitle}</p>
+        {/* Portfolio Videos Section - Красивый гармоничный дизайн */}
+        <section className="relative py-20 sm:py-32 overflow-hidden">
+          {/* Элегантный фон с гармоничными цветами */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-primary/4 to-transparent"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,theme(colors.primary)_0%,transparent_40%),radial-gradient(ellipse_at_bottom_right,theme(colors.primary)_0%,transparent_40%)] opacity-15"></div>
+            <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_0%,theme(colors.primary)_50%,transparent_100%)] opacity-[0.02]"></div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-            {portfolioVideos.map((video, index) => (
-              <Card 
-                key={video.id} 
-                className="bg-card border-border/50 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer"
-                onClick={() => setSelectedVideo(video.id)}
-              >
-                <div className="relative">
-                  <img
-                    src={video.thumbnail}
-                    alt={video.title}
-                    className="w-full h-36 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Play className="w-4 h-4 sm:w-6 sm:h-6 text-primary-foreground ml-1" />
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+            {/* Заголовок секции с улучшенным дизайном */}
+            <div className="text-center mb-16 sm:mb-20">
+              <div className="inline-flex items-center justify-center p-3 mb-8 bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl border border-primary/20 backdrop-blur-sm shadow-lg">
+                <Trophy className="w-6 h-6 text-primary mr-3" />
+                <span className="text-primary font-bold">Избранные работы</span>
+              </div>
+
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
+                  {content[language].portfolioTitle}
+                </span>
+              </h2>
+
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
+                Каждый проект — это уникальная история, рассказанная через призму профессионального видеомонтажа
+              </p>
+
+              {/* Декоративные элементы */}
+              <div className="flex justify-center items-center space-x-4">
+                <div className="h-px w-16 bg-gradient-to-r from-transparent to-primary/30"></div>
+                <div className="w-2 h-2 bg-primary/40 rounded-full"></div>
+                <div className="h-px w-32 bg-gradient-to-r from-primary/30 via-primary/60 to-primary/30"></div>
+                <div className="w-2 h-2 bg-primary/40 rounded-full"></div>
+                <div className="h-px w-16 bg-gradient-to-r from-primary/30 to-transparent"></div>
+              </div>
+            </div>
+
+            {/* Красивые карточки видео с гармоничным дизайном */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
+              {portfolioVideos.map((video, index) => (
+                <div key={video.id} className="group relative">
+                  {/* Мягкое свечение при hover */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-primary/50 rounded-3xl blur opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+
+                  <Card className="relative bg-card/90 backdrop-blur-sm border border-border/40 rounded-3xl overflow-hidden group-hover:border-primary/40 transition-all duration-500 cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-primary/10"
+                        onClick={() => setSelectedVideo(video.id)}>
+
+                    {/* Превью видео с элегантными эффектами */}
+                    <div className="relative aspect-video overflow-hidden">
+                      <img
+                        src={video.thumbnail}
+                        alt={video.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
+                      />
+
+                      {/* Элегантный оверлей */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/50 transition-all duration-500"></div>
+
+                      {/* Стильная кнопка воспроизведения */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="relative">
+                          <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl scale-150 group-hover:scale-175 transition-all duration-500"></div>
+                          <div className="relative w-18 h-18 bg-gradient-to-br from-primary/90 to-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-2xl border-2 border-white/20">
+                            <Play className="w-7 h-7 text-white ml-0.5" />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Элегантная категория */}
+                      <div className="absolute top-6 left-6">
+                        <Badge className="bg-primary/90 text-primary-foreground border-0 px-4 py-2 backdrop-blur-sm font-semibold shadow-lg">
+                          {video.category}
+                        </Badge>
+                      </div>
+
+                      {/* Статистика в стильном дизайне */}
+                      <div className="absolute bottom-6 right-6">
+                        <div className="flex items-center space-x-2 bg-black/50 backdrop-blur-md rounded-xl px-3 py-2 border border-white/10">
+                          <Eye className="w-4 h-4 text-white" />
+                          <span className="text-white text-sm font-medium">{video.views}</span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <Badge className="absolute top-3 left-3 bg-background/90 text-foreground">
-                    {video.category}
-                  </Badge>
+
+                    {/* Контент карточки с улучшенной типографикой */}
+                    <CardContent className="p-6 sm:p-8">
+                      <div className="space-y-4">
+                        <h3 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight">
+                          {video.title}
+                        </h3>
+
+                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                          {video.description}
+                        </p>
+
+                        <div className="flex items-center justify-between pt-4 border-t border-border/30">
+                          <div className="flex items-center space-x-4">
+                            <div className="flex items-center space-x-2 text-muted-foreground">
+                              <Clock className="w-4 h-4" />
+                              <span className="text-sm font-medium">{video.duration}</span>
+                            </div>
+                          </div>
+
+                          <Button
+                            size="sm"
+                            className="bg-primary hover:bg-primary/90 text-primary-foreground border-0 px-6 py-2 font-semibold rounded-xl group-hover:scale-105 transition-all duration-300 shadow-lg"
+                          >
+                            <Play className="w-4 h-4 mr-2" />
+                            {content[language].watchButton}
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+
+                    {/* Тонкие декоративные элементы */}
+                    <div className="absolute top-6 right-6 w-8 h-8 border-t border-r border-primary/20 group-hover:border-primary/40 transition-colors duration-300"></div>
+                    <div className="absolute bottom-6 left-6 w-8 h-8 border-b border-l border-primary/20 group-hover:border-primary/40 transition-colors duration-300"></div>
+                  </Card>
                 </div>
-                
-                <CardContent className="p-4 sm:p-6">
-                  <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-2 sm:mb-3 group-hover:text-primary transition-colors">
-                    {video.title}
-                  </h3>
-                  <p className="text-muted-foreground text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-3">
-                    {video.description}
-                  </p>
-                  <div className="flex items-center justify-between text-xs sm:text-sm text-muted-foreground">
-                    <div className="flex items-center space-x-2 sm:space-x-4">
-                      <div className="flex items-center space-x-1">
-                        <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
-                        <span>{video.duration}</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Eye className="w-3 h-3 sm:w-4 sm:h-4" />
-                        <span>{video.views}</span>
-                      </div>
+              ))}
+            </div>
+
+            {/* Красивая кнопка "Смотреть все работы" с ссылкой на Telegram */}
+            <div className="text-center mt-16 sm:mt-20">
+              <div className="relative inline-block group">
+                {/* Эффект свечения */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary/60 to-primary/40 rounded-2xl blur-lg opacity-70 group-hover:opacity-100 transition-all duration-500"></div>
+
+                {/* Основная кнопка */}
+                <a
+                  href="https://t.me/portfoliovadimfom1n"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative block"
+                >
+                  <Button size="lg" className="relative bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground px-10 py-6 text-lg font-bold rounded-2xl border-0 group-hover:scale-105 transition-all duration-300 shadow-2xl">
+                    {/* Внутренний градиент для блеска */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                    <div className="relative flex items-center">
+                      <Send className="w-5 h-5 mr-3 group-hover:rotate-12 transition-transform duration-300" />
+                      <span>Посмотреть все работы</span>
+                      <ExternalLink className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300" />
                     </div>
-                    <Button size="sm" variant="outline" className="hover:bg-primary hover:text-primary-foreground text-xs sm:text-sm px-2 sm:px-3">
-                      {content[language].watchButton}
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </Button>
+                </a>
+
+                {/* Дополнительный текст */}
+                <p className="mt-4 text-sm text-muted-foreground">
+                  Больше работ в моём Telegram канале
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -1461,25 +1612,6 @@ const VideoEditorPortfolio = () => {
           </div>
         )}
 
-        {/* Contact Section */}
-        <section className="max-w-4xl mx-auto text-center py-12 sm:py-16 px-4 sm:px-6">
-          <div className="space-y-4 sm:space-y-6">
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground">{content[language].contactTitle}</h2>
-            <p className="text-base sm:text-lg text-muted-foreground">
-              {content[language].contactSubtitle}
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 sm:px-8 w-full sm:w-auto">
-                <Mail className="w-4 h-4 mr-2" />
-                {content[language].contactButton}
-              </Button>
-              <Button size="lg" variant="outline" className="px-6 sm:px-8 w-full sm:w-auto">
-                <Download className="w-4 h-4 mr-2" />
-                {content[language].downloadButton}
-              </Button>
-            </div>
-          </div>
-        </section>
       </div>
 
       {/* Floating Elements */}
