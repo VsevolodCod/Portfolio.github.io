@@ -1032,7 +1032,7 @@ const VideoEditorPortfolio = () => {
 
                         {/* Subcategories with Examples */}
                         {service.subcategories && (
-                          <div className="mt-6 space-y-6">
+                          <div className="mt-3 space-y-6">
                             {service.subcategories.map((sub, subIndex) => (
                               <div key={subIndex} className="relative">
                                 {/* Subcategory card */}
