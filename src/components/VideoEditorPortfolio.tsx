@@ -256,19 +256,29 @@ const VideoEditorPortfolio = () => {
       title: "Горизонтальные ролики",
       price: "от 15,000₽",
       features: ["Сценарий", "Монтаж", "Цветокоррекция", "Звуковой дизайн"],
-      icon: Target
-    },
-    {
-      title: "Говорящая голова",
-      price: "от 2000₽",
-      features: ["Монтаж", "Цветокоррекция", "Музыкальное сопровождение", "Спец эффекты/вставки"],
-      icon: Film
+      icon: Film,
+      subcategories: [
+        {
+          title: "Рекламные ролики",
+          features: ["Сценарий", "Монтаж", "Цветокоррекция", "Звуковой дизайн", "Спец эффекты", "Графика и анимация"]
+        },
+        {
+          title: "Обычные ролики",
+          features: ["Монтаж", "Цветокоррекция", "Звуковой дизайн", "Музыкальное сопровождение", "Титры и надписи"]
+        }
+      ]
     },
     {
       title: "Рилсы",
       price: "от 1500₽",
       features: ["Монтаж", "Цветокоррекция", "Музыкальное сопровождение"],
-      icon: Heart
+      icon: Heart,
+      subcategories: [
+        {
+          title: "Говорящая голова",
+          features: ["Монтаж", "Цветокоррекция", "Музыкальное сопровождение", "Спец эффекты/вставки", "Оптимизация под формат"]
+        }
+      ]
     }
   ];
 
@@ -965,7 +975,7 @@ const VideoEditorPortfolio = () => {
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{content[language].servicesSubtitle}</p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
               {services.map((service, index) => (
                 <div key={index} className="group relative">
                   {/* Animated border */}
@@ -1014,9 +1024,32 @@ const VideoEditorPortfolio = () => {
                             ))}
                           </ul>
                         </div>
+
+                        {/* Subcategories */}
+                        {service.subcategories && (
+                          <div className="mt-6 space-y-4">
+                            {service.subcategories.map((sub, subIndex) => (
+                              <div key={subIndex} className="border-t border-border/30 pt-4">
+                                <h4 className="font-semibold text-lg mb-3 text-primary">
+                                  {sub.title}
+                                </h4>
+                                <ul className="space-y-2">
+                                  {sub.features.map((subFeature, subFeatureIdx) => (
+                                    <li key={subFeatureIdx} className="flex items-center text-sm text-muted-foreground">
+                                      <div className="w-4 h-4 bg-gradient-to-r from-primary/15 to-purple-500/15 rounded-full flex items-center justify-center mr-2">
+                                        <Star className="w-2 h-2 text-primary" />
+                                      </div>
+                                      <span>{subFeature}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                         
                         {/* CTA Button */}
-                        <div className="relative">
+                        <div className="relative mt-auto">
                           <Button className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-primary-foreground border-0 py-6 text-base font-semibold group-hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
                             <span className="relative z-10">{content[language].getQuote}</span>
                             <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
