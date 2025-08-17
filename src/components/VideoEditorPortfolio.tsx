@@ -941,10 +941,11 @@ const VideoEditorPortfolio = () => {
 
         {/* Stats Section */}
         <section className="relative py-16 sm:py-24 overflow-hidden">
-          {/* Animated Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-purple-500/15 to-cyan-500/20">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary))_0%,transparent_50%),radial-gradient(circle_at_80%_80%,hsl(var(--primary))_0%,transparent_50%)] opacity-30"></div>
-            <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
+          {/* Darker Animated Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/35 via-purple-500/30 to-cyan-500/35">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary))_0%,transparent_50%),radial-gradient(circle_at_80%_80%,hsl(var(--primary))_0%,transparent_50%)] opacity-50"></div>
+            <div className="absolute inset-0 bg-grid-pattern opacity-[0.08]"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-background/20 via-transparent to-background/20"></div>
           </div>
           
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
@@ -962,32 +963,43 @@ const VideoEditorPortfolio = () => {
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
               {stats.map((stat, index) => (
-                <div key={index} className="group relative">
-                  {/* Glowing border effect */}
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 via-purple-500/50 to-cyan-500/50 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                <div key={index} className="group relative transform-gpu">
+                  {/* Multiple glow layers for stunning effect */}
+                  <div className="absolute -inset-1 bg-gradient-to-r from-primary/60 via-purple-500/60 to-cyan-500/60 rounded-3xl blur-lg opacity-0 group-hover:opacity-80 transition-all duration-700 animate-pulse"></div>
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/40 via-purple-500/40 to-cyan-500/40 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                   
-                  <div className="relative bg-card/80 backdrop-blur-xl rounded-2xl p-4 sm:p-6 lg:p-8 border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 group-hover:scale-105 transform">
-                    {/* Icon with glow effect */}
-                    <div className="relative mb-4 sm:mb-6">
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                      <div className="relative w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 mx-auto bg-gradient-to-r from-primary/10 to-purple-500/10 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-500">
-                        <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-primary group-hover:scale-110 transition-transform duration-300" />
+                  <div className="relative bg-card/90 backdrop-blur-xl rounded-2xl p-4 sm:p-6 lg:p-8 border border-border/50 hover:border-primary/50 transition-all duration-700 hover:shadow-2xl hover:shadow-primary/20 group-hover:scale-110 group-hover:-translate-y-2 transform-gpu">
+                    {/* Enhanced icon with multiple effects */}
+                    <div className="relative mb-4 sm:mb-6 overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-purple-500/30 rounded-full blur-xl scale-200 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-primary/20 rounded-full blur-2xl scale-150 opacity-0 group-hover:opacity-80 transition-all duration-500 animation-delay-200"></div>
+                      
+                      <div className="relative w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 mx-auto bg-gradient-to-br from-primary/15 via-purple-500/15 to-cyan-500/15 rounded-2xl flex items-center justify-center group-hover:rotate-[360deg] group-hover:scale-110 transition-all duration-1000 border border-primary/20 group-hover:border-primary/40 group-hover:shadow-lg group-hover:shadow-primary/30">
+                        <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-primary group-hover:scale-125 group-hover:drop-shadow-lg transition-all duration-500" />
                       </div>
                     </div>
                     
-                    {/* Number with gradient */}
-                    <div className="text-xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300 text-center">
+                    {/* Enhanced number with multiple gradients */}
+                    <div className="text-xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold bg-gradient-to-r from-foreground via-primary to-purple-500 bg-clip-text text-transparent mb-1 sm:mb-2 group-hover:scale-125 group-hover:bg-gradient-to-r group-hover:from-primary group-hover:via-cyan-500 group-hover:to-purple-500 transition-all duration-500 text-center transform-gpu">
                       {stat.number}
                     </div>
                     
-                    {/* Label */}
-                    <div className="text-xs sm:text-sm lg:text-base text-muted-foreground font-medium group-hover:text-foreground transition-colors duration-300 text-center">
+                    {/* Enhanced label */}
+                    <div className="text-xs sm:text-sm lg:text-base text-muted-foreground font-medium group-hover:text-foreground group-hover:scale-105 transition-all duration-300 text-center">
                       {stat.label}
                     </div>
                     
-                    {/* Decorative elements with slower animation */}
-                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary/30 rounded-full" style={{ animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
-                    <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 w-1 h-1 bg-purple-500/40 rounded-full" style={{ animation: 'ping 6s cubic-bezier(0, 0, 0.2, 1) infinite' }}></div>
+                    {/* Enhanced decorative elements */}
+                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary/40 rounded-full group-hover:bg-primary/80 group-hover:scale-150 transition-all duration-500" style={{ animation: 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
+                    <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 w-1 h-1 bg-purple-500/50 rounded-full group-hover:bg-purple-500/90 group-hover:scale-200 transition-all duration-700" style={{ animation: 'ping 4s cubic-bezier(0, 0, 0.2, 1) infinite' }}></div>
+                    <div className="absolute top-1/2 left-3 w-0.5 h-0.5 bg-cyan-500/40 rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-300 transition-all duration-600" style={{ animation: 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite 1s' }}></div>
+                    
+                    {/* Floating particles effect */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                      <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-primary/60 rounded-full animate-bounce" style={{ animationDelay: '0s', animationDuration: '2s' }}></div>
+                      <div className="absolute top-3/4 right-1/4 w-0.5 h-0.5 bg-purple-500/60 rounded-full animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '2.5s' }}></div>
+                      <div className="absolute top-1/2 right-1/3 w-0.5 h-0.5 bg-cyan-500/60 rounded-full animate-bounce" style={{ animationDelay: '1s', animationDuration: '3s' }}></div>
+                    </div>
                   </div>
                 </div>
               ))}
