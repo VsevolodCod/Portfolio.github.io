@@ -960,34 +960,34 @@ const VideoEditorPortfolio = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
               {stats.map((stat, index) => (
                 <div key={index} className="group relative">
                   {/* Glowing border effect */}
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 via-purple-500/50 to-cyan-500/50 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
                   
-                  <div className="relative bg-card/80 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 group-hover:scale-105 transform">
+                  <div className="relative bg-card/80 backdrop-blur-xl rounded-2xl p-4 sm:p-6 lg:p-8 border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 group-hover:scale-105 transform">
                     {/* Icon with glow effect */}
-                    <div className="relative mb-6">
+                    <div className="relative mb-4 sm:mb-6">
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                      <div className="relative w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-gradient-to-r from-primary/10 to-purple-500/10 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-500">
-                        <stat.icon className="w-8 h-8 sm:w-10 sm:h-10 text-primary group-hover:scale-110 transition-transform duration-300" />
+                      <div className="relative w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 mx-auto bg-gradient-to-r from-primary/10 to-purple-500/10 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-500">
+                        <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-primary group-hover:scale-110 transition-transform duration-300" />
                       </div>
                     </div>
                     
                     {/* Number with gradient */}
-                    <div className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+                    <div className="text-xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300 text-center">
                       {stat.number}
                     </div>
                     
                     {/* Label */}
-                    <div className="text-sm sm:text-base text-muted-foreground font-medium group-hover:text-foreground transition-colors duration-300">
+                    <div className="text-xs sm:text-sm lg:text-base text-muted-foreground font-medium group-hover:text-foreground transition-colors duration-300 text-center">
                       {stat.label}
                     </div>
                     
                     {/* Decorative elements with slower animation */}
-                    <div className="absolute top-4 right-4 w-2 h-2 bg-primary/30 rounded-full" style={{ animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
-                    <div className="absolute bottom-4 left-4 w-1 h-1 bg-purple-500/40 rounded-full" style={{ animation: 'ping 6s cubic-bezier(0, 0, 0.2, 1) infinite' }}></div>
+                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary/30 rounded-full" style={{ animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
+                    <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 w-1 h-1 bg-purple-500/40 rounded-full" style={{ animation: 'ping 6s cubic-bezier(0, 0, 0.2, 1) infinite' }}></div>
                   </div>
                 </div>
               ))}
@@ -1085,8 +1085,8 @@ const VideoEditorPortfolio = () => {
                               <div key={subIndex} className="relative">
                                 {/* Subcategory card */}
                                 <div className="bg-gradient-to-br from-card/50 to-card/30 rounded-2xl p-6 border border-border/20 backdrop-blur-sm group-hover:border-primary/20 transition-all duration-300">
-                                  <div className="flex items-center justify-between mb-4">
-                                    <h4 className="font-semibold text-xl text-primary group-hover:text-primary/80 transition-colors duration-300">
+                                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                                    <h4 className="font-semibold text-lg sm:text-xl text-primary group-hover:text-primary/80 transition-colors duration-300">
                                       {sub.title}
                                     </h4>
                                     {sub.hasExamples && (
@@ -1095,11 +1095,11 @@ const VideoEditorPortfolio = () => {
                                           <Button 
                                             variant="outline" 
                                             size="sm"
-                                            className="bg-primary/10 hover:bg-primary/20 border-primary/30 text-primary hover:text-primary/80 transition-all duration-300 group/btn"
+                                            className="bg-primary/10 hover:bg-primary/20 border-primary/30 text-primary hover:text-primary/80 transition-all duration-300 group/btn self-start sm:self-auto shrink-0 text-xs sm:text-sm"
                                           >
-                                            <Play className="w-4 h-4 mr-2 group-hover/btn:scale-110 transition-transform duration-200" />
+                                            <Play className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 group-hover/btn:scale-110 transition-transform duration-200" />
                                             Примеры
-                                            <ExternalLink className="w-3 h-3 ml-1 opacity-60" />
+                                            <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3 ml-1 opacity-60" />
                                           </Button>
                                         </DialogTrigger>
                                         <DialogContent className="max-w-4xl">
@@ -1149,10 +1149,10 @@ const VideoEditorPortfolio = () => {
                         )}
                         
                         {/* CTA Button */}
-                          <div className="mt-8 mb-8">
+                          <div className="mt-6 sm:mt-8 mb-6 sm:mb-8">
                             <div className="relative">
                             <a href="https://t.me/vadimfom1n" target="_blank" rel="noopener noreferrer">
-                              <Button className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-primary-foreground border-0 py-6 text-base font-semibold group-hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">                              
+                              <Button className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-primary-foreground border-0 py-4 sm:py-6 text-sm sm:text-base font-semibold group-hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
                               <span className="relative z-10">{content[language].getQuote}</span>
                               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                               </Button>

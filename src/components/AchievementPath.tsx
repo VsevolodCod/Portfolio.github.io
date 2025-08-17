@@ -151,13 +151,13 @@ const achievementData: YearData[] = [
 // Функция для вычисления точки на кривой Безье (улучшенная S-кривая для большего вертикального растяжения)
 const getPointOnCurve = (t: number): { x: number; y: number } => {
   // Точки кривой Безье для более выраженной S-образной формы с лучшим вертикальным растяжением
-  const P0 = { x: 10, y: 2.8 };   // Начало - левый верх
+  const P0 = { x: 15, y: 5 };   // Начало - точно под 2023
   const P1 = { x: 30, y: 1 };   // Контрольная точка 1 - подъем вверх
   const P2 = { x: 70, y: 20 };  // Контрольная точка 2 - движение вправо
   const P3 = { x: 50, y: 50 };  // Средняя точка - центр S
   const P4 = { x: 30, y: 80 };  // Контрольная точка 3 - влево и вниз
   const P5 = { x: 70, y: 99 };  // Контрольная точка 4 - вправо
-  const P6 = { x: 85, y: 92 };  // Конец - правый низ
+  const P6 = { x: 85, y: 95 };  // Конец - правый низ
 
   if (t <= 0.5) {
     const u = t * 2;
@@ -192,24 +192,10 @@ const getPointOnCurve = (t: number): { x: number; y: number } => {
 
 // Точные позиции для годов на кривой
 const getYearPositions = () => {
-  const step = 0.06;
-  let currentT = 0.03;
-
-  // 2023 год - начало
-  const year2023T = currentT;
-  currentT += step * 4 + 0.02; // 3 достижения + отступ
-
-  // 2024 год
-  const year2024T = currentT;
-  currentT += step * 5; // 4 достижения
-
-  // 2025 год - в конце последовательности
-  const year2025T = 0.97;
-
   return {
-    2023: year2023T,
-    2024: year2024T,
-    2025: year2025T
+    2023: 0.01,   // Точно в начале кривой
+    2024: 0.5,    // В середине кривой
+    2025: 0.99    // В конце кривой
   };
 };
 
@@ -221,45 +207,30 @@ const calculateAllPositions = () => {
   };
 
   const yearTs = getYearPositions();
-  const step = 0.06; // Уменьшенный шаг
-  let currentT = 0.03; // Начало кривой
 
-  // 1. 2023 год - начало кривой
+  // Позиции для годов - точно на кривой
   positions.years[2023] = getPointOnCurve(yearTs[2023]);
-  currentT += step;
+  positions.years[2024] = getPointOnCurve(yearTs[2024]);
+  positions.years[2025] = getPointOnCurve(yearTs[2025]);
 
-  // 2. Достижения 2023 года (3 штуки)
+  // Достижения равномерно распределены между годами
   positions.achievements[2023] = [];
   for (let i = 0; i < 3; i++) {
-    positions.achievements[2023].push(getPointOnCurve(currentT));
-    currentT += step;
+    const t = 0.05 + (i * 0.12); // Равномерное распределение до 2024
+    positions.achievements[2023].push(getPointOnCurve(t));
   }
 
-  // Уменьшение расстояния до 2024 года
-  currentT += 0.02; // Маленький отступ
-
-  // 3. 2024 год - точно а кривой
-  positions.years[2024] = getPointOnCurve(yearTs[2024]);
-  currentT += step;
-
-  // 4. Достижения 2024 года (4 штуки)
   positions.achievements[2024] = [];
   for (let i = 0; i < 4; i++) {
-    positions.achievements[2024].push(getPointOnCurve(currentT));
-    currentT += step;
+    const t = 0.52 + (i * 0.1); // Равномерное распределение от середины
+    positions.achievements[2024].push(getPointOnCurve(t));
   }
 
-  // 5. Достижения 2025 года (4 штуки) - убеждаемся что они на кривой
   positions.achievements[2025] = [];
   for (let i = 0; i < 4; i++) {
-    if (currentT <= 0.95) { // Проверяем что не выходим за границы кривой
-      positions.achievements[2025].push(getPointOnCurve(currentT));
-      currentT += step;
-    }
+    const t = 0.75 + (i * 0.055); // Равномерное распределение до конца
+    positions.achievements[2025].push(getPointOnCurve(t));
   }
-
-  // 6. 2025 год - конец кривой
-  positions.years[2025] = getPointOnCurve(yearTs[2025]);
 
   return positions;
 };
@@ -335,7 +306,7 @@ const AchievementPath: React.FC = (): JSX.Element => {
         <path
           d="M 15,5 C 30,1 70,20 50,50 C 30,80 70,99 85,95"
           stroke="url(#sPathGradient)"
-          strokeWidth="1.5"
+          strokeWidth="2"
           fill="none"
           filter="url(#glowEffect)"
           strokeLinecap="round"
