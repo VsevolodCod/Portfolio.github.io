@@ -939,66 +939,152 @@ const VideoEditorPortfolio = () => {
           </div>
         </section>
 
-        {/* Stats Section */}
+        {/* Stats Section - НЕОНОВЫЙ СТИЛЬ */}
         <section className="relative py-16 sm:py-24 overflow-hidden">
-          {/* Animated Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-purple-500/15 to-cyan-500/20">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary))_0%,transparent_50%),radial-gradient(circle_at_80%_80%,hsl(var(--primary))_0%,transparent_50%)] opacity-30"></div>
-            <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
+          {/* Неоновый космический фон */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,#00ffff_0%,transparent_30%),radial-gradient(circle_at_80%_80%,#ff00ff_0%,transparent_30%),radial-gradient(circle_at_50%_50%,#00ff00_0%,transparent_40%)] opacity-20"></div>
+            <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_40%,cyan_50%,transparent_60%)] opacity-[0.03]"></div>
+
+            {/* Неоновые анимированные частицы */}
+            <div className="absolute top-20 left-10 w-3 h-3 bg-cyan-400 rounded-full animate-pulse shadow-[0_0_20px_#00ffff]" style={{animationDuration: '2s'}}></div>
+            <div className="absolute top-40 right-20 w-4 h-4 bg-pink-400 rounded-full animate-bounce shadow-[0_0_25px_#ff00ff]" style={{animationDelay: '1s', animationDuration: '3s'}}></div>
+            <div className="absolute bottom-32 left-1/4 w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_15px_#00ff00]" style={{animationDelay: '2s'}}></div>
+            <div className="absolute bottom-20 right-1/3 w-3.5 h-3.5 bg-yellow-400 rounded-full animate-pulse shadow-[0_0_20px_#ffff00]" style={{animationDelay: '0.5s'}}></div>
+            <div className="absolute top-60 left-1/3 w-2.5 h-2.5 bg-purple-400 rounded-full animate-bounce shadow-[0_0_18px_#8000ff]" style={{animationDelay: '1.5s', animationDuration: '4s'}}></div>
           </div>
-          
+
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-12 sm:mb-16">
-              <div className="inline-flex items-center justify-center p-2 bg-primary/10 rounded-full mb-6">
-                <TrendingUp className="w-6 h-6 text-primary" />
+              <div className="inline-flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm rounded-2xl mb-6 border border-cyan-400/50 shadow-[0_0_30px_#00ffff] hover:shadow-[0_0_50px_#00ffff] transition-all duration-500">
+                <TrendingUp className="w-6 h-6 text-cyan-400 mr-3 animate-pulse" />
+                 <span >СТАТИСТИКА</span>{/* className="text-cyan-400 font-bold text-neon shadow-[0_0_10px_#00ffff]" */}
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary via-purple-600 to-cyan-600 bg-clip-text text-transparent mb-4">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 [text-shadow:0_0_20px_#ffffff]">
                 {content[language].statsTitle}
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto">
                 Цифры, которые говорят о качестве моей работы
               </p>
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-              {stats.map((stat, index) => (
-                <div key={index} className="group relative">
-                  {/* Glowing border effect */}
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 via-purple-500/50 to-cyan-500/50 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-                  
-                  <div className="relative bg-card/80 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 group-hover:scale-105 transform">
-                    {/* Icon with glow effect */}
-                    <div className="relative mb-6">
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                      <div className="relative w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-gradient-to-r from-primary/10 to-purple-500/10 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-500">
-                        <stat.icon className="w-8 h-8 sm:w-10 sm:h-10 text-primary group-hover:scale-110 transition-transform duration-300" />
+              {stats.map((stat, index) => {
+                const neonColors = [
+                  { main: 'cyan-400', shadow: '#00ffff', bg: 'from-cyan-400/20 to-cyan-600/20' },
+                  { main: 'pink-400', shadow: '#ff00ff', bg: 'from-pink-400/20 to-pink-600/20' },
+                  { main: 'green-400', shadow: '#00ff00', bg: 'from-green-400/20 to-green-600/20' },
+                  { main: 'yellow-400', shadow: '#ffff00', bg: 'from-yellow-400/20 to-yellow-600/20' }
+                ];
+                const color = neonColors[index % 4];
+
+                return (
+                  <div key={index} className="group relative">
+                    {/* Неоновое свечение при hover */}
+                    <div
+                      className="absolute -inset-2 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:animate-pulse"
+                      style={{
+                        background: `radial-gradient(circle, ${color.shadow}40 0%, transparent 70%)`,
+                        boxShadow: `0 0 60px ${color.shadow}`
+                      }}
+                    ></div>
+
+                    <div className={`relative bg-black/80 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-${color.main}/30 hover:border-${color.main} transition-all duration-500 group-hover:scale-110 transform group-hover:-translate-y-3`}
+                         style={{
+                           boxShadow: `0 0 20px ${color.shadow}30`,
+                         }}>
+
+                      {/* Неоновая иконка */}
+                      <div className="relative mb-6">
+                        <div
+                          className="absolute inset-0 rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-spin"
+                          style={{
+                            background: `radial-gradient(circle, ${color.shadow}60 0%, transparent 70%)`,
+                            animationDuration: '4s'
+                          }}
+                        ></div>
+                        <div className={`relative w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-gradient-to-br ${color.bg} rounded-3xl flex items-center justify-center group-hover:rotate-12 transition-all duration-500 border border-${color.main}/50`}
+                             style={{
+                               boxShadow: `inset 0 0 20px ${color.shadow}20, 0 0 30px ${color.shadow}30`
+                             }}>
+                          <stat.icon
+                            className={`w-8 h-8 sm:w-10 sm:h-10 text-${color.main} group-hover:scale-125 group-hover:rotate-12 transition-all duration-500`}
+                            style={{
+                              filter: `drop-shadow(0 0 10px ${color.shadow})`
+                            }}
+                          />
+                        </div>
+
+                        {/* Неоновые частицы */}
+                        <div className={`absolute -top-2 -right-2 w-3 h-3 bg-${color.main} rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-ping`}
+                             style={{boxShadow: `0 0 15px ${color.shadow}`}}></div>
+                        <div className={`absolute -bottom-1 -left-1 w-2 h-2 bg-${color.main}/80 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-bounce`}
+                             style={{animationDelay: '0.2s', boxShadow: `0 0 10px ${color.shadow}`}}></div>
                       </div>
+
+                      {/* Неоновое число */}
+                      <div className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-${color.main} mb-2 group-hover:scale-125 transition-all duration-500`}
+                           style={{
+                             textShadow: `0 0 20px ${color.shadow}, 0 0 40px ${color.shadow}50`,
+                             filter: 'brightness(1.2)'
+                           }}>
+                        {stat.number}
+                      </div>
+
+                      {/* Подпись */}
+                      <div className={`text-sm sm:text-base text-gray-400 font-medium group-hover:text-${color.main} transition-all duration-300 group-hover:font-bold`}
+                           style={{
+                             textShadow: `0 0 10px ${color.shadow}50`
+                           }}>
+                        {stat.label}
+                      </div>
+
+                      {/* Неоновые декоративные элементы */}
+                      <div className={`absolute top-4 right-4 w-2 h-2 bg-${color.main}/60 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-pulse`}
+                           style={{boxShadow: `0 0 10px ${color.shadow}`}}></div>
+                      <div className={`absolute bottom-4 left-4 w-1.5 h-1.5 bg-${color.main}/80 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-ping`}
+                           style={{animationDelay: '0.3s', boxShadow: `0 0 8px ${color.shadow}`}}></div>
+
+                      {/* Неоновый волновой эффект */}
+                      <div className="absolute inset-0 rounded-3xl overflow-hidden">
+                        <div
+                          className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out"
+                          style={{
+                            background: `linear-gradient(90deg, transparent, ${color.shadow}30, transparent)`
+                          }}
+                        ></div>
+                      </div>
+
+                      {/* Неонов��я рамка при hover */}
+                      <div className={`absolute inset-0 rounded-3xl border-2 border-${color.main}/0 group-hover:border-${color.main}/60 transition-all duration-500 opacity-0 group-hover:opacity-100`}
+                           style={{
+                             boxShadow: `inset 0 0 30px ${color.shadow}20`
+                           }}></div>
                     </div>
-                    
-                    {/* Number with gradient */}
-                    <div className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
-                      {stat.number}
-                    </div>
-                    
-                    {/* Label */}
-                    <div className="text-sm sm:text-base text-muted-foreground font-medium group-hover:text-foreground transition-colors duration-300">
-                      {stat.label}
-                    </div>
-                    
-                    {/* Decorative elements with slower animation */}
-                    <div className="absolute top-4 right-4 w-2 h-2 bg-primary/30 rounded-full" style={{ animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
-                    <div className="absolute bottom-4 left-4 w-1 h-1 bg-purple-500/40 rounded-full" style={{ animation: 'ping 6s cubic-bezier(0, 0, 0.2, 1) infinite' }}></div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
-            
-            {/* Bottom decoration with slower animation */}
+
+            {/* Неоновые декоративные элементы внизу */}
             <div className="flex justify-center mt-12 sm:mt-16">
-              <div className="flex space-x-2">
-                {[...Array(4)].map((_, i) => (
-                  <div key={i} className="w-2 h-2 bg-primary/30 rounded-full" style={{ animation: 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite', animationDelay: `${i * 0.5}s` }}></div>
-                ))}
+              <div className="flex space-x-4">
+                {[...Array(5)].map((_, i) => {
+                  const colors = ['#00ffff', '#ff00ff', '#00ff00', '#ffff00', '#8000ff'];
+                  const color = colors[i];
+                  return (
+                    <div
+                      key={i}
+                      className="w-3 h-3 rounded-full cursor-pointer transition-all duration-300 hover:scale-200 animate-pulse"
+                      style={{
+                        backgroundColor: color,
+                        boxShadow: `0 0 20px ${color}, 0 0 40px ${color}50`,
+                        animation: `pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite`,
+                        animationDelay: `${i * 0.4}s`
+                      }}
+                    ></div>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -1085,8 +1171,8 @@ const VideoEditorPortfolio = () => {
                               <div key={subIndex} className="relative">
                                 {/* Subcategory card */}
                                 <div className="bg-gradient-to-br from-card/50 to-card/30 rounded-2xl p-6 border border-border/20 backdrop-blur-sm group-hover:border-primary/20 transition-all duration-300">
-                                  <div className="flex items-center justify-between mb-4">
-                                    <h4 className="font-semibold text-xl text-primary group-hover:text-primary/80 transition-colors duration-300">
+                                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                                    <h4 className="font-semibold text-lg sm:text-xl text-primary group-hover:text-primary/80 transition-colors duration-300">
                                       {sub.title}
                                     </h4>
                                     {sub.hasExamples && (
@@ -1095,11 +1181,11 @@ const VideoEditorPortfolio = () => {
                                           <Button 
                                             variant="outline" 
                                             size="sm"
-                                            className="bg-primary/10 hover:bg-primary/20 border-primary/30 text-primary hover:text-primary/80 transition-all duration-300 group/btn"
+                                            className="bg-primary/10 hover:bg-primary/20 border-primary/30 text-primary hover:text-primary/80 transition-all duration-300 group/btn self-start sm:self-auto shrink-0 text-xs sm:text-sm"
                                           >
-                                            <Play className="w-4 h-4 mr-2 group-hover/btn:scale-110 transition-transform duration-200" />
+                                            <Play className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 group-hover/btn:scale-110 transition-transform duration-200" />
                                             Примеры
-                                            <ExternalLink className="w-3 h-3 ml-1 opacity-60" />
+                                            <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3 ml-1 opacity-60" />
                                           </Button>
                                         </DialogTrigger>
                                         <DialogContent className="max-w-4xl">
@@ -1149,10 +1235,10 @@ const VideoEditorPortfolio = () => {
                         )}
                         
                         {/* CTA Button */}
-                          <div className="mt-8 mb-8">
+                          <div className="mt-6 sm:mt-8 mb-6 sm:mb-8">
                             <div className="relative">
                             <a href="https://t.me/vadimfom1n" target="_blank" rel="noopener noreferrer">
-                              <Button className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-primary-foreground border-0 py-6 text-base font-semibold group-hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">                              
+                              <Button className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-primary-foreground border-0 py-4 sm:py-6 text-sm sm:text-base font-semibold group-hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
                               <span className="relative z-10">{content[language].getQuote}</span>
                               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                               </Button>
