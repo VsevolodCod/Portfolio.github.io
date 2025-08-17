@@ -213,22 +213,22 @@ const calculateAllPositions = () => {
   positions.years[2024] = getPointOnCurve(yearTs[2024]);
   positions.years[2025] = getPointOnCurve(yearTs[2025]);
 
-  // Достижения равномерно распределены между годами
+  // Достижения равномерно распределены между годами с достаточными интервалами
   positions.achievements[2023] = [];
   for (let i = 0; i < 3; i++) {
-    const t = 0.05 + (i * 0.12); // Равномерное распределение до 2024
+    const t = 0.08 + (i * 0.11); // Больший начальный отступ и интервал
     positions.achievements[2023].push(getPointOnCurve(t));
   }
 
   positions.achievements[2024] = [];
   for (let i = 0; i < 4; i++) {
-    const t = 0.52 + (i * 0.1); // Равномерное распределение от середины
+    const t = 0.53 + (i * 0.08); // Равномерное распределение от середины с интервалами
     positions.achievements[2024].push(getPointOnCurve(t));
   }
 
   positions.achievements[2025] = [];
   for (let i = 0; i < 4; i++) {
-    const t = 0.75 + (i * 0.055); // Равномерное распределение до конца
+    const t = 0.82 + (i * 0.04); // Равномерное распределение до конца с меньшими интервалами
     positions.achievements[2025].push(getPointOnCurve(t));
   }
 
