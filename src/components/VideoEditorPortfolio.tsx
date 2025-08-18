@@ -941,29 +941,29 @@ const VideoEditorPortfolio = () => {
 
         {/* Stats Section - НЕОНОВЫЙ СТИЛЬ - МОБИЛЬНАЯ ОПТИМИЗАЦИЯ */}
         <section className="relative py-12 sm:py-16 md:py-24 overflow-hidden">
-          {/* Неоновый космический фон - упрощенный для мобильных */}
-          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,#00ffff_0%,transparent_30%),radial-gradient(circle_at_80%_80%,#ff00ff_0%,transparent_30%),radial-gradient(circle_at_50%_50%,#00ff00_0%,transparent_40%)] opacity-15 sm:opacity-20"></div>
-            <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_40%,cyan_50%,transparent_60%)] opacity-[0.02] sm:opacity-[0.03]"></div>
+          {/* Неоновый космический фон - полностью адаптивный для светлой и темной темы */}
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-black dark:via-gray-900 dark:to-black">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,#00ffff_0%,transparent_30%),radial-gradient(circle_at_80%_80%,#ff00ff_0%,transparent_30%),radial-gradient(circle_at_50%_50%,#00ff00_0%,transparent_40%)] opacity-30 dark:opacity-15 sm:opacity-35 sm:dark:opacity-20"></div>
+            <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_40%,cyan_50%,transparent_60%)] opacity-[0.05] dark:opacity-[0.02] sm:opacity-[0.06] sm:dark:opacity-[0.03]"></div>
             
-            {/* Неоновые анимированные частицы - меньше на мобильных */}
-            <div className="hidden sm:block absolute top-20 left-10 w-3 h-3 bg-cyan-400 rounded-full animate-pulse shadow-[0_0_20px_#00ffff]" style={{animationDuration: '2s'}}></div>
-            <div className="hidden sm:block absolute top-40 right-20 w-4 h-4 bg-pink-400 rounded-full animate-bounce shadow-[0_0_25px_#ff00ff]" style={{animationDelay: '1s', animationDuration: '3s'}}></div>
-            <div className="hidden sm:block absolute bottom-32 left-1/4 w-2 h-2 bg-green-400 rounded-full animate-ping shadow-[0_0_15px_#00ff00]" style={{animationDelay: '2s'}}></div>
-            <div className="hidden sm:block absolute bottom-20 right-1/3 w-3.5 h-3.5 bg-yellow-400 rounded-full animate-pulse shadow-[0_0_20px_#ffff00]" style={{animationDelay: '0.5s'}}></div>
-            <div className="hidden sm:block absolute top-60 left-1/3 w-2.5 h-2.5 bg-purple-400 rounded-full animate-bounce shadow-[0_0_18px_#8000ff]" style={{animationDelay: '1.5s', animationDuration: '4s'}}></div>
+            {/* Неоновые анимированные частицы - видимые на светлой теме */}
+            <div className="hidden sm:block absolute top-20 left-10 w-3 h-3 bg-cyan-400 rounded-full animate-pulse shadow-[0_0_30px_#00ffff] dark:shadow-[0_0_20px_#00ffff] opacity-100 dark:opacity-100" style={{animationDuration: '2s'}}></div>
+            <div className="hidden sm:block absolute top-40 right-20 w-4 h-4 bg-pink-400 rounded-full animate-bounce shadow-[0_0_35px_#ff00ff] dark:shadow-[0_0_25px_#ff00ff] opacity-100 dark:opacity-100" style={{animationDelay: '1s', animationDuration: '3s'}}></div>
+            <div className="hidden sm:block absolute bottom-32 left-1/4 w-2 h-2 bg-green-400 rounded-full animate-ping shadow-[0_0_25px_#00ff00] dark:shadow-[0_0_15px_#00ff00] opacity-100 dark:opacity-100" style={{animationDelay: '2s'}}></div>
+            <div className="hidden sm:block absolute bottom-20 right-1/3 w-3.5 h-3.5 bg-yellow-400 rounded-full animate-pulse shadow-[0_0_30px_#ffff00] dark:shadow-[0_0_20px_#ffff00] opacity-100 dark:opacity-100" style={{animationDelay: '0.5s'}}></div>
+            <div className="hidden sm:block absolute top-60 left-1/3 w-2.5 h-2.5 bg-purple-400 rounded-full animate-bounce shadow-[0_0_28px_#8000ff] dark:shadow-[0_0_18px_#8000ff] opacity-100 dark:opacity-100" style={{animationDelay: '1.5s', animationDuration: '4s'}}></div>
           </div>
           
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-8 sm:mb-12 md:mb-16">
-              <div className="inline-flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm rounded-xl sm:rounded-2xl mb-4 sm:mb-6 border border-cyan-400/50 shadow-[0_0_15px_#00ffff] sm:shadow-[0_0_30px_#00ffff] hover:shadow-[0_0_25px_#00ffff] sm:hover:shadow-[0_0_50px_#00ffff] transition-all duration-500">
+              <div className="inline-flex items-center justify-center p-3 sm:p-4 bg-gray-800/80 dark:bg-black/60 backdrop-blur-sm rounded-xl sm:rounded-2xl mb-4 sm:mb-6 border border-cyan-400/50 shadow-[0_0_15px_#00ffff] sm:shadow-[0_0_30px_#00ffff] hover:shadow-[0_0_25px_#00ffff] sm:hover:shadow-[0_0_50px_#00ffff] transition-all duration-500">
                 <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400 mr-2 sm:mr-3 animate-pulse" />
-                <span >СТАТИСТИКА</span>
+                <span className="text-white dark:text-white font-semibold text-sm sm:text-base">СТАТИСТИКА</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 [text-shadow:0_0_10px_#ffffff] sm:[text-shadow:0_0_20px_#ffffff]">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white dark:text-white mb-3 sm:mb-4 [text-shadow:0_0_10px_#ffffff] sm:[text-shadow:0_0_20px_#ffffff]">
                 {content[language].statsTitle}
               </h2>
-              <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto px-4">
+              <p className="text-base sm:text-lg text-gray-300 dark:text-gray-300 max-w-2xl mx-auto px-4">
                 Цифры, которые говорят о качестве моей работы
               </p>
             </div>
@@ -980,18 +980,18 @@ const VideoEditorPortfolio = () => {
                 
                 return (
                   <div key={index} className="group relative">
-                    {/* Неоновое свечение при hover - уменьшено для мобильных */}
-                    <div 
+                    {/* Неоновое свечение при hover - усиленное для светлой темы */}
+                    <div
                       className="absolute -inset-1 sm:-inset-2 rounded-2xl sm:rounded-3xl blur-lg sm:blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:animate-pulse"
                       style={{
-                        background: `radial-gradient(circle, ${color.shadow}30 0%, transparent 70%)`,
-                        boxShadow: `0 0 30px ${color.shadow}, 0 0 60px ${color.shadow}50`
+                        background: `radial-gradient(circle, ${color.shadow}40 0%, ${color.shadow}20 30%, transparent 70%)`,
+                        boxShadow: `0 0 40px ${color.shadow}, 0 0 80px ${color.shadow}60, 0 0 120px ${color.shadow}30`
                       }}
                     ></div>
                     
-                    <div className={`relative bg-black/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-${color.main}/30 hover:border-${color.main} transition-all duration-500 group-hover:scale-105 sm:group-hover:scale-110 transform group-hover:-translate-y-1 sm:group-hover:-translate-y-3`}
+                    <div className={`relative bg-gray-900/95 dark:bg-black/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-${color.main}/40 hover:border-${color.main} transition-all duration-500 group-hover:scale-105 sm:group-hover:scale-110 transform group-hover:-translate-y-1 sm:group-hover:-translate-y-3`}
                          style={{
-                           boxShadow: `0 0 10px ${color.shadow}20, 0 0 20px ${color.shadow}10`,
+                           boxShadow: `0 0 15px ${color.shadow}30, 0 0 30px ${color.shadow}15`,
                          }}>
                       
                       {/* Неоновая иконка - адаптивные размеры */}
@@ -1003,9 +1003,9 @@ const VideoEditorPortfolio = () => {
                             animationDuration: '4s'
                           }}
                         ></div>
-                        <div className={`relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto bg-gradient-to-br ${color.bg} rounded-2xl sm:rounded-3xl flex items-center justify-center group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500 border border-${color.main}/50`}
+                        <div className={`relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto bg-gradient-to-br ${color.bg} rounded-2xl sm:rounded-3xl flex items-center justify-center group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500 border border-${color.main}/60`}
                              style={{
-                               boxShadow: `inset 0 0 10px ${color.shadow}15, 0 0 15px ${color.shadow}20`
+                               boxShadow: `inset 0 0 15px ${color.shadow}20, 0 0 20px ${color.shadow}30`
                              }}>
                           <stat.icon 
                             className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-${color.main} group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500`}
@@ -1015,23 +1015,23 @@ const VideoEditorPortfolio = () => {
                           />
                         </div>
                         
-                        {/* Неоновые частицы - меньше на мобильных */}
+                        {/* Неоновые частицы - улучшенная видимость */}
                         <div className={`absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-2 h-2 sm:w-3 sm:h-3 bg-${color.main} rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-ping`}
-                             style={{boxShadow: `0 0 8px ${color.shadow}, 0 0 15px ${color.shadow}50`}}></div>
+                             style={{boxShadow: `0 0 12px ${color.shadow}, 0 0 25px ${color.shadow}70`}}></div>
                         <div className={`absolute -bottom-0.5 -left-0.5 sm:-bottom-1 sm:-left-1 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-${color.main}/80 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-bounce`}
-                             style={{animationDelay: '0.2s', boxShadow: `0 0 5px ${color.shadow}, 0 0 10px ${color.shadow}50`}}></div>
+                             style={{animationDelay: '0.2s', boxShadow: `0 0 8px ${color.shadow}, 0 0 16px ${color.shadow}60`}}></div>
                       </div>
                       
-                      {/* Неоновое число - адаптивные размеры */}
+                      {/* Неоновое число - улучшенная видимость */}
                       <div className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-${color.main} mb-1 sm:mb-2 group-hover:scale-110 sm:group-hover:scale-125 transition-all duration-500`}
                            style={{
-                             textShadow: `0 0 10px ${color.shadow}, 0 0 20px ${color.shadow}50`,
-                             filter: 'brightness(1.2)'
+                             textShadow: `0 0 15px ${color.shadow}, 0 0 30px ${color.shadow}60, 0 0 45px ${color.shadow}30`,
+                             filter: 'brightness(1.3)'
                            }}>
                         {stat.number}
                       </div>
                       
-                      {/* Подпись - адаптивные размер�� */}
+                      {/* Подпись - адаптивные размеры */}
                       <div className={`text-xs sm:text-sm md:text-base text-gray-400 font-medium group-hover:text-${color.main} transition-all duration-300 group-hover:font-bold leading-tight`}
                            style={{
                              textShadow: `0 0 5px ${color.shadow}30`
