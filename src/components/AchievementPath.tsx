@@ -499,6 +499,7 @@ const AchievementPath: React.FC = (): JSX.Element => {
                 Заказать проект
               </motion.button>
             )}
+            
           </div>
           
           <div className="absolute -left-2 top-6 w-0 h-0 border-t-8 border-b-8 border-r-8 
