@@ -14,10 +14,14 @@ export default {
 			center: true,
 			padding: '2rem',
 			screens: {
+				'xs': '475px',
 				'2xl': '1400px'
 			}
 		},
 		extend: {
+			screens: {
+				'xs': '475px',
+			},
 			fontFamily: {
 				'oswald': ['Oswald', 'sans-serif'],
 				'raleway': ['Raleway', 'sans-serif'],
