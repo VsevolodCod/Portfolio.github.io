@@ -190,29 +190,6 @@ const getPointOnCurve = (t: number): { x: number; y: number } => {
   }
 };
 
-// Точные позиции для годов на кривой
-const getYearPositions = () => {
-  const step = 0.06;
-  let currentT = 0.03;
-
-  // 2023 год - начало
-  const year2023T = currentT;
-  currentT += step * 4 + 0.02; // 3 достижения + отступ
-
-  // 2024 год
-  const year2024T = currentT;
-  currentT += step * 5; // 4 достижения
-
-  // 2025 год - в конце последовательности
-  const year2025T = 0.97;
-
-  return {
-    2023: year2023T,
-    2024: year2024T,
-    2025: year2025T
-  };
-};
-
 // Функция для расчета всех позиций в правильной последовательности
 const calculateAllPositions = () => {
   const positions: any = {
@@ -220,46 +197,55 @@ const calculateAllPositions = () => {
     achievements: {} as Record<number, {x: number, y: number}[]>
   };
 
-  const yearTs = getYearPositions();
-  const step = 0.06; // Уменьшенный шаг
+  const step = 0.06;
   let currentT = 0.03; // Начало кривой
 
-  // 1. 2023 год - начало кривой
-  positions.years[2023] = getPointOnCurve(yearTs[2023]);
-  currentT += step;
-
-  // 2. Достижения 2023 года (3 штуки)
+  // 1. Достижения 2023 года (3 штуки)
   positions.achievements[2023] = [];
   for (let i = 0; i < 3; i++) {
     positions.achievements[2023].push(getPointOnCurve(currentT));
     currentT += step;
   }
+  
+  // Позиция года 2023 - между первым и последним достижением
+  const firstAchievement2023T = 0.03;
+  const lastAchievement2023T = 0.03 + (2 * step);
+  const middleT2023 = (firstAchievement2023T + lastAchievement2023T) / 2;
+  positions.years[2023] = getPointOnCurve(middleT2023);
 
-  // Уменьшение расстояния до 2024 года
-  currentT += 0.02; // Маленький отступ
+  // Отступ между годами
+  currentT += 0.04;
 
-  // 3. 2024 год - точно а кривой
-  positions.years[2024] = getPointOnCurve(yearTs[2024]);
-  currentT += step;
-
-  // 4. Достижения 2024 года (4 штуки)
+  // 2. Достижения 2024 года (4 штуки) 
+  const startT2024 = currentT;
   positions.achievements[2024] = [];
   for (let i = 0; i < 4; i++) {
     positions.achievements[2024].push(getPointOnCurve(currentT));
     currentT += step;
   }
+  
+  // Позиция года 2024 - между первым и последним достижением
+  const lastAchievement2024T = currentT - step;
+  const middleT2024 = (startT2024 + lastAchievement2024T) / 2;
+  positions.years[2024] = getPointOnCurve(middleT2024);
 
-  // 5. Достижения 2025 года (4 штуки) - убеждаемся что они на кривой
+  // Отступ между годами
+  currentT += 0.04;
+
+  // 3. Достижения 2025 года (4 штуки)
+  const startT2025 = currentT;
   positions.achievements[2025] = [];
   for (let i = 0; i < 4; i++) {
-    if (currentT <= 0.95) { // Проверяем что не выходим за границы кривой
+    if (currentT <= 0.95) {
       positions.achievements[2025].push(getPointOnCurve(currentT));
       currentT += step;
     }
   }
-
-  // 6. 2025 год - конец кривой
-  positions.years[2025] = getPointOnCurve(yearTs[2025]);
+  
+  // Позиция года 2025 - между первым и последним достижением
+  const lastAchievement2025T = Math.min(currentT - step, 0.95);
+  const middleT2025 = (startT2025 + lastAchievement2025T) / 2;
+  positions.years[2025] = getPointOnCurve(middleT2025);
 
   return positions;
 };
@@ -344,11 +330,11 @@ const AchievementPath: React.FC = (): JSX.Element => {
 
       </svg>
 
-      {/* Year Nodes (Main points) */}
+      {/* Beautiful Year Labels on Path */}
       {processedData.map((yearData, yearIndex) => (
         <motion.div
-          key={yearData.year}
-          className="absolute pointer-events-auto"
+          key={`year-${yearData.year}`}
+          className="absolute pointer-events-none"
           style={{
             left: yearData.position.x,
             top: yearData.position.y,
@@ -356,23 +342,40 @@ const AchievementPath: React.FC = (): JSX.Element => {
           }}
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: yearIndex * 0.4, duration: 0.6 }}
+          transition={{ delay: yearIndex * 0.3, duration: 0.8 }}
         >
           <motion.div
-            className={`relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br ${yearData.yearColor}
-              shadow-lg sm:shadow-xl cursor-pointer flex items-center justify-center text-white
-              hover:shadow-2xl transition-all duration-300 border-2 border-white dark:border-gray-800 touch-manipulation`}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onHoverStart={() => setHoveredItem({ type: 'year', data: yearData })}
-            onHoverEnd={() => setHoveredItem(null)}
-            onTouchStart={() => setHoveredItem({ type: 'year', data: yearData })}
-            onTouchEnd={() => setTimeout(() => setHoveredItem(null), 2000)}
+            className="relative"
+            whileHover={{ scale: 1.1 }}
             style={{transform: 'translateZ(0)'}}
           >
-            <div className="text-xs sm:text-sm md:text-base lg:text-lg font-bold">{yearData.year}</div>
+            {/* Glowing background */}
             <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${yearData.yearColor}
-              opacity-15 blur-sm scale-110`} style={{transform: 'translateZ(0)'}} />
+              opacity-20 blur-lg scale-150`} style={{transform: 'translateZ(0)'}} />
+            
+            {/* Year number */}
+            <div className={`relative text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black
+              bg-gradient-to-br ${yearData.yearColor} bg-clip-text text-transparent
+              drop-shadow-2xl filter`}
+              style={{
+                fontFamily: 'system-ui, -apple-system, sans-serif',
+                textShadow: '0 0 30px rgba(255,255,255,0.5)',
+                WebkitTextStroke: '1px rgba(255,255,255,0.3)'
+              }}
+            >
+              {yearData.year}
+            </div>
+            
+            {/* Subtle glow effect */}
+            <div className={`absolute inset-0 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black
+              bg-gradient-to-br ${yearData.yearColor} bg-clip-text text-transparent
+              opacity-40 blur-sm`}
+              style={{
+                fontFamily: 'system-ui, -apple-system, sans-serif'
+              }}
+            >
+              {yearData.year}
+            </div>
           </motion.div>
         </motion.div>
       ))}

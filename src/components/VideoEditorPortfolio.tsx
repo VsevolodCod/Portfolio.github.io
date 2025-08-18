@@ -1075,7 +1075,6 @@ const VideoEditorPortfolio = () => {
                           }}
                         ></div>
                         <div
-                          className={`relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto rounded-2xl sm:rounded-3xl flex items-center justify-center group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500 shadow-lg`}
                           style={{
                             background: theme === 'dark' ? `linear-gradient(135deg, ${darkColor.shadow}20, ${darkColor.shadow.replace('#', '#').slice(0, -2)}6020)` : undefined,
                             borderColor: theme === 'dark' ? `${darkColor.shadow}60` : 'hsl(var(--primary) / 0.6)',
@@ -1083,16 +1082,19 @@ const VideoEditorPortfolio = () => {
                             borderStyle: 'solid',
                             boxShadow: theme === 'dark' ? `inset 0 0 15px ${darkColor.shadow}20, 0 0 20px ${darkColor.shadow}30` : undefined
                           }}
-                          className={theme === 'dark' ? `relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto rounded-2xl sm:rounded-3xl flex items-center justify-center group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500` : `relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto bg-gradient-to-br ${lightColor.bg} rounded-2xl sm:rounded-3xl flex items-center justify-center group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500 border border-primary/60 shadow-lg`}
+                          className={theme === 'dark' 
+                            ? `relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto rounded-2xl sm:rounded-3xl flex items-center justify-center group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500` 
+                            : `relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto bg-gradient-to-br ${lightColor.bg} rounded-2xl sm:rounded-3xl flex items-center justify-center group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500 border border-primary/60 shadow-lg`}
                         >
-                          <stat.icon
-                            className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500`}
-                            style={{
-                              color: theme === 'dark' ? darkColor.shadow : undefined,
-                              filter: theme === 'dark' ? `drop-shadow(0 0 5px ${darkColor.shadow})` : undefined
-                            }}
-                            className={theme === 'dark' ? `w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500` : `w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 ${lightColor.text} group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500`}
-                          />
+                           <stat.icon
+                             style={{
+                               color: theme === 'dark' ? darkColor.shadow : undefined,
+                               filter: theme === 'dark' ? `drop-shadow(0 0 5px ${darkColor.shadow})` : undefined
+                             }}
+                             className={theme === 'dark' 
+                               ? `w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500` 
+                               : `w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 ${lightColor.text} group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500`}
+                           />
                         </div>
 
                         {/* Декоративные/Неоновые частицы */}
