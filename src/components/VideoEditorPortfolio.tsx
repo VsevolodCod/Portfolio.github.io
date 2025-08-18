@@ -140,7 +140,7 @@ const VideoEditorPortfolio = () => {
       views: "15.2K",
       category: "Реклама",
       thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=225&fit=crop",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" 
+      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
     },
     {
       id: 2,
@@ -183,7 +183,7 @@ const VideoEditorPortfolio = () => {
     { name: "Звуковой дизайн", level: 100 }
   ];
 
-  // Additional data для новых секций
+  // Additional data для новых лекций
   const partners = [
     {
       name: "Алексей Леденёв",
@@ -269,7 +269,7 @@ const VideoEditorPortfolio = () => {
     },
     {
       title: "Горизонтальные видео",
-      price: "от 15,000₽",
+      price: "от 700₽/минута",
       features: ["Профессиональное качество", "Полный цикл производства", "Индивидуальный подход"],
       icon: Film,
       subcategories: [
@@ -941,146 +941,229 @@ const VideoEditorPortfolio = () => {
 
         {/* Stats Section - НЕОНОВЫЙ СТИЛЬ - МОБИЛЬНАЯ ОПТИМИЗАЦИЯ */}
         <section className="relative py-12 sm:py-16 md:py-24 overflow-hidden">
-          {/* Неоновый космический фон - полностью адаптивный для светлой и темной темы */}
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-black dark:via-gray-900 dark:to-black">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,#00ffff_0%,transparent_30%),radial-gradient(circle_at_80%_80%,#ff00ff_0%,transparent_30%),radial-gradient(circle_at_50%_50%,#00ff00_0%,transparent_40%)] opacity-30 dark:opacity-15 sm:opacity-35 sm:dark:opacity-20"></div>
-            <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_40%,cyan_50%,transparent_60%)] opacity-[0.05] dark:opacity-[0.02] sm:opacity-[0.06] sm:dark:opacity-[0.03]"></div>
+          {/* Стильный фон - адаптивный для светлой и темной темы */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-background dark:from-black dark:via-gray-900 dark:to-black">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,theme(colors.primary)_0%,transparent_30%),radial-gradient(circle_at_80%_80%,theme(colors.primary)_0%,transparent_30%),radial-gradient(circle_at_50%_50%,theme(colors.primary)_0%,transparent_40%)] opacity-20 dark:bg-[radial-gradient(circle_at_30%_20%,#00ffff_0%,transparent_30%),radial-gradient(circle_at_80%_80%,#ff00ff_0%,transparent_30%),radial-gradient(circle_at_50%_50%,#00ff00_0%,transparent_40%)] dark:opacity-15 sm:opacity-25 sm:dark:opacity-20"></div>
+            <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_40%,theme(colors.primary)_50%,transparent_60%)] opacity-[0.08] dark:bg-[linear-gradient(45deg,transparent_40%,cyan_50%,transparent_60%)] dark:opacity-[0.02] sm:opacity-[0.1] sm:dark:opacity-[0.03]"></div>
             
-            {/* Неоновые анимированные частицы - видимые на светлой теме */}
-            <div className="hidden sm:block absolute top-20 left-10 w-3 h-3 bg-cyan-400 rounded-full animate-pulse shadow-[0_0_30px_#00ffff] dark:shadow-[0_0_20px_#00ffff] opacity-100 dark:opacity-100" style={{animationDuration: '2s'}}></div>
-            <div className="hidden sm:block absolute top-40 right-20 w-4 h-4 bg-pink-400 rounded-full animate-bounce shadow-[0_0_35px_#ff00ff] dark:shadow-[0_0_25px_#ff00ff] opacity-100 dark:opacity-100" style={{animationDelay: '1s', animationDuration: '3s'}}></div>
-            <div className="hidden sm:block absolute bottom-32 left-1/4 w-2 h-2 bg-green-400 rounded-full animate-ping shadow-[0_0_25px_#00ff00] dark:shadow-[0_0_15px_#00ff00] opacity-100 dark:opacity-100" style={{animationDelay: '2s'}}></div>
-            <div className="hidden sm:block absolute bottom-20 right-1/3 w-3.5 h-3.5 bg-yellow-400 rounded-full animate-pulse shadow-[0_0_30px_#ffff00] dark:shadow-[0_0_20px_#ffff00] opacity-100 dark:opacity-100" style={{animationDelay: '0.5s'}}></div>
-            <div className="hidden sm:block absolute top-60 left-1/3 w-2.5 h-2.5 bg-purple-400 rounded-full animate-bounce shadow-[0_0_28px_#8000ff] dark:shadow-[0_0_18px_#8000ff] opacity-100 dark:opacity-100" style={{animationDelay: '1.5s', animationDuration: '4s'}}></div>
+            {/* Стильные анимированные частицы - адаптивные под тему */}
+            <div className="hidden sm:block absolute top-20 left-10 w-3 h-3 bg-primary dark:bg-cyan-400 rounded-full animate-pulse shadow-lg dark:shadow-[0_0_30px_#00ffff] opacity-60 dark:opacity-100" style={{animationDuration: '2s'}}></div>
+            <div className="hidden sm:block absolute top-40 right-20 w-4 h-4 bg-primary dark:bg-pink-400 rounded-full animate-bounce shadow-lg dark:shadow-[0_0_35px_#ff00ff] opacity-50 dark:opacity-100" style={{animationDelay: '1s', animationDuration: '3s'}}></div>
+            <div className="hidden sm:block absolute bottom-32 left-1/4 w-2 h-2 bg-primary dark:bg-green-400 rounded-full animate-ping shadow-lg dark:shadow-[0_0_25px_#00ff00] opacity-40 dark:opacity-100" style={{animationDelay: '2s'}}></div>
+            <div className="hidden sm:block absolute bottom-20 right-1/3 w-3.5 h-3.5 bg-primary dark:bg-yellow-400 rounded-full animate-pulse shadow-lg dark:shadow-[0_0_30px_#ffff00] opacity-60 dark:opacity-100" style={{animationDelay: '0.5s'}}></div>
+            <div className="hidden sm:block absolute top-60 left-1/3 w-2.5 h-2.5 bg-primary dark:bg-purple-400 rounded-full animate-bounce shadow-lg dark:shadow-[0_0_28px_#8000ff] opacity-50 dark:opacity-100" style={{animationDelay: '1.5s', animationDuration: '4s'}}></div>
           </div>
           
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-8 sm:mb-12 md:mb-16">
-              <div className="inline-flex items-center justify-center p-3 sm:p-4 bg-gray-800/80 dark:bg-black/60 backdrop-blur-sm rounded-xl sm:rounded-2xl mb-4 sm:mb-6 border border-cyan-400/50 shadow-[0_0_15px_#00ffff] sm:shadow-[0_0_30px_#00ffff] hover:shadow-[0_0_25px_#00ffff] sm:hover:shadow-[0_0_50px_#00ffff] transition-all duration-500">
-                <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400 mr-2 sm:mr-3 animate-pulse" />
-                <span className="text-white dark:text-white font-semibold text-sm sm:text-base">СТАТИСТИКА</span>
+              <div className="inline-flex items-center justify-center p-3 sm:p-4 bg-primary/20 dark:bg-black/60 backdrop-blur-sm rounded-xl sm:rounded-2xl mb-4 sm:mb-6 border border-primary/50 dark:border-cyan-400/50 shadow-lg dark:shadow-[0_0_15px_#00ffff] hover:shadow-xl dark:hover:shadow-[0_0_30px_#00ffff] transition-all duration-500">
+                <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-primary dark:text-cyan-400 mr-2 sm:mr-3 animate-pulse" />
+                <span className="text-foreground dark:text-white font-semibold text-sm sm:text-base">СТАТИСТИКА</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white dark:text-white mb-3 sm:mb-4 [text-shadow:0_0_10px_#ffffff] sm:[text-shadow:0_0_20px_#ffffff]">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground dark:text-white mb-3 sm:mb-4">
                 {content[language].statsTitle}
               </h2>
-              <p className="text-base sm:text-lg text-gray-300 dark:text-gray-300 max-w-2xl mx-auto px-4">
+              <p className="text-base sm:text-lg text-muted-foreground dark:text-gray-300 max-w-2xl mx-auto px-4">
                 Цифры, которые говорят о качестве моей работы
               </p>
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
               {stats.map((stat, index) => {
-                const neonColors = [
-                  { main: 'cyan-400', shadow: '#00ffff', bg: 'from-cyan-400/20 to-cyan-600/20' },
-                  { main: 'pink-400', shadow: '#ff00ff', bg: 'from-pink-400/20 to-pink-600/20' },
-                  { main: 'green-400', shadow: '#00ff00', bg: 'from-green-400/20 to-green-600/20' },
-                  { main: 'yellow-400', shadow: '#ffff00', bg: 'from-yellow-400/20 to-yellow-600/20' }
+                const lightColors = [
+                  { main: 'primary', secondary: 'primary/80', bg: 'from-primary/20 to-primary/30', text: 'text-primary' },
+                  { main: 'primary', secondary: 'primary/80', bg: 'from-primary/15 to-primary/25', text: 'text-primary' },
+                  { main: 'primary', secondary: 'primary/80', bg: 'from-primary/20 to-primary/30', text: 'text-primary' },
+                  { main: 'primary', secondary: 'primary/80', bg: 'from-primary/15 to-primary/25', text: 'text-primary' }
                 ];
-                const color = neonColors[index % 4];
+                const darkColors = [
+                  { main: 'cyan-400', shadow: '#00ffff', bg: 'from-cyan-400/20 to-cyan-600/20', text: 'text-cyan-400' },
+                  { main: 'pink-400', shadow: '#ff00ff', bg: 'from-pink-400/20 to-pink-600/20', text: 'text-pink-400' },
+                  { main: 'green-400', shadow: '#00ff00', bg: 'from-green-400/20 to-green-600/20', text: 'text-green-400' },
+                  { main: 'yellow-400', shadow: '#ffff00', bg: 'from-yellow-400/20 to-yellow-600/20', text: 'text-yellow-400' }
+                ];
+                const lightColor = lightColors[index % 4];
+                const darkColor = darkColors[index % 4];
                 
                 return (
                   <div key={index} className="group relative">
-                    {/* Неоновое свечение при hover - усиленное для светлой темы */}
+                    {/* Элегантное/Неоновое свечение при hover */}
                     <div
-                      className="absolute -inset-1 sm:-inset-2 rounded-2xl sm:rounded-3xl blur-lg sm:blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:animate-pulse"
+                      className="absolute -inset-1 sm:-inset-2 rounded-2xl sm:rounded-3xl blur-lg sm:blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:animate-pulse bg-gradient-to-r from-primary/30 to-primary/20"
                       style={{
-                        background: `radial-gradient(circle, ${color.shadow}40 0%, ${color.shadow}20 30%, transparent 70%)`,
-                        boxShadow: `0 0 40px ${color.shadow}, 0 0 80px ${color.shadow}60, 0 0 120px ${color.shadow}30`
+                        background: theme === 'dark' ? `radial-gradient(circle, ${darkColor.shadow}40 0%, ${darkColor.shadow}20 30%, transparent 70%)` : undefined,
+                        boxShadow: theme === 'dark' ? `0 0 40px ${darkColor.shadow}, 0 0 80px ${darkColor.shadow}60, 0 0 120px ${darkColor.shadow}30` : undefined
                       }}
                     ></div>
                     
-                    <div className={`relative bg-gray-900/95 dark:bg-black/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-${color.main}/40 hover:border-${color.main} transition-all duration-500 group-hover:scale-105 sm:group-hover:scale-110 transform group-hover:-translate-y-1 sm:group-hover:-translate-y-3`}
-                         style={{
-                           boxShadow: `0 0 15px ${color.shadow}30, 0 0 30px ${color.shadow}15`,
-                         }}>
+                    <div
+                      className="relative bg-card/90 dark:bg-black/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 transition-all duration-500 group-hover:scale-105 sm:group-hover:scale-110 transform group-hover:-translate-y-1 sm:group-hover:-translate-y-3 shadow-lg hover:shadow-xl"
+                      style={{
+                        borderColor: theme === 'dark' ? `${darkColor.shadow}40` : 'hsl(var(--primary) / 0.4)',
+                        borderWidth: '1px',
+                        borderStyle: 'solid'
+                      }}
+                      onMouseEnter={(e) => {
+                        if (theme === 'dark') {
+                          e.currentTarget.style.borderColor = darkColor.shadow;
+                          e.currentTarget.style.boxShadow = `0 0 15px ${darkColor.shadow}30, 0 0 30px ${darkColor.shadow}15`;
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (theme === 'dark') {
+                          e.currentTarget.style.borderColor = `${darkColor.shadow}40`;
+                          e.currentTarget.style.boxShadow = '';
+                        }
+                      }}
+                    >
                       
-                      {/* Неоновая иконка - адаптивные размеры */}
+                      {/* Стильная/Неоновая иконка - адаптивные размеры */}
                       <div className="relative mb-4 sm:mb-6">
-                        <div 
-                          className="absolute inset-0 rounded-full blur-lg sm:blur-xl scale-125 sm:scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-spin"
+                        <div
+                          className="absolute inset-0 rounded-full blur-lg sm:blur-xl scale-125 sm:scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-spin bg-gradient-to-r from-primary/40 to-primary/20"
                           style={{
-                            background: `radial-gradient(circle, ${color.shadow}40 0%, transparent 70%)`,
-                            animationDuration: '4s'
+                            animationDuration: '4s',
+                            background: theme === 'dark' ? `radial-gradient(circle, ${darkColor.shadow}40 0%, transparent 70%)` : undefined
                           }}
                         ></div>
-                        <div className={`relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto bg-gradient-to-br ${color.bg} rounded-2xl sm:rounded-3xl flex items-center justify-center group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500 border border-${color.main}/60`}
-                             style={{
-                               boxShadow: `inset 0 0 15px ${color.shadow}20, 0 0 20px ${color.shadow}30`
-                             }}>
-                          <stat.icon 
-                            className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-${color.main} group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500`}
+                        <div
+                          className={`relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto rounded-2xl sm:rounded-3xl flex items-center justify-center group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500 shadow-lg`}
+                          style={{
+                            background: theme === 'dark' ? `linear-gradient(135deg, ${darkColor.shadow}20, ${darkColor.shadow.replace('#', '#').slice(0, -2)}6020)` : undefined,
+                            borderColor: theme === 'dark' ? `${darkColor.shadow}60` : 'hsl(var(--primary) / 0.6)',
+                            borderWidth: '1px',
+                            borderStyle: 'solid',
+                            boxShadow: theme === 'dark' ? `inset 0 0 15px ${darkColor.shadow}20, 0 0 20px ${darkColor.shadow}30` : undefined
+                          }}
+                          className={theme === 'dark' ? `relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto rounded-2xl sm:rounded-3xl flex items-center justify-center group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500` : `relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto bg-gradient-to-br ${lightColor.bg} rounded-2xl sm:rounded-3xl flex items-center justify-center group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500 border border-primary/60 shadow-lg`}
+                        >
+                          <stat.icon
+                            className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500`}
                             style={{
-                              filter: `drop-shadow(0 0 5px ${color.shadow})`
+                              color: theme === 'dark' ? darkColor.shadow : undefined,
+                              filter: theme === 'dark' ? `drop-shadow(0 0 5px ${darkColor.shadow})` : undefined
                             }}
+                            className={theme === 'dark' ? `w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500` : `w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 ${lightColor.text} group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500`}
                           />
                         </div>
-                        
-                        {/* Неоновые частицы - улучшенная видимость */}
-                        <div className={`absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-2 h-2 sm:w-3 sm:h-3 bg-${color.main} rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-ping`}
-                             style={{boxShadow: `0 0 12px ${color.shadow}, 0 0 25px ${color.shadow}70`}}></div>
-                        <div className={`absolute -bottom-0.5 -left-0.5 sm:-bottom-1 sm:-left-1 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-${color.main}/80 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-bounce`}
-                             style={{animationDelay: '0.2s', boxShadow: `0 0 8px ${color.shadow}, 0 0 16px ${color.shadow}60`}}></div>
+
+                        {/* Декоративные/Неоновые частицы */}
+                        <div
+                          className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-2 h-2 sm:w-3 sm:h-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-ping shadow-lg"
+                          style={{
+                            backgroundColor: theme === 'dark' ? darkColor.shadow : 'hsl(var(--primary))',
+                            boxShadow: theme === 'dark' ? `0 0 12px ${darkColor.shadow}, 0 0 25px ${darkColor.shadow}70` : undefined
+                          }}
+                        ></div>
+                        <div
+                          className="absolute -bottom-0.5 -left-0.5 sm:-bottom-1 sm:-left-1 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-bounce shadow-lg"
+                          style={{
+                            animationDelay: '0.2s',
+                            backgroundColor: theme === 'dark' ? `${darkColor.shadow}80` : 'hsl(var(--primary) / 0.8)',
+                            boxShadow: theme === 'dark' ? `0 0 8px ${darkColor.shadow}, 0 0 16px ${darkColor.shadow}60` : undefined
+                          }}
+                        ></div>
                       </div>
                       
-                      {/* Неоновое число - улучшенная видимость */}
-                      <div className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-${color.main} mb-1 sm:mb-2 group-hover:scale-110 sm:group-hover:scale-125 transition-all duration-500`}
-                           style={{
-                             textShadow: `0 0 15px ${color.shadow}, 0 0 30px ${color.shadow}60, 0 0 45px ${color.shadow}30`,
-                             filter: 'brightness(1.3)'
-                           }}>
+                      {/* Стильное/Неоновое число */}
+                      <div
+                        className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-1 sm:mb-2 group-hover:scale-110 sm:group-hover:scale-125 transition-all duration-500`}
+                        style={{
+                          color: theme === 'dark' ? darkColor.shadow : 'hsl(var(--primary))',
+                          textShadow: theme === 'dark' ? `0 0 15px ${darkColor.shadow}, 0 0 30px ${darkColor.shadow}60, 0 0 45px ${darkColor.shadow}30` : undefined,
+                          filter: theme === 'dark' ? 'brightness(1.3)' : undefined
+                        }}
+                      >
                         {stat.number}
                       </div>
                       
                       {/* Подпись - адаптивные размеры */}
-                      <div className={`text-xs sm:text-sm md:text-base text-gray-400 font-medium group-hover:text-${color.main} transition-all duration-300 group-hover:font-bold leading-tight`}
-                           style={{
-                             textShadow: `0 0 5px ${color.shadow}30`
-                           }}>
+                      <div
+                        className="text-xs sm:text-sm md:text-base font-medium transition-all duration-300 group-hover:font-bold leading-tight"
+                        style={{
+                          color: theme === 'dark' ? '#9ca3af' : 'hsl(var(--muted-foreground))',
+                          textShadow: theme === 'dark' ? `0 0 5px ${darkColor.shadow}30` : undefined
+                        }}
+                        onMouseEnter={(e) => {
+                          if (theme === 'dark') {
+                            e.currentTarget.style.color = darkColor.shadow;
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (theme === 'dark') {
+                            e.currentTarget.style.color = '#9ca3af';
+                          }
+                        }}
+                      >
                         {stat.label}
                       </div>
                       
-                      {/* Неоновые декоративные элементы - уменьшены для мобильных */}
-                      <div className={`absolute top-3 right-3 sm:top-4 sm:right-4 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-${color.main}/60 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-pulse`}
-                           style={{boxShadow: `0 0 5px ${color.shadow}, 0 0 10px ${color.shadow}50`}}></div>
-                      <div className={`absolute bottom-3 left-3 sm:bottom-4 sm:left-4 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-${color.main}/80 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-ping`}
-                           style={{animationDelay: '0.3s', boxShadow: `0 0 4px ${color.shadow}, 0 0 8px ${color.shadow}50`}}></div>
+                      {/* Декоративные/Неоновые элементы - уменьшены для мобильных */}
+                      <div
+                        className="absolute top-3 right-3 sm:top-4 sm:right-4 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-pulse shadow-lg"
+                        style={{
+                          backgroundColor: theme === 'dark' ? `${darkColor.shadow}60` : 'hsl(var(--primary) / 0.6)',
+                          boxShadow: theme === 'dark' ? `0 0 5px ${darkColor.shadow}, 0 0 10px ${darkColor.shadow}50` : undefined
+                        }}
+                      ></div>
+                      <div
+                        className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-ping shadow-lg"
+                        style={{
+                          animationDelay: '0.3s',
+                          backgroundColor: theme === 'dark' ? `${darkColor.shadow}80` : 'hsl(var(--primary) / 0.8)',
+                          boxShadow: theme === 'dark' ? `0 0 4px ${darkColor.shadow}, 0 0 8px ${darkColor.shadow}50` : undefined
+                        }}
+                      ></div>
                       
-                      {/* Неоновый волновой эффект */}
+                      {/* Волновой/Неоновый эффект */}
                       <div className="absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden">
-                        <div 
+                        <div
                           className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out"
                           style={{
-                            background: `linear-gradient(90deg, transparent, ${color.shadow}20, transparent)`
+                            background: theme === 'dark' ? `linear-gradient(90deg, transparent, ${darkColor.shadow}20, transparent)` : 'linear-gradient(90deg, transparent, hsl(var(--primary) / 0.2), transparent)'
                           }}
                         ></div>
                       </div>
                       
-                      {/* Неоновая рамка при hover - уменьшена для мобильных */}
-                      <div className={`absolute inset-0 rounded-2xl sm:rounded-3xl border border-${color.main}/0 group-hover:border-${color.main}/60 transition-all duration-500 opacity-0 group-hover:opacity-100`}
-                           style={{
-                             boxShadow: `inset 0 0 15px ${color.shadow}15`
-                           }}></div>
+                      {/* Рамка/Неоновая рамка при hover - уменьшена для мобильных */}
+                      <div
+                        className="absolute inset-0 rounded-2xl sm:rounded-3xl border transition-all duration-500 opacity-0 group-hover:opacity-100 shadow-inner"
+                        style={{
+                          borderColor: theme === 'dark' ? `${darkColor.shadow}00` : 'hsl(var(--primary) / 0)',
+                          boxShadow: theme === 'dark' ? `inset 0 0 15px ${darkColor.shadow}15` : undefined
+                        }}
+                        onMouseEnter={(e) => {
+                          if (theme === 'dark') {
+                            e.currentTarget.style.borderColor = `${darkColor.shadow}60`;
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (theme === 'dark') {
+                            e.currentTarget.style.borderColor = `${darkColor.shadow}00`;
+                          }
+                        }}
+                      ></div>
                     </div>
                   </div>
                 );
               })}
             </div>
             
-            {/* Неоновые декоративные элементы внизу - адаптивные */}
+            {/* Декоративные/Неоновые элементы внизу - адаптивные */}
             <div className="flex justify-center mt-8 sm:mt-12 md:mt-16">
               <div className="flex space-x-2 sm:space-x-4">
                 {[...Array(5)].map((_, i) => {
-                  const colors = ['#00ffff', '#ff00ff', '#00ff00', '#ffff00', '#8000ff'];
-                  const color = colors[i];
+                  const neonColors = ['#00ffff', '#ff00ff', '#00ff00', '#ffff00', '#8000ff'];
+                  const neonColor = neonColors[i];
                   return (
-                    <div 
-                      key={i} 
-                      className="w-2 h-2 sm:w-3 sm:h-3 rounded-full cursor-pointer transition-all duration-300 hover:scale-150 sm:hover:scale-200 animate-pulse"
-                      style={{ 
-                        backgroundColor: color,
-                        boxShadow: `0 0 10px ${color}, 0 0 20px ${color}30`,
+                    <div
+                      key={i}
+                      className="w-2 h-2 sm:w-3 sm:h-3 rounded-full cursor-pointer transition-all duration-300 hover:scale-150 sm:hover:scale-200 animate-pulse shadow-lg"
+                      style={{
+                        backgroundColor: theme === 'dark' ? neonColor : 'hsl(var(--primary))',
+                        boxShadow: theme === 'dark' ? `0 0 10px ${neonColor}, 0 0 20px ${neonColor}30` : undefined,
                         animation: `pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite`,
-                        animationDelay: `${i * 0.4}s` 
+                        animationDelay: `${i * 0.4}s`
                       }}
                     ></div>
                   );
@@ -1197,11 +1280,17 @@ const VideoEditorPortfolio = () => {
                                           </DialogHeader>
                                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                                             <div className="bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-xl p-6 border border-border/20">
-                                              <div className="aspect-video bg-secondary/20 rounded-lg mb-4 flex items-center justify-center">
-                                                <p className="text-muted-foreground">Видео будет добавлено</p>
-                                              </div>
+                                            <div className="aspect-video bg-secondary/20 rounded-lg mb-4 overflow-hidden">
+                                              <iframe
+                                                src="https://rutube.ru/play/embed/771ebc7e13985f6f13481f58f93856ed?p=_v49qhkhCPbUeeolGOawxg"
+                                                className="w-full h-full rounded-lg"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowFullScreen
+                                                title="Рекламное видео пример 1"
+                                              />
+                                            </div>
                                               <h5 className="font-semibold mb-2">Пример 1</h5>
-                                              <p className="text-sm text-muted-foreground">Описание примера работы</p>
+                                              <p className="text-sm text-muted-foreground">Рекламное видео - пример работы</p>
                                             </div>
                                             <div className="bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-xl p-6 border border-border/20">
                                               <div className="aspect-video bg-secondary/20 rounded-lg mb-4 flex items-center justify-center">
