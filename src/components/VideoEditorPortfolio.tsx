@@ -74,7 +74,7 @@ const VideoEditorPortfolio = () => {
       portfolioTitle: "Лучшие работы",
       portfolioSubtitle: "Избранные проекты из моего порофолио",
       contactTitle: "Готовы к сотрудничеству?",
-      contactSubtitle: "Обсудим ваш проект и создадим что-то невероятное вместе",
+      contactSubtitle: "О��судим ваш проект и создадим что-то невероятное вместе",
       contactButton: "Связаться со мной",
       downloadButton: "Скачать портфолио",
       watchButton: "Смотреть",
@@ -155,7 +155,7 @@ const VideoEditorPortfolio = () => {
     {
       id: 3,
       title: "Музыкальный клип",
-      description: "Творческий музыкальный видеоклип с синхронизацией и визуальными эффектами. Эксперименты с цветом и ритмом.",
+      description: "Тв��рческий музыкальный видеоклип с синхронизацией и визуальными эффектами. Эксперименты с цветом и ритмом.",
       duration: "3:45",
       views: "23.1K",
       category: "Музыка",
@@ -243,7 +243,7 @@ const VideoEditorPortfolio = () => {
       year: "2020-2022",
       title: "Video Editor",
       company: "Creative Studio X",
-      description: "Специализировался на музыкальных клипах и корпоративных видео."
+      description: "Специализировался на музык��льных клипах и корпоративных видео."
     },
     {
       year: "2019-2020",
@@ -263,7 +263,23 @@ const VideoEditorPortfolio = () => {
         {
           title: "Говорящая голова",
           features: ["Монтаж", "Цветокоррекция", "Музыкальное сопровождение", "Спец эффекты/вставки", "Оптимизация под формат"],
-          hasExamples: true
+          hasExamples: true,
+          examples: [
+            {
+              id: 1,
+              title: "Говорящая голова - Пример 1",
+              description: "Пример видео в стиле говорящая голова",
+              videoUrl: "https://rutube.ru/play/embed/example-talking-head-1",
+              isPlaceholder: true
+            },
+            {
+              id: 2,
+              title: "Говорящая голова - Пример 2",
+              description: "Еще один пример говорящей головы",
+              videoUrl: "https://rutube.ru/play/embed/example-talking-head-2",
+              isPlaceholder: true
+            }
+          ]
         }
       ]
     },
@@ -276,12 +292,44 @@ const VideoEditorPortfolio = () => {
         {
           title: "Рекламные видео",
           features: ["Сторителлинг", "Монтаж", "Цветокоррекция", "Звуковой дизайн", "Спец эффекты", "Графика и анимация"],
-          hasExamples: true
+          hasExamples: true,
+          examples: [
+            {
+              id: 1,
+              title: "Рекламное видео - Пример 1",
+              description: "Рекламное видео - пример работы",
+              videoUrl: "https://rutube.ru/play/embed/771ebc7e13985f6f13481f58f93856ed?p=_v49qhkhCPbUeeolGOawxg",
+              isPlaceholder: false
+            },
+            {
+              id: 2,
+              title: "Рекламное видео - Пример 2",
+              description: "Еще один пример рекламного видео",
+              videoUrl: "https://rutube.ru/play/embed/example-ad-2",
+              isPlaceholder: true
+            }
+          ]
         },
         {
           title: "Обычные видео",
           features: ["Сторителлинг", "Монтаж", "Цветокоррекция", "Звуковой дизайн", "Музыкальное сопровождение", "Титры и надписи"],
-          hasExamples: true
+          hasExamples: true,
+          examples: [
+            {
+              id: 1,
+              title: "Обычное видео - Пример 1",
+              description: "Пример обычного видео",
+              videoUrl: "https://rutube.ru/play/embed/example-regular-1",
+              isPlaceholder: true
+            },
+            {
+              id: 2,
+              title: "Обычное видео - Пример 2",
+              description: "Еще один пример обычного видео",
+              videoUrl: "https://rutube.ru/play/embed/example-regular-2",
+              isPlaceholder: true
+            }
+          ]
         }
       ]
     }
@@ -1279,26 +1327,29 @@ const VideoEditorPortfolio = () => {
                                             </DialogTitle>
                                           </DialogHeader>
                                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                                            <div className="bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-xl p-6 border border-border/20">
-                                            <div className="aspect-video bg-secondary/20 rounded-lg mb-4 overflow-hidden">
-                                              <iframe
-                                                src="https://rutube.ru/play/embed/771ebc7e13985f6f13481f58f93856ed?p=_v49qhkhCPbUeeolGOawxg"
-                                                className="w-full h-full rounded-lg"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                allowFullScreen
-                                                title="Рекламное видео пример 1"
-                                              />
-                                            </div>
-                                              <h5 className="font-semibold mb-2">Пример 1</h5>
-                                              <p className="text-sm text-muted-foreground">Рекламное видео - пример работы</p>
-                                            </div>
-                                            <div className="bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-xl p-6 border border-border/20">
-                                              <div className="aspect-video bg-secondary/20 rounded-lg mb-4 flex items-center justify-center">
-                                                <p className="text-muted-foreground">Видео будет добавлено</p>
+                                            {sub.examples && sub.examples.map((example: any, exampleIndex: number) => (
+                                              <div key={example.id} className="bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-xl p-6 border border-border/20">
+                                                <div className="aspect-video bg-secondary/20 rounded-lg mb-4 overflow-hidden">
+                                                  {example.isPlaceholder ? (
+                                                    <div className="w-full h-full flex items-center justify-center">
+                                                      <p className="text-muted-foreground text-center">
+                                                        Видео будет добавлено
+                                                      </p>
+                                                    </div>
+                                                  ) : (
+                                                    <iframe
+                                                      src={example.videoUrl}
+                                                      className="w-full h-full rounded-lg"
+                                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                      allowFullScreen
+                                                      title={example.title}
+                                                    />
+                                                  )}
+                                                </div>
+                                                <h5 className="font-semibold mb-2">{example.title}</h5>
+                                                <p className="text-sm text-muted-foreground">{example.description}</p>
                                               </div>
-                                              <h5 className="font-semibold mb-2">Пример 2</h5>
-                                              <p className="text-sm text-muted-foreground">Описание примера работы</p>
-                                            </div>
+                                            ))}
                                           </div>
                                         </DialogContent>
                                       </Dialog>
