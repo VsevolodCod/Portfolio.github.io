@@ -3,9 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger, DrawerClose } from "@/components/ui/drawer";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { 
   Camera, 
   Video, 
@@ -54,7 +52,6 @@ const VideoEditorPortfolio = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [isControlsOpen, setIsControlsOpen] = useState(false);
-  const isMobile = useIsMobile();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const { theme, setTheme } = useTheme();
   
@@ -138,7 +135,7 @@ const VideoEditorPortfolio = () => {
     {
       id: 1,
       title: "Рекламный ролик для IT-компании",
-      description: "Динамичный корпоративный ролик с современной графикой и анимацией. Использованы сложны�� переходы и цветокоррекция.",
+      description: "Динамичный корпоративный ролик с современной графикой и анимацией. Использованы сложные переходы и цветокоррекция.",
       duration: "2:30",
       views: "15.2K",
       category: "Реклама",
@@ -193,7 +190,7 @@ const VideoEditorPortfolio = () => {
       photo: import.meta.env.BASE_URL + "Алексей Леденёв.jpg",
       description: (
         <>
-          Привет! Меня зовут Алексей, я reels пр��дюсер🎬<br/>
+          Привет! Меня зовут Алексей, я reels продюсер🎬<br/>
           <ul className="list-disc ml-4 mt-2 text-sm text-muted-foreground">
             <li>Основатель <a href="https://www.instagram.com/greenscreenvideos_?igsh=MWVkdDU0ZXJ2bjMyeg==" target="_blank" rel="noopener noreferrer" className="underline">аккаунта с зелёными роликами</a></li>
             <li>2 года в продюсировании коротких роликов</li>
@@ -400,7 +397,7 @@ const VideoEditorPortfolio = () => {
   }, [isControlsOpen]);
 
   return (
-    <div className="mobile-min-vh bg-background relative overflow-hidden mobile-text">
+    <div className="min-h-screen bg-background relative overflow-hidden">
       {/* Audio Element */}
       <audio
         ref={audioRef}
@@ -936,7 +933,7 @@ const VideoEditorPortfolio = () => {
           <div className="mt-12">
             <Card className="bg-card/80 backdrop-blur-sm border-border/20 rounded-2xl overflow-hidden">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-center mb-6">Распределение навык��в</h3>
+                <h3 className="text-2xl font-bold text-center mb-6">Распределение навыков</h3>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                   <div className="text-center">
                     <div className="relative w-24 h-24 mx-auto mb-3">
@@ -1314,113 +1311,55 @@ const VideoEditorPortfolio = () => {
                                       {sub.title}
                                     </h4>
                                     {sub.hasExamples && (
-                                      isMobile ? (
-                                        <Drawer>
-                                          <DrawerTrigger asChild>
-                                            <Button
-                                              variant="outline"
-                                              size="sm"
-                                              className="bg-primary/10 hover:bg-primary/20 border-primary/30 text-primary hover:text-primary/80 transition-all duration-300 group/btn self-start shrink-0 text-xs w-full mobile-touch-button prevent-zoom"
-                                            >
-                                              <Play className="w-3 h-3 mr-1.5 group-hover/btn:scale-110 transition-transform duration-200" />
-                                              Примеры
-                                              <ExternalLink className="w-2.5 h-2.5 ml-1 opacity-60" />
-                                            </Button>
-                                          </DrawerTrigger>
-                                          <DrawerContent className="h-[85vh] max-h-[85vh] mobile-drawer-content">
-                                            <div className="flex flex-col h-full mobile-safe-area">
-                                              <DrawerHeader className="text-center pb-4">
-                                                <DrawerTitle className="text-lg bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                                                  Примеры: {sub.title}
-                                                </DrawerTitle>
-                                              </DrawerHeader>
-                                              <div className="flex-1 overflow-y-auto px-4 pb-4 touch-scroll mobile-modal-scrollable">
-                                                <div className="space-y-4">
-                                                  {sub.examples && sub.examples.map((example: any, exampleIndex: number) => (
-                                                    <div key={example.id} className="bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-xl p-4 border border-border/20">
-                                                      <div className="aspect-video bg-secondary/20 rounded-lg mb-3 overflow-hidden mobile-video-container">
-                                                        {example.isPlaceholder ? (
-                                                          <div className="w-full h-full flex items-center justify-center">
-                                                            <p className="text-muted-foreground text-center text-sm px-4">
-                                                              Видео будет добавлено
-                                                            </p>
-                                                          </div>
-                                                        ) : (
-                                                          <iframe
-                                                            src={example.videoUrl}
-                                                            className="w-full h-full rounded-lg"
-                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                            allowFullScreen
-                                                            title={example.title}
-                                                          />
-                                                        )}
-                                                      </div>
-                                                      <h5 className="font-semibold mb-2 text-sm">{example.title}</h5>
-                                                      <p className="text-xs text-muted-foreground leading-relaxed">{example.description}</p>
-                                                    </div>
-                                                  ))}
-                                                </div>
-                                              </div>
-                                              <div className="p-4 border-t border-border/20">
-                                                <DrawerClose asChild>
-                                                  <Button variant="outline" className="w-full mobile-touch-button">
-                                                    Закрыть
-                                                  </Button>
-                                                </DrawerClose>
-                                              </div>
-                                            </div>
-                                          </DrawerContent>
-                                        </Drawer>
-                                      ) : (
-                                        <Dialog>
-                                          <DialogTrigger asChild>
-                                            <Button
-                                              variant="outline"
-                                              size="sm"
-                                              className="bg-primary/10 hover:bg-primary/20 border-primary/30 text-primary hover:text-primary/80 transition-all duration-300 group/btn self-start sm:self-auto shrink-0 text-xs sm:text-sm"
-                                            >
-                                              <Play className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 group-hover/btn:scale-110 transition-transform duration-200" />
-                                              Примеры
-                                              <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3 ml-1 opacity-60" />
-                                            </Button>
-                                          </DialogTrigger>
-                                          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-                                            <DialogHeader>
-                                              <DialogTitle className="text-2xl bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                                                Примеры р��бот: {sub.title}
+                                      <Dialog>
+                                        <DialogTrigger asChild>
+                                          <Button 
+                                            variant="outline" 
+                                            size="sm"
+                                            className="bg-primary/10 hover:bg-primary/20 border-primary/30 text-primary hover:text-primary/80 transition-all duration-300 group/btn self-start sm:self-auto shrink-0 text-xs sm:text-sm"
+                                          >
+                                            <Play className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 group-hover/btn:scale-110 transition-transform duration-200" />
+                                            Примеры
+                                            <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3 ml-1 opacity-60" />
+                                          </Button>
+                                        </DialogTrigger>
+                                          <DialogContent className="max-w-[95vw] sm:max-w-[90vw] md:max-w-4xl max-h-[90vh] overflow-y-auto p-4 md:p-6">
+                                            <DialogHeader className="sticky top-0 bg-card pb-4 z-10">
+                                              <DialogTitle className="text-xl md:text-2xl bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                                                Примеры работ: {sub.title}
                                               </DialogTitle>
-                                              <DialogDescription className="text-muted-foreground">
-                                                Просмотрите примеры выполненных работ в категории "{sub.title}"
-                                              </DialogDescription>
                                             </DialogHeader>
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6">
                                               {sub.examples && sub.examples.map((example: any, exampleIndex: number) => (
-                                                <div key={example.id} className="bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-xl p-6 border border-border/20">
-                                                  <div className="aspect-video bg-secondary/20 rounded-lg mb-4 overflow-hidden">
+                                                <div key={example.id} className="bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-xl p-4 md:p-6 border border-border/20">
+                                                  <div className="aspect-video bg-secondary/20 rounded-lg mb-3 md:mb-4 overflow-hidden relative">
                                                     {example.isPlaceholder ? (
                                                       <div className="w-full h-full flex items-center justify-center">
-                                                        <p className="text-muted-foreground text-center">
+                                                        <p className="text-muted-foreground text-center text-sm md:text-base">
                                                           Видео будет добавлено
                                                         </p>
                                                       </div>
                                                     ) : (
-                                                      <iframe
-                                                        src={example.videoUrl}
-                                                        className="w-full h-full rounded-lg"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                        allowFullScreen
-                                                        title={example.title}
-                                                      />
+                                                      <>
+                                                        <iframe
+                                                          src={example.videoUrl}
+                                                          className="w-full h-full rounded-lg"
+                                                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                          allowFullScreen
+                                                          title={example.title}
+                                                          loading="lazy"
+                                                        />
+                                                        <div className="absolute inset-0 bg-transparent" onClick={(e) => e.stopPropagation()} />
+                                                      </>
                                                     )}
                                                   </div>
-                                                  <h5 className="font-semibold mb-2">{example.title}</h5>
-                                                  <p className="text-sm text-muted-foreground">{example.description}</p>
+                                                  <h5 className="font-semibold mb-1 md:mb-2 text-base md:text-lg">{example.title}</h5>
+                                                  <p className="text-sm md:text-base text-muted-foreground">{example.description}</p>
                                                 </div>
                                               ))}
                                             </div>
                                           </DialogContent>
-                                        </Dialog>
-                                      )
+                                      </Dialog>
                                     )}
                                   </div>
                                   
@@ -1468,7 +1407,7 @@ const VideoEditorPortfolio = () => {
             {/* Bottom CTA */}
             <div className="text-center mt-16">
                 <p className="text-muted-foreground mb-6">Не нашли подходящий пакет?</p>
-              <a href="https://t.me/vadimfom1n?text=Здравствуйте!%20Меня%20заинтересовали%20ваши%20услу��и.%20Пожалуйста,%20расскажите%20подробнее%20о:%0A1)%20Какой%20тип%20заказа%20вас%20интересует%0A2)%20Бюджет%20проекта%0A3)%20Сроки%20реализации%0A4)%20Дополнительные%20пожелания"  target="_blank" rel="noopener noreferrer">
+              <a href="https://t.me/vadimfom1n?text=Здравствуйте!%20Меня%20заинтересовали%20ваши%20услуги.%20Пожалуйста,%20расскажите%20подробнее%20о:%0A1)%20Какой%20тип%20заказа%20вас%20интересует%0A2)%20Бюджет%20проекта%0A3)%20Сроки%20реализации%0A4)%20Дополнительные%20пожелания"  target="_blank" rel="noopener noreferrer">
                 <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 hover:border-primary text-primary">
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Обсудить индивидуальный проект
