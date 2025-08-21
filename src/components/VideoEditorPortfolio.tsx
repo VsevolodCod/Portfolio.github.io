@@ -269,15 +269,15 @@ const VideoEditorPortfolio = () => {
               id: 1,
               title: "Говорящая голова - Пример 1",
               description: "Пример видео в стиле говорящая голова",
-              videoUrl: "https://rutube.ru/play/embed/example-talking-head-1",
-              isPlaceholder: true
+              videoUrl: "https://rutube.ru/play/embed/cb38b416d6278ec3d9d3fc98b51a51d0?p=1QDSgLWgwFjdnlnvv-IH2Q",
+              isPlaceholder: false
             },
             {
               id: 2,
               title: "Говорящая голова - Пример 2",
               description: "Еще один пример говорящей головы",
-              videoUrl: "https://rutube.ru/play/embed/example-talking-head-2",
-              isPlaceholder: true
+              videoUrl: "https://rutube.ru/play/embed/b26e4fc240d6098f40be489d734a3d55?p=4m6qD8XZC0iDijGAMiCizQ",
+              isPlaceholder: false
             }
           ]
         }
@@ -644,7 +644,8 @@ const VideoEditorPortfolio = () => {
             <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 pt-8 sm:pt-10 max-w-2xl mx-auto">
               <div className="group relative flex-1">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-purple-600 to-cyan-600 rounded-2xl blur opacity-60 group-hover:opacity-100 transition-all duration-500"></div>
-                <a href="https://t.me/vadimfom1n" target="_blank" rel="noopener noreferrer">
+                <a href="https://t.me/vadimfom1n?text=Здравствуйте!%20Меня%20заинтересовали%20ваши%20услуги.%20Пожалуйста,%20расскажите%20подробнее%20о:%0A1)%20Какой%20тип%20заказа%20вас%20интересует%0A2)%20Бюджет%20проекта%0A3)%20Сроки%20реализации%0A4)%20Дополнительные%20пожелания" 
+                  target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="relative w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-primary-foreground px-8 py-6 text-lg font-semibold rounded-2xl border-0 group-hover:scale-105 transition-all duration-300 shadow-2xl">
                     <Mail className="w-5 h-5 mr-3" />
                     {content[language].contactButton}
@@ -1380,7 +1381,7 @@ const VideoEditorPortfolio = () => {
                         {/* CTA Button */}
                           <div className="mt-6 sm:mt-8 mb-6 sm:mb-8">
                             <div className="relative">
-                            <a href="https://t.me/vadimfom1n" target="_blank" rel="noopener noreferrer">
+                            <a href="https://t.me/vadimfom1n?text=Здравствуйте!%20Меня%20заинтересовали%20ваши%20услуги.%20Пожалуйста,%20расскажите%20подробнее%20о:%0A1)%20Какой%20тип%20заказа%20вас%20интересует%0A2)%20Бюджет%20проекта%0A3)%20Сроки%20реализации%0A4)%20Дополнительные%20пожелания"  target="_blank" rel="noopener noreferrer">
                               <Button className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-primary-foreground border-0 py-4 sm:py-6 text-sm sm:text-base font-semibold group-hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
                               <span className="relative z-10">{content[language].getQuote}</span>
                               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -1402,7 +1403,7 @@ const VideoEditorPortfolio = () => {
             {/* Bottom CTA */}
             <div className="text-center mt-16">
                 <p className="text-muted-foreground mb-6">Не нашли подходящий пакет?</p>
-              <a href="https://t.me/vadimfom1n" target="_blank" rel="noopener noreferrer">
+              <a href="https://t.me/vadimfom1n?text=Здравствуйте!%20Меня%20заинтересовали%20ваши%20услуги.%20Пожалуйста,%20расскажите%20подробнее%20о:%0A1)%20Какой%20тип%20заказа%20вас%20интересует%0A2)%20Бюджет%20проекта%0A3)%20Сроки%20реализации%0A4)%20Дополнительные%20пожелания"  target="_blank" rel="noopener noreferrer">
                 <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 hover:border-primary text-primary">
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Обсудить индивидуальный проект
