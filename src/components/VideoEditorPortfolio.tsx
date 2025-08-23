@@ -53,6 +53,7 @@ const VideoEditorPortfolio = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [isControlsOpen, setIsControlsOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const { theme, setTheme } = useTheme();
   
@@ -396,6 +397,19 @@ const VideoEditorPortfolio = () => {
       return () => document.removeEventListener('click', handleClickOutside);
     }
   }, [isControlsOpen]);
+
+  // Handle dialog opening
+  useEffect(() => {
+    if (isDialogOpen) {
+      // Scroll to top of dialog content
+      setTimeout(() => {
+        const dialogContent = document.querySelector('[data-radix-dialog-content]');
+        if (dialogContent) {
+          dialogContent.scrollTop = 0;
+        }
+      }, 100);
+    }
+  }, [isDialogOpen]);
 
 
 
@@ -1314,11 +1328,12 @@ const VideoEditorPortfolio = () => {
                                       {sub.title}
                                     </h4>
                                     {sub.hasExamples && (
-                                      <Dialog>
+                                      <Dialog onOpenChange={setIsDialogOpen}>
                                         <DialogTrigger asChild>
                                           <Button 
                                             variant="outline" 
                                             size="sm"
+                                            data-dialog-trigger="true"
                                             className="bg-primary/10 hover:bg-primary/20 border-primary/30 text-primary hover:text-primary/80 transition-all duration-300 group/btn self-start sm:self-auto shrink-0 text-xs sm:text-sm"
                                           >
                                             <Play className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 group-hover/btn:scale-110 transition-transform duration-200" />
@@ -1326,7 +1341,7 @@ const VideoEditorPortfolio = () => {
                                             <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3 ml-1 opacity-60" />
                                           </Button>
                                         </DialogTrigger>
-                                          <DialogContent className="max-w-[95vw] sm:max-w-[90vw] md:max-w-4xl max-h-[90vh] overflow-y-auto p-4 md:p-6 bg-card/95 backdrop-blur-xl border border-border/50 shadow-2xl rounded-2xl">
+                                          <DialogContent className="max-w-[95vw] sm:max-w-[90vw] md:max-w-4xl max-h-[90vh] overflow-y-auto p-4 md:p-6 bg-card border border-border shadow-2xl rounded-2xl">
                                             <DialogHeader className="sticky top-0 bg-card pb-4 z-10">
                                               <div className="flex items-center justify-between">
                                                 <DialogTitle className="text-xl md:text-2xl bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
@@ -1915,9 +1930,22 @@ const VideoEditorPortfolio = () => {
         /* Mobile dialog optimizations */
         @media (max-width: 768px) {
           [data-radix-dialog-content] {
-            margin: 1rem;
-            max-width: calc(100vw - 2rem);
-            max-height: calc(100vh - 2rem);
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            width: calc(100vw - 2rem) !important;
+            max-width: calc(100vw - 2rem) !important;
+            height: calc(100vh - 2rem) !important;
+            max-height: calc(100vh - 2rem) !important;
+            margin: 0 !important;
+            border-radius: 1rem !important;
+            overflow-y: auto !important;
+            z-index: 1000 !important;
+          }
+          
+          [data-radix-dialog-overlay] {
+            background-color: rgba(0, 0, 0, 0.8) !important;
           }
         }
       `}</style>
