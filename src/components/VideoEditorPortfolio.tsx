@@ -1660,8 +1660,7 @@ const VideoEditorPortfolio = () => {
         </section>
 
         {/* Portfolio Videos Section - Красивый гармоничный дизайн */}
-        <section className="relative py-20 sm:py-32 overflow-hidden">
-          {/* Элегантный фон с гармоничными цветами */}
+        {/* <section className="relative py-20 sm:py-32 overflow-hidden">
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-primary/4 to-transparent"></div>
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,theme(colors.primary)_0%,transparent_40%),radial-gradient(ellipse_at_bottom_right,theme(colors.primary)_0%,transparent_40%)] opacity-15"></div>
@@ -1669,7 +1668,6 @@ const VideoEditorPortfolio = () => {
           </div>
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
-            {/* Заголовок секции с улучшенным дизайном */}
             <div className="text-center mb-16 sm:mb-20">
               <div className="inline-flex items-center justify-center p-3 mb-8 bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl border border-primary/20 backdrop-blur-sm shadow-lg">
                 <Trophy className="w-6 h-6 text-primary mr-3" />
@@ -1685,8 +1683,6 @@ const VideoEditorPortfolio = () => {
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
                 Каждый проект — это уникальная история, рассказанная через призму профессионального видеомонтажа
               </p>
-
-              {/* Декоративные элементы */}
               <div className="flex justify-center items-center space-x-4">
                 <div className="h-px w-16 bg-gradient-to-r from-transparent to-primary/30"></div>
                 <div className="w-2 h-2 bg-primary/40 rounded-full"></div>
@@ -1696,17 +1692,15 @@ const VideoEditorPortfolio = () => {
               </div>
             </div>
 
-            {/* Красивые карточки видео с гармоничным дизайном */}
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
               {portfolioVideos.map((video, index) => (
                 <div key={video.id} className="group relative">
-                  {/* Мягкое свечение при hover */}
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-primary/50 rounded-3xl blur opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
 
                   <Card className="relative bg-card/90 backdrop-blur-sm border border-border/40 rounded-3xl overflow-hidden group-hover:border-primary/40 transition-all duration-500 cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-primary/10"
                         onClick={() => setSelectedVideo(video.id)}>
 
-                    {/* Превью видео с элегантными эффектами */}
                     <div className="relative aspect-video overflow-hidden">
                       <img
                         src={video.thumbnail}
@@ -1714,10 +1708,10 @@ const VideoEditorPortfolio = () => {
                         className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                       />
 
-                      {/* Элегантный оверлей */}
+
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/50 transition-all duration-500"></div>
 
-                      {/* Стильная кнопка воспроизведения */}
+
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="relative">
                           <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl scale-150 group-hover:scale-175 transition-all duration-500"></div>
@@ -1727,14 +1721,13 @@ const VideoEditorPortfolio = () => {
                         </div>
                       </div>
 
-                      {/* Элегантная категория */}
+
                       <div className="absolute top-6 left-6">
                         <Badge className="bg-primary/90 text-primary-foreground border-0 px-4 py-2 backdrop-blur-sm font-semibold shadow-lg">
                           {video.category}
                         </Badge>
                       </div>
 
-                      {/* Статистика в стильном дизайне */}
                       <div className="absolute bottom-6 right-6">
                         <div className="flex items-center space-x-2 bg-black/50 backdrop-blur-md rounded-xl px-3 py-2 border border-white/10">
                           <Eye className="w-4 h-4 text-white" />
@@ -1743,7 +1736,7 @@ const VideoEditorPortfolio = () => {
                       </div>
                     </div>
 
-                    {/* Контент карточки с улучшенной типографикой */}
+
                     <CardContent className="p-6 sm:p-8">
                       <div className="space-y-4">
                         <h3 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight">
@@ -1772,8 +1765,6 @@ const VideoEditorPortfolio = () => {
                         </div>
                       </div>
                     </CardContent>
-
-                    {/* Тонкие декоративные элементы */}
                     <div className="absolute top-6 right-6 w-8 h-8 border-t border-r border-primary/20 group-hover:border-primary/40 transition-colors duration-300"></div>
                     <div className="absolute bottom-6 left-6 w-8 h-8 border-b border-l border-primary/20 group-hover:border-primary/40 transition-colors duration-300"></div>
                   </Card>
@@ -1781,13 +1772,10 @@ const VideoEditorPortfolio = () => {
               ))}
             </div>
 
-            {/* Красивая кнопка "Смотреть все работы" с ссылкой на Telegram */}
+
             <div className="text-center mt-16 sm:mt-20">
               <div className="relative inline-block group">
-                {/* Эффект свечения */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary/60 to-primary/40 rounded-2xl blur-lg opacity-70 group-hover:opacity-100 transition-all duration-500"></div>
-
-                {/* Основная кнопка */}
                 <a
                   href="https://t.me/portfoliovadimfom1n"
                   target="_blank"
@@ -1795,7 +1783,6 @@ const VideoEditorPortfolio = () => {
                   className="relative block"
                 >
                   <Button size="lg" className="relative bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground px-10 py-6 text-lg font-bold rounded-2xl border-0 group-hover:scale-105 transition-all duration-300 shadow-2xl">
-                    {/* Внутренний градиент для блеска */}
                     <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                     <div className="relative flex items-center">
@@ -1806,14 +1793,14 @@ const VideoEditorPortfolio = () => {
                   </Button>
                 </a>
 
-                {/* Дополнительный текст */}
+
                 <p className="mt-4 text-sm text-muted-foreground">
                   Больше работ в моём Telegram канале
                 </p>
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Video Modal */}
         {selectedVideo && (
