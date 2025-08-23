@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { 
   Camera, 
   Video, 
@@ -40,7 +40,8 @@ import {
   Target,
   Bell,
   BellOff,
-  ExternalLink
+  ExternalLink,
+  X
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
@@ -74,7 +75,7 @@ const VideoEditorPortfolio = () => {
       portfolioTitle: "Лучшие работы",
       portfolioSubtitle: "Избранные проекты из моего порофолио",
       contactTitle: "Готовы к сотрудничеству?",
-      contactSubtitle: "О��судим ваш проект и создадим что-то невероятное вместе",
+      contactSubtitle: "Обсудим ваш проект и создадим что-то невероятное вместе",
       contactButton: "Связаться со мной",
       downloadButton: "Скачать портфолио",
       watchButton: "Смотреть",
@@ -155,7 +156,7 @@ const VideoEditorPortfolio = () => {
     {
       id: 3,
       title: "Музыкальный клип",
-      description: "Тв��рческий музыкальный видеоклип с синхронизацией и визуальными эффектами. Эксперименты с цветом и ритмом.",
+      description: "Творческий музыкальный видеоклип с синхронизацией и визуальными эффектами. Эксперименты с цветом и ритмом.",
       duration: "3:45",
       views: "23.1K",
       category: "Музыка",
@@ -243,7 +244,7 @@ const VideoEditorPortfolio = () => {
       year: "2020-2022",
       title: "Video Editor",
       company: "Creative Studio X",
-      description: "Специализировался на музык��льных клипах и корпоративных видео."
+      description: "Специализировался на музыкальных клипах и корпоративных видео."
     },
     {
       year: "2019-2020",
@@ -395,6 +396,8 @@ const VideoEditorPortfolio = () => {
       return () => document.removeEventListener('click', handleClickOutside);
     }
   }, [isControlsOpen]);
+
+
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
@@ -1323,38 +1326,73 @@ const VideoEditorPortfolio = () => {
                                             <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3 ml-1 opacity-60" />
                                           </Button>
                                         </DialogTrigger>
-                                          <DialogContent className="max-w-[95vw] sm:max-w-[90vw] md:max-w-4xl max-h-[90vh] overflow-y-auto p-4 md:p-6">
+                                          <DialogContent className="max-w-[95vw] sm:max-w-[90vw] md:max-w-4xl max-h-[90vh] overflow-y-auto p-4 md:p-6 bg-card/95 backdrop-blur-xl border border-border/50 shadow-2xl rounded-2xl">
                                             <DialogHeader className="sticky top-0 bg-card pb-4 z-10">
-                                              <DialogTitle className="text-xl md:text-2xl bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                                                Примеры работ: {sub.title}
-                                              </DialogTitle>
+                                              <div className="flex items-center justify-between">
+                                                <DialogTitle className="text-xl md:text-2xl bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                                                  Примеры работ: {sub.title}
+                                                </DialogTitle>
+                                                <DialogClose asChild>
+                                                  <Button
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    className="h-8 w-8 p-0 rounded-full hover:bg-muted/50"
+                                                  >
+                                                    <X className="w-4 h-4" />
+                                                  </Button>
+                                                </DialogClose>
+                                              </div>
                                             </DialogHeader>
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6">
+                                            <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-6 mt-3 sm:mt-4 md:mt-6">
                                               {sub.examples && sub.examples.map((example: any, exampleIndex: number) => (
-                                                <div key={example.id} className="bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-xl p-4 md:p-6 border border-border/20">
+                                                <div key={example.id} className="bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-xl p-3 sm:p-4 md:p-6 border border-border/20 backdrop-blur-sm">
                                                   <div className="aspect-video bg-secondary/20 rounded-lg mb-3 md:mb-4 overflow-hidden relative">
                                                     {example.isPlaceholder ? (
                                                       <div className="w-full h-full flex items-center justify-center">
-                                                        <p className="text-muted-foreground text-center text-sm md:text-base">
-                                                          Видео будет добавлено
-                                                        </p>
+                                                        <div className="text-center p-4">
+                                                          <div className="w-12 h-12 bg-muted rounded-full flex items-center justify-center mx-auto mb-3">
+                                                            <svg className="w-6 h-6 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                                            </svg>
+                                                          </div>
+                                                          <p className="text-muted-foreground text-sm md:text-base font-medium">Видео будет добавлено</p>
+                                                          <p className="text-xs text-muted-foreground/70 mt-1">Скоро здесь появится пример</p>
+                                                        </div>
                                                       </div>
                                                     ) : (
-                                                      <>
-                                                        <iframe
-                                                          src={example.videoUrl}
-                                                          className="w-full h-full rounded-lg"
-                                                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                          allowFullScreen
-                                                          title={example.title}
-                                                          loading="lazy"
-                                                        />
-                                                        <div className="absolute inset-0 bg-transparent" onClick={(e) => e.stopPropagation()} />
-                                                      </>
+                                                      <iframe
+                                                        src={example.videoUrl}
+                                                        className="w-full h-full rounded-lg"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowFullScreen
+                                                        title={example.title}
+                                                        loading="lazy"
+                                                        onError={(e) => {
+                                                          console.error('Video loading error:', e);
+                                                          const target = e.target as HTMLIFrameElement;
+                                                          target.style.display = 'none';
+                                                          const parent = target.parentElement;
+                                                          if (parent) {
+                                                            parent.innerHTML = `
+                                                              <div class="w-full h-full flex items-center justify-center bg-secondary/20 rounded-lg">
+                                                                <div class="text-center p-4">
+                                                                  <div class="w-12 h-12 bg-muted rounded-full flex items-center justify-center mx-auto mb-3">
+                                                                    <svg class="w-6 h-6 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                                                                    </svg>
+                                                                  </div>
+                                                                  <p class="text-muted-foreground text-sm md:text-base mb-2 font-medium">Видео временно недоступно</p>
+                                                                  <p class="text-xs text-muted-foreground/70">Попробуйте позже</p>
+                                                                </div>
+                                                              </div>
+                                                            `;
+                                                          }
+                                                        }}
+                                                      />
                                                     )}
                                                   </div>
-                                                  <h5 className="font-semibold mb-1 md:mb-2 text-base md:text-lg">{example.title}</h5>
-                                                  <p className="text-sm md:text-base text-muted-foreground">{example.description}</p>
+                                                  <h5 className="font-semibold mb-1 md:mb-2 text-sm sm:text-base md:text-lg">{example.title}</h5>
+                                                  <p className="text-xs sm:text-sm md:text-base text-muted-foreground">{example.description}</p>
                                                 </div>
                                               ))}
                                             </div>
@@ -1647,6 +1685,15 @@ const VideoEditorPortfolio = () => {
               }
             }
 
+            /* Dialog mobile optimizations */
+            @media (max-width: 768px) {
+              [data-radix-dialog-content] {
+                margin: 1rem !important;
+                max-width: calc(100vw - 2rem) !important;
+                max-height: calc(100vh - 2rem) !important;
+              }
+            }
+
             /* Reduce motion for users who prefer it */
             @media (prefers-reduced-motion: reduce) {
               .animate-float,
@@ -1833,6 +1880,47 @@ const VideoEditorPortfolio = () => {
         )}
 
       </div>
+
+      {/* Enhanced CSS animations with mobile optimizations */}
+      <style>{`
+        @keyframes slideUpFade {
+          0% {
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @keyframes glowPulse {
+          0%, 100% { opacity: 0.5; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        .animate-float {
+          animation: float 8s ease-in-out infinite;
+        }
+
+        .animate-glow {
+          animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        /* Mobile dialog optimizations */
+        @media (max-width: 768px) {
+          [data-radix-dialog-content] {
+            margin: 1rem;
+            max-width: calc(100vw - 2rem);
+            max-height: calc(100vh - 2rem);
+          }
+        }
+      `}</style>
 
       {/* Floating Elements */}
       
