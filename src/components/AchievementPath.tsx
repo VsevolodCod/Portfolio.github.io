@@ -1,12 +1,12 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  BookOpen, 
-  Laptop, 
-  Zap, 
-  Shapes, 
-  Crown, 
-  Building, 
+import {
+  BookOpen,
+  Laptop,
+  Zap,
+  Shapes,
+  Crown,
+  Building,
   Star,
   Award,
   Target,
@@ -49,7 +49,7 @@ const achievementData: YearData[] = [
         color: "from-green-300 to-green-400"
       },
       {
-        id: "2023-2", 
+        id: "2023-2",
         year: 2023,
         title: "Первые заказы",
         description: "Выполнил первые платные заказы",
@@ -216,8 +216,8 @@ const getYearPositions = () => {
 // Функция для расчета всех позиций в правильной последовательности
 const calculateAllPositions = () => {
   const positions: any = {
-    years: {} as Record<number, {x: number, y: number}>,
-    achievements: {} as Record<number, {x: number, y: number}[]>
+    years: {} as Record<number, { x: number, y: number }>,
+    achievements: {} as Record<number, { x: number, y: number }[]>
   };
 
   const yearTs = getYearPositions();
@@ -301,10 +301,10 @@ const AchievementPath: React.FC = (): JSX.Element => {
     <div className="relative w-full h-[120vh] sm:h-[150vh] md:h-[180vh] lg:h-[200vh] bg-gradient-to-br from-background via-muted/10 to-background overflow-hidden touch-pan-y" onMouseMove={handleMouseMove}>
       {/* Optimized Background Elements for Mobile */}
       <div className="absolute inset-0 pointer-events-none will-change-transform">
-        <div className="absolute top-8 left-4 sm:top-16 sm:left-16 w-16 h-16 sm:w-32 sm:h-32 lg:w-48 lg:h-48 bg-green-200/10 dark:bg-green-800/10 rounded-full blur-xl sm:blur-2xl opacity-80" style={{transform: 'translateZ(0)'}} />
-        <div className="absolute top-1/4 right-4 sm:right-24 w-20 h-20 sm:w-40 sm:h-40 lg:w-56 lg:h-56 bg-blue-200/10 dark:bg-blue-800/10 rounded-full blur-xl sm:blur-2xl opacity-70" style={{transform: 'translateZ(0)'}} />
-        <div className="absolute top-2/3 left-1/4 w-18 h-18 sm:w-36 sm:h-36 lg:w-52 lg:h-52 bg-purple-200/10 dark:bg-purple-800/10 rounded-full blur-xl sm:blur-2xl opacity-60" style={{transform: 'translateZ(0)'}} />
-        <div className="absolute bottom-12 right-1/3 sm:bottom-24 w-16 h-16 sm:w-32 sm:h-32 lg:w-44 lg:h-44 bg-yellow-200/10 dark:bg-yellow-800/10 rounded-full blur-xl sm:blur-2xl opacity-50" style={{transform: 'translateZ(0)'}} />
+        <div className="absolute top-8 left-4 sm:top-16 sm:left-16 w-16 h-16 sm:w-32 sm:h-32 lg:w-48 lg:h-48 bg-green-200/10 dark:bg-green-800/10 rounded-full blur-xl sm:blur-2xl opacity-80" style={{ transform: 'translateZ(0)' }} />
+        <div className="absolute top-1/4 right-4 sm:right-24 w-20 h-20 sm:w-40 sm:h-40 lg:w-56 lg:h-56 bg-blue-200/10 dark:bg-blue-800/10 rounded-full blur-xl sm:blur-2xl opacity-70" style={{ transform: 'translateZ(0)' }} />
+        <div className="absolute top-2/3 left-1/4 w-18 h-18 sm:w-36 sm:h-36 lg:w-52 lg:h-52 bg-purple-200/10 dark:bg-purple-800/10 rounded-full blur-xl sm:blur-2xl opacity-60" style={{ transform: 'translateZ(0)' }} />
+        <div className="absolute bottom-12 right-1/3 sm:bottom-24 w-16 h-16 sm:w-32 sm:h-32 lg:w-44 lg:h-44 bg-yellow-200/10 dark:bg-yellow-800/10 rounded-full blur-xl sm:blur-2xl opacity-50" style={{ transform: 'translateZ(0)' }} />
       </div>
 
       {/* Optimized S-shaped Path SVG */}
@@ -312,7 +312,7 @@ const AchievementPath: React.FC = (): JSX.Element => {
         className="absolute inset-0 w-full h-full pointer-events-none will-change-transform"
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
-        style={{transform: 'translateZ(0)'}}
+        style={{ transform: 'translateZ(0)' }}
       >
         <defs>
           <linearGradient id="sPathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -323,14 +323,14 @@ const AchievementPath: React.FC = (): JSX.Element => {
             <stop offset="100%" stopColor="#f59e0b" stopOpacity="1" />
           </linearGradient>
           <filter id="glowEffect">
-            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
             <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
         </defs>
-        
+
         {/* S-shaped Main Path */}
         <path
           d="M 15,5 C 30,1 70,20 50,50 C 30,80 70,99 85,95"
@@ -339,7 +339,7 @@ const AchievementPath: React.FC = (): JSX.Element => {
           fill="none"
           filter="url(#glowEffect)"
           strokeLinecap="round"
-          style={{transform: 'translateZ(0)'}}
+          style={{ transform: 'translateZ(0)' }}
         />
 
       </svg>
@@ -368,23 +368,23 @@ const AchievementPath: React.FC = (): JSX.Element => {
             onHoverEnd={() => setHoveredItem(null)}
             onTouchStart={() => setHoveredItem({ type: 'year', data: yearData })}
             onTouchEnd={() => setTimeout(() => setHoveredItem(null), 2000)}
-            style={{transform: 'translateZ(0)'}}
+            style={{ transform: 'translateZ(0)' }}
           >
             <div className="text-xs sm:text-sm md:text-base lg:text-lg font-bold">{yearData.year}</div>
             <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${yearData.yearColor}
-              opacity-15 blur-sm scale-110`} style={{transform: 'translateZ(0)'}} />
+              opacity-15 blur-sm scale-110`} style={{ transform: 'translateZ(0)' }} />
           </motion.div>
         </motion.div>
       ))}
 
       {/* Achievement Checkpoints */}
-      {processedData.map((yearData) => 
+      {processedData.map((yearData) =>
         yearData.achievements.map((achievement) => (
           <motion.div
             key={achievement.id}
             className="absolute pointer-events-auto"
-            style={{ 
-              left: achievement.position.x, 
+            style={{
+              left: achievement.position.x,
               top: achievement.position.y,
               transform: 'translate(-50%, -50%)'
             }}
@@ -403,7 +403,7 @@ const AchievementPath: React.FC = (): JSX.Element => {
               onHoverEnd={() => setHoveredItem(null)}
               onTouchStart={() => setHoveredItem({ type: 'achievement', data: achievement })}
               onTouchEnd={() => setTimeout(() => setHoveredItem(null), 2000)}
-              style={{transform: 'translateZ(0)'}}
+              style={{ transform: 'translateZ(0)' }}
             >
               <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4">{achievement.icon}</div>
               <div className="absolute -top-0.5 -right-0.5 w-3 h-3 sm:w-4 sm:h-4 bg-green-500 rounded-full flex items-center justify-center">
@@ -430,7 +430,7 @@ const AchievementPath: React.FC = (): JSX.Element => {
         >
           <div className="bg-card/95 dark:bg-card/95 backdrop-blur-md border border-border/50
             rounded-xl shadow-2xl p-3 sm:p-4 lg:p-6 max-w-xs sm:max-w-sm mx-4 sm:mx-0">
-            
+
             {hoveredItem.type === 'year' ? (
               <div>
                 <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
@@ -446,7 +446,7 @@ const AchievementPath: React.FC = (): JSX.Element => {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <p className="text-sm font-medium text-foreground">
                     Достижения ({hoveredItem.data.achievements.length}):
@@ -482,13 +482,13 @@ const AchievementPath: React.FC = (): JSX.Element => {
                     </p>
                   </div>
                 </div>
-                
+
                 <p className="text-sm text-foreground">
                   {hoveredItem.data.description}
                 </p>
               </div>
             )}
-            
+
             {hoveredItem.type === 'year' && hoveredItem.data.year === 2025 && (
               <motion.button
                 className="w-full mt-4 px-4 py-2 bg-primary text-primary-foreground rounded-lg 
@@ -499,9 +499,9 @@ const AchievementPath: React.FC = (): JSX.Element => {
                 Заказать проект
               </motion.button>
             )}
-            
+
           </div>
-          
+
           <div className="absolute -left-2 top-6 w-0 h-0 border-t-8 border-b-8 border-r-8 
             border-t-transparent border-b-transparent border-r-border/50" />
         </motion.div>

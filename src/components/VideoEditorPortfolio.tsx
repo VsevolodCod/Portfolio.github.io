@@ -3,12 +3,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
-import { 
-  Camera, 
-  Video, 
-  Edit, 
-  Play, 
+
+import {
+  Camera,
+  Video,
+  Edit,
+  Play,
   Award,
   Clock,
   Eye,
@@ -53,14 +53,23 @@ const VideoEditorPortfolio = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [isControlsOpen, setIsControlsOpen] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const { theme, setTheme } = useTheme();
-  
+
   const { ref: heroRef, inView: heroInView } = useInView({
     threshold: 0.3,
     triggerOnce: true
   });
+
+  // Принудительно устанавливаем темную тему по умолчанию
+  useEffect(() => {
+    // Всегда устанавливаем темную тему при первой загрузке
+    if (!theme || theme === 'system') {
+      setTheme('dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  }, [theme, setTheme]);
 
 
   const content = {
@@ -69,7 +78,7 @@ const VideoEditorPortfolio = () => {
       profession: "Профессиональный видеомонтажер",
       description: "Создаю качественный видеоконтент более 2 лет. Специализируюсь на рекламных роликах, рилсах, обзорах и корпоративных презентациях. Превращаю уже снятые материалы в визуальные истории, которые запоминаются.",
       experience: "2+ лет опыта",
-      projects: "20+ проектов", 
+      projects: "20+ проектов",
       views: "1M+ просмотров",
       skillsTitle: "Навыки и технологии",
       skillsSubtitle: "Профессиональное владение индустриальными инструментами",
@@ -103,7 +112,7 @@ const VideoEditorPortfolio = () => {
       description: "Creating quality video content for over 5 years. I specialize in advertising videos, music videos, wedding films and corporate presentations. I turn ideas into visual stories that are memorable.",
       experience: "5+ years experience",
       projects: "200+ projects",
-      views: "1M+ views", 
+      views: "1M+ views",
       skillsTitle: "Skills & Technologies",
       skillsSubtitle: "Professional mastery of industry tools",
       portfolioTitle: "Best Works",
@@ -177,12 +186,12 @@ const VideoEditorPortfolio = () => {
   ];
 
   const skills = [
-    { name: "Adobe Premiere Pro", level: 100 },
-    { name: "After Effects", level: 100 },
-    { name: "DaVinci Resolve", level: 100 },
     { name: "Цветокоррекция", level: 100 },
     { name: "Моушн дизайн", level: 100 },
-    { name: "Звуковой дизайн", level: 100 }
+    { name: "Звуковой дизайн", level: 100 },
+    { name: "Композитинг", level: 95 },
+    { name: "Анимация", level: 90 },
+    { name: "Сторителлинг", level: 85 }
   ];
 
   // Additional data для новых лекций
@@ -192,7 +201,7 @@ const VideoEditorPortfolio = () => {
       photo: import.meta.env.BASE_URL + "Алексей Леденёв.jpg",
       description: (
         <>
-          Привет! Меня зовут Алексей, я reels продюсер🎬<br/>
+          Привет! Меня зовут Алексей, я reels продюсер🎬<br />
           <ul className="list-disc ml-4 mt-2 text-sm text-muted-foreground">
             <li>Основатель <a href="https://www.instagram.com/greenscreenvideos_?igsh=MWVkdDU0ZXJ2bjMyeg==" target="_blank" rel="noopener noreferrer" className="underline">аккаунта с зелёными роликами</a></li>
             <li>2 года в продюсировании коротких роликов</li>
@@ -220,7 +229,7 @@ const VideoEditorPortfolio = () => {
       photo: import.meta.env.BASE_URL + "Сергей Копыл.jpg",
       description: (
         <>
-          Режиссёр<br/>
+          Режиссёр<br />
           <a href="https://t.me/kopyl_sergey" target="_blank" rel="noopener noreferrer" className="underline">Телеграм-канал</a>
         </>
       ),
@@ -311,28 +320,28 @@ const VideoEditorPortfolio = () => {
               isPlaceholder: true
             }
           ]
-        },
-        {
-          title: "Обычные видео",
-          features: ["Сторителлинг", "Монтаж", "Цветокоррекция", "Звуковой дизайн", "Музыкальное сопровождение", "Титры и надписи"],
-          hasExamples: true,
-          examples: [
-            {
-              id: 1,
-              title: "Обычное видео - Пример 1",
-              description: "Пример обычного видео",
-              videoUrl: "https://rutube.ru/play/embed/example-regular-1",
-              isPlaceholder: true
-            },
-            {
-              id: 2,
-              title: "Обычное видео - Пример 2",
-              description: "Еще один пример обычного видео",
-              videoUrl: "https://rutube.ru/play/embed/example-regular-2",
-              isPlaceholder: true
-            }
-          ]
         }
+        // {
+        //   title: "Обычные видео",
+        //   features: ["Сторителлинг", "Монтаж", "Цветокоррекция", "Звуковой дизайн", "Музыкальное сопровождение", "Титры и надписи"],
+        //   hasExamples: true,
+        //   examples: [
+        //     {
+        //       id: 1,
+        //       title: "Обычное видео - Пример 1",
+        //       description: "Пример обычного видео",
+        //       videoUrl: "https://rutube.ru/play/embed/example-regular-1",
+        //       isPlaceholder: true
+        //     },
+        //     {
+        //       id: 2,
+        //       title: "Обычное видео - Пример 2",
+        //       description: "Еще один пример обычного видео",
+        //       videoUrl: "https://rutube.ru/play/embed/example-regular-2",
+        //       isPlaceholder: true
+        //     }
+        //   ]
+        // }
       ]
     }
   ];
@@ -398,19 +407,6 @@ const VideoEditorPortfolio = () => {
     }
   }, [isControlsOpen]);
 
-  // Handle dialog opening
-  useEffect(() => {
-    if (isDialogOpen) {
-      // Scroll to top of dialog content
-      setTimeout(() => {
-        const dialogContent = document.querySelector('[data-radix-dialog-content]');
-        if (dialogContent) {
-          dialogContent.scrollTop = 0;
-        }
-      }, 100);
-    }
-  }, [isDialogOpen]);
-
 
 
   return (
@@ -423,7 +419,7 @@ const VideoEditorPortfolio = () => {
         loop
         preload="auto"
       />
-      
+
       {/* Mobile Controls Toggle */}
       <div className="fixed top-4 right-4 z-50 sm:hidden mobile-controls-area">
         <Button
@@ -489,11 +485,10 @@ const VideoEditorPortfolio = () => {
 
       {/* Mobile Controls Panel */}
       <div
-        className={`fixed top-16 right-4 z-40 sm:hidden mobile-controls-area transition-all duration-300 transform ${
-          isControlsOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
-        }`}
+        className={`fixed top-16 right-4 z-40 sm:hidden mobile-controls-area transition-all duration-300 transform ${isControlsOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
+          }`}
         style={{
-          display: isControlsOpen ? 'block' : 'block' 
+          display: isControlsOpen ? 'block' : 'block'
         }}
       >
         <div className="bg-card/95 backdrop-blur-md rounded-2xl border border-border/50 shadow-lg p-3 space-y-3">
@@ -542,26 +537,26 @@ const VideoEditorPortfolio = () => {
       </div>
 
       {/* Hero Section with Background Image */}
-      <section 
+      <section
         ref={heroRef}
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
       >
-        {/* Background Image with Parallax */}
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            transform: `translateY(${scrollY * 0.5}px)`,
-            backgroundImage: `url('${import.meta.env.BASE_URL}vadim-photo.jpg')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}
-        />
-        
-        {/* Gradient Overlay - Улучшено для лучшей видимости на белом фоне */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-background/90 via-background/70 to-background/90 dark:from-background/90 dark:via-background/70 dark:to-background/90" />
-        <div className="absolute inset-0 z-15 bg-gradient-to-br from-transparent via-background/20 to-transparent" />
-        
+        {/* Animated Background */}
+        <div className="absolute inset-0 z-0 animated-hero-background" />
+
+        {/* Декоративные плавающие элементы */}
+        <div className="absolute inset-0 z-5 pointer-events-none">
+          <div className="floating-shape w-32 h-32 top-20 left-10 opacity-30"></div>
+          <div className="floating-shape w-24 h-24 top-40 right-20 opacity-20"></div>
+          <div className="floating-shape w-40 h-40 bottom-32 left-20 opacity-15"></div>
+          <div className="floating-shape w-28 h-28 top-60 left-1/2 opacity-25"></div>
+          <div className="floating-shape w-36 h-36 bottom-20 right-40 opacity-20"></div>
+          <div className="floating-shape w-20 h-20 top-32 right-1/3 opacity-30"></div>
+        </div>
+
+        {/* Subtle overlay for better text readability */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-br from-black/20 via-transparent to-black/20" />
+
         {/* Animated Elements */}
         <div className="absolute inset-0 z-20 pointer-events-none">
           <div className="absolute top-20 left-10 text-primary/20 animate-float">
@@ -587,20 +582,19 @@ const VideoEditorPortfolio = () => {
         {/* Content */}
         <div className="relative z-30 text-center px-4 sm:px-6 max-w-5xl mx-auto">
           <div
-            className={`space-y-8 sm:space-y-12 transition-all duration-1000 ${
-              heroInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
+            className={`space-y-8 sm:space-y-12 transition-all duration-1000 ${heroInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
           >
             {/* Hero Badge */}
-            <div className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-primary/10 via-purple-500/10 to-cyan-500/10 rounded-full border border-primary/20 backdrop-blur-xl mb-6">
+            <div className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-primary/5 via-indigo-500/5 to-slate-500/5 rounded-full border border-primary/10 backdrop-blur-xl mb-6">
               <Star className="w-5 h-5 text-primary mr-2" />
               <span className="text-primary font-semibold text-sm">Профессиональный видеомонтажер</span>
             </div>
 
             <div className="space-y-6 sm:space-y-8">
               <div className="relative">
-                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground mb-4">
-                  <span className="bg-gradient-to-r from-primary via-purple-600 to-cyan-600 bg-clip-text text-transparent">
+                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4">
+                  <span className="gradient-text" style={{ backgroundSize: '200% 200%' }}>
                     {content[language].name}
                   </span>
                 </h1>
@@ -623,59 +617,65 @@ const VideoEditorPortfolio = () => {
 
             {/* Улучшенные значки достижений */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto mt-8">
-              <div className="group relative bg-card/70 backdrop-blur-xl rounded-2xl p-6 border border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-105">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="group relative enhanced-card rounded-2xl p-6 hover:scale-102">
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-slate-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Award className="w-8 h-8 text-primary" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-indigo-500/20 to-slate-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform duration-300">
+                    <Award className="w-8 h-8 text-indigo-400" />
                   </div>
-                  <p className="text-2xl font-bold text-primary mb-1">2+</p>
+                  <p className="text-2xl font-bold text-foreground mb-1">2+</p>
                   <p className="text-sm text-muted-foreground font-medium">лет опыта</p>
                 </div>
               </div>
 
-              <div className="group relative bg-card/70 backdrop-blur-xl rounded-2xl p-6 border border-violet-500/20 hover:border-violet-500/40 transition-all duration-500 hover:scale-105">
-                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="group relative enhanced-card rounded-2xl p-6 hover:scale-102">
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-violet-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Star className="w-8 h-8 text-violet-600" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform duration-300">
+                    <Star className="w-8 h-8 text-indigo-400" />
                   </div>
-                  <p className="text-2xl font-bold text-violet-600 mb-1">20+</p>
+                  <p className="text-2xl font-bold text-foreground mb-1">20+</p>
                   <p className="text-sm text-muted-foreground font-medium">проектов</p>
                 </div>
               </div>
 
-              <div className="group relative bg-card/70 backdrop-blur-xl rounded-2xl p-6 border border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-500 hover:scale-105">
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="group relative enhanced-card rounded-2xl p-6 hover:scale-102">
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-500/5 to-indigo-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Eye className="w-8 h-8 text-cyan-600" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-slate-500/20 to-indigo-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform duration-300">
+                    <Eye className="w-8 h-8 text-indigo-400" />
                   </div>
-                  <p className="text-2xl font-bold text-cyan-600 mb-1">1M+</p>
+                  <p className="text-2xl font-bold text-foreground mb-1">1M+</p>
                   <p className="text-sm text-muted-foreground font-medium">просмотров</p>
                 </div>
               </div>
             </div>
 
-            {/* Улучшенные кнопки CTA */}
-            <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 pt-8 sm:pt-10 max-w-2xl mx-auto">
-              <div className="group relative flex-1">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-purple-600 to-cyan-600 rounded-2xl blur opacity-60 group-hover:opacity-100 transition-all duration-500"></div>
-                <a href="https://t.me/vadimfom1n?text=Здравствуйте!%20Меня%20заинтересовали%20ваши%20услуги.%20Пожалуйста,%20расскажите%20подробнее%20о:%0A1)%20Какой%20тип%20заказа%20вас%20интересует%0A2)%20Бюджет%20проекта%0A3)%20Сроки%20реализации%0A4)%20Дополнительные%20пожелания" 
-                  target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" className="relative w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-primary-foreground px-8 py-6 text-lg font-semibold rounded-2xl border-0 group-hover:scale-105 transition-all duration-300 shadow-2xl">
-                    <Mail className="w-5 h-5 mr-3" />
-                    {content[language].contactButton}
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </Button>
-                </a>
-              </div>
-
-              <div className="group relative flex-1">
-                <a href="https://t.me/vadimfom1n" target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" variant="outline" className="w-full px-8 py-6 text-lg font-semibold rounded-2xl backdrop-blur-xl border-2 border-primary/30 hover:bg-primary/10 hover:border-primary/60 transition-all duration-300 group-hover:scale-105 bg-card/50">
-                    <Download className="w-5 h-5 mr-3" />
-                    {content[language].downloadButton}
+            {/* Кнопка портфолио - Центрированная */}
+            <div className="flex justify-center pt-8 sm:pt-10 max-w-md mx-auto px-4">
+              <div className="group relative w-full">
+                <a href="https://t.me/portfoliovadimfom1n" target="_blank" rel="noopener noreferrer">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="
+                      w-full 
+                      px-6 py-4 sm:px-8 sm:py-6 
+                      text-base sm:text-lg 
+                      font-semibold 
+                      rounded-xl sm:rounded-2xl 
+                      backdrop-blur-xl 
+                      border-2 border-primary/30 
+                      hover:bg-primary/10 hover:border-primary/60 
+                      transition-all duration-300 
+                      group-hover:scale-105 
+                      bg-card/50
+                      touch-manipulation
+                    "
+                  >
+                    <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3" />
+                    <span className="hidden sm:inline">{content[language].downloadButton}</span>
+                    <span className="sm:hidden">Портфолио</span>
                   </Button>
                 </a>
               </div>
@@ -699,8 +699,8 @@ const VideoEditorPortfolio = () => {
 
           {/* Skills Grid with Visual Elements */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Adobe Premiere Pro */}
-            <div className="group relative">
+            {/* Adobe Premiere Pro - ЗАКОММЕНТИРОВАНО (это программа, а не навык) */}
+            {/* <div className="group relative">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
               <Card className="relative bg-card/80 backdrop-blur-sm border-border/20 rounded-2xl overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-full blur-2xl" />
@@ -709,7 +709,7 @@ const VideoEditorPortfolio = () => {
                     <div className="flex items-center space-x-3">
                       <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-xl flex items-center justify-center">
                         <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18L19.82 8 12 11.82 4.18 8 12 4.18zM4 9.18l7 3.5v6.64l-7-3.5V9.18zm16 0v6.64l-7 3.5v-6.64l7-3.5z"/>
+                          <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18L19.82 8 12 11.82 4.18 8 12 4.18zM4 9.18l7 3.5v6.64l-7-3.5V9.18zm16 0v6.64l-7 3.5v-6.64l7-3.5z" />
                         </svg>
                       </div>
                       <div>
@@ -719,15 +719,15 @@ const VideoEditorPortfolio = () => {
                     </div>
                     <div className="text-2xl font-bold text-purple-500">95%</div>
                   </div>
-                  
+
                   <div className="space-y-3">
                     <div className="flex justify-between text-sm">
                       <span>Proficiency</span>
                       <span className="text-purple-500">Expert</span>
                     </div>
                     <div className="w-full bg-secondary/20 rounded-full h-3">
-                      <div className="bg-gradient-to-r from-purple-500 to-blue-500 h-3 rounded-full transition-all duration-1000" 
-                           style={{ width: '95%' }} />
+                      <div className="bg-gradient-to-r from-purple-500 to-blue-500 h-3 rounded-full transition-all duration-1000"
+                        style={{ width: '95%' }} />
                     </div>
                   </div>
 
@@ -738,10 +738,10 @@ const VideoEditorPortfolio = () => {
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </div> */}
 
-            {/* After Effects */}
-            <div className="group relative">
+            {/* After Effects - ЗАКОММЕНТИРОВАНО (это программа, а не навык) */}
+            {/* <div className="group relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
               <Card className="relative bg-card/80 backdrop-blur-sm border-border/20 rounded-2xl overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-2xl" />
@@ -750,7 +750,7 @@ const VideoEditorPortfolio = () => {
                     <div className="flex items-center space-x-3">
                       <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
                         <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                         </svg>
                       </div>
                       <div>
@@ -760,15 +760,15 @@ const VideoEditorPortfolio = () => {
                     </div>
                     <div className="text-2xl font-bold text-blue-500">90%</div>
                   </div>
-                  
+
                   <div className="space-y-3">
                     <div className="flex justify-between text-sm">
                       <span>Animation</span>
                       <span className="text-blue-500">Advanced</span>
                     </div>
                     <div className="w-full bg-secondary/20 rounded-full h-3">
-                      <div className="bg-gradient-to-r from-blue-500 to-cyan-500 h-3 rounded-full transition-all duration-1000" 
-                           style={{ width: '90%' }} />
+                      <div className="bg-gradient-to-r from-blue-500 to-cyan-500 h-3 rounded-full transition-all duration-1000"
+                        style={{ width: '90%' }} />
                     </div>
                   </div>
 
@@ -779,10 +779,10 @@ const VideoEditorPortfolio = () => {
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </div> */}
 
-            {/* DaVinci Resolve */}
-            <div className="group relative">
+            {/* DaVinci Resolve - ЗАКОММЕНТИРОВАНО (это программа, а не навык) */}
+            {/* <div className="group relative">
               <div className="absolute inset-0 bg-gradient-to-r from-amber-600/20 to-orange-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
               <Card className="relative bg-card/80 backdrop-blur-sm border-border/20 rounded-2xl overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-full blur-2xl" />
@@ -791,7 +791,7 @@ const VideoEditorPortfolio = () => {
                     <div className="flex items-center space-x-3">
                       <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center">
                         <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                         </svg>
                       </div>
                       <div>
@@ -801,15 +801,15 @@ const VideoEditorPortfolio = () => {
                     </div>
                     <div className="text-2xl font-bold text-amber-500">85%</div>
                   </div>
-                  
+
                   <div className="space-y-3">
                     <div className="flex justify-between text-sm">
                       <span>Color Science</span>
                       <span className="text-amber-500">Professional</span>
                     </div>
                     <div className="w-full bg-secondary/20 rounded-full h-3">
-                      <div className="bg-gradient-to-r from-amber-500 to-orange-500 h-3 rounded-full transition-all duration-1000" 
-                           style={{ width: '85%' }} />
+                      <div className="bg-gradient-to-r from-amber-500 to-orange-500 h-3 rounded-full transition-all duration-1000"
+                        style={{ width: '85%' }} />
                     </div>
                   </div>
 
@@ -820,7 +820,7 @@ const VideoEditorPortfolio = () => {
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </div> */}
 
             {/* Color Correction */}
             <div className="group relative">
@@ -832,7 +832,7 @@ const VideoEditorPortfolio = () => {
                     <div className="flex items-center space-x-3">
                       <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center">
                         <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                         </svg>
                       </div>
                       <div>
@@ -840,17 +840,16 @@ const VideoEditorPortfolio = () => {
                         <p className="text-sm text-muted-foreground">Color Theory</p>
                       </div>
                     </div>
-                    <div className="text-2xl font-bold text-emerald-500">92%</div>
+
                   </div>
-                  
+
                   <div className="space-y-3">
                     <div className="flex justify-between text-sm">
                       <span>Color Balance</span>
                       <span className="text-emerald-500">Master</span>
                     </div>
                     <div className="w-full bg-secondary/20 rounded-full h-3">
-                      <div className="bg-gradient-to-r from-emerald-500 to-teal-500 h-3 rounded-full transition-all duration-1000" 
-                           style={{ width: '92%' }} />
+                      <div className="bg-gradient-to-r from-emerald-500 to-teal-500 h-3 rounded-full transition-all duration-1000 w-full" />
                     </div>
                   </div>
 
@@ -873,7 +872,7 @@ const VideoEditorPortfolio = () => {
                     <div className="flex items-center space-x-3">
                       <div className="w-12 h-12 bg-gradient-to-br from-rose-500 to-pink-500 rounded-xl flex items-center justify-center">
                         <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                         </svg>
                       </div>
                       <div>
@@ -881,17 +880,16 @@ const VideoEditorPortfolio = () => {
                         <p className="text-sm text-muted-foreground">Animation</p>
                       </div>
                     </div>
-                    <div className="text-2xl font-bold text-rose-500">88%</div>
+
                   </div>
-                  
+
                   <div className="space-y-3">
                     <div className="flex justify-between text-sm">
                       <span>Keyframes</span>
                       <span className="text-rose-500">Advanced</span>
                     </div>
                     <div className="w-full bg-secondary/20 rounded-full h-3">
-                      <div className="bg-gradient-to-r from-rose-500 to-pink-500 h-3 rounded-full transition-all duration-1000" 
-                           style={{ width: '88%' }} />
+                      <div className="bg-gradient-to-r from-rose-500 to-pink-500 h-3 rounded-full transition-all duration-1000 w-full" />
                     </div>
                   </div>
 
@@ -914,7 +912,7 @@ const VideoEditorPortfolio = () => {
                     <div className="flex items-center space-x-3">
                       <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center">
                         <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                         </svg>
                       </div>
                       <div>
@@ -922,17 +920,16 @@ const VideoEditorPortfolio = () => {
                         <p className="text-sm text-muted-foreground">Audio Engineering</p>
                       </div>
                     </div>
-                    <div className="text-2xl font-bold text-indigo-500">87%</div>
+
                   </div>
-                  
+
                   <div className="space-y-3">
                     <div className="flex justify-between text-sm">
                       <span>Audio Mixing</span>
                       <span className="text-indigo-500">Professional</span>
                     </div>
                     <div className="w-full bg-secondary/20 rounded-full h-3">
-                      <div className="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full transition-all duration-1000" 
-                           style={{ width: '87%' }} />
+                      <div className="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full transition-all duration-1000 w-full" />
                     </div>
                   </div>
 
@@ -946,62 +943,104 @@ const VideoEditorPortfolio = () => {
             </div>
           </div>
 
-          {/* Skills Summary Chart */}
+          {/* Skills Distribution - Красивые карточки в стиле навыков */}
           <div className="mt-12">
-            <Card className="bg-card/80 backdrop-blur-sm border-border/20 rounded-2xl overflow-hidden">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-center mb-6">Распределение навыков</h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                  <div className="text-center">
-                    <div className="relative w-24 h-24 mx-auto mb-3">
-                      <svg className="w-24 h-24 transform -rotate-90">
-                        <circle cx="48" cy="48" r="40" stroke="currentColor" strokeWidth="8" fill="none" 
-                                className="text-secondary/20" />
-                        <circle cx="48" cy="48" r="40" stroke="currentColor" strokeWidth="8" fill="none"
-                                strokeDasharray="251.2" strokeDashoffset="12.56"
-                                className="text-purple-500" />
-                      </svg>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-2xl font-bold">95%</span>
-                      </div>
-                    </div>
-                    <p className="font-medium">Premiere Pro</p>
-                  </div>
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-foreground mb-4">Распределение навыков</h3>
+              <p className="text-muted-foreground">Процентное соотношение используемых инструментов</p>
+            </div>
 
-                  <div className="text-center">
-                    <div className="relative w-24 h-24 mx-auto mb-3">
-                      <svg className="w-24 h-24 transform -rotate-90">
-                        <circle cx="48" cy="48" r="40" stroke="currentColor" strokeWidth="8" fill="none" 
-                                className="text-secondary/20" />
-                        <circle cx="48" cy="48" r="40" stroke="currentColor" strokeWidth="8" fill="none"
-                                strokeDasharray="251.2" strokeDashoffset="25.12"
-                                className="text-blue-500" />
-                      </svg>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-2xl font-bold">90%</span>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Premiere Pro - 15% */}
+              <div className="group relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-violet-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+                <Card className="relative bg-card/80 backdrop-blur-sm border-border/20 rounded-2xl overflow-hidden group-hover:border-purple-500/40 transition-all duration-500">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-violet-500/10 rounded-full blur-2xl" />
+                  <CardContent className="p-6 text-center">
+                    <div className="relative mb-6">
+                      <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-purple-500/20">
+                        <img 
+                          src={import.meta.env.BASE_URL + "Adobe_Premiere_Pro_CC_icon.svg.png"} 
+                          alt="Premiere Pro" 
+                          className="w-10 h-10 object-contain"
+                        />
                       </div>
+                      {/* Floating particles */}
+                      <div className="absolute -top-2 -right-2 w-3 h-3 bg-purple-500/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-ping"></div>
                     </div>
-                    <p className="font-medium">After Effects</p>
-                  </div>
 
-                  <div className="text-center">
-                    <div className="relative w-24 h-24 mx-auto mb-3">
-                      <svg className="w-24 h-24 transform -rotate-90">
-                        <circle cx="48" cy="48" r="40" stroke="currentColor" strokeWidth="8" fill="none" 
-                                className="text-secondary/20" />
-                        <circle cx="48" cy="48" r="40" stroke="currentColor" strokeWidth="8" fill="none"
-                                strokeDasharray="251.2" strokeDashoffset="37.68"
-                                className="text-amber-500" />
-                      </svg>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-2xl font-bold">85%</span>
-                      </div>
+                    <h4 className="text-xl font-bold text-purple-600 mb-2">Premiere Pro</h4>
+                    <div className="text-3xl font-bold text-purple-500 mb-4">15%</div>
+
+                    <div className="w-full bg-secondary/20 rounded-full h-2 mb-4">
+                      <div className="bg-gradient-to-r from-purple-500 to-violet-500 h-2 rounded-full transition-all duration-1000" style={{ width: '15%' }}></div>
                     </div>
-                    <p className="font-medium">DaVinci Resolve</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+
+                    <p className="text-sm text-muted-foreground">Базовый монтаж</p>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* AI - 35% */}
+              <div className="group relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-green-600/20 to-emerald-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+                <Card className="relative bg-card/80 backdrop-blur-sm border-border/20 rounded-2xl overflow-hidden group-hover:border-green-500/40 transition-all duration-500">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-full blur-2xl" />
+                  <CardContent className="p-6 text-center">
+                    <div className="relative mb-6">
+                      <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-green-500/20">
+                        <img 
+                          src={import.meta.env.BASE_URL + "6174884.png"} 
+                          alt="AI" 
+                          className="w-10 h-10 object-contain"
+                        />
+                      </div>
+                      {/* Floating particles */}
+                      <div className="absolute -top-2 -right-2 w-3 h-3 bg-green-500/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-ping"></div>
+                    </div>
+
+                    <h4 className="text-xl font-bold text-green-600 mb-2">AI</h4>
+                    <div className="text-3xl font-bold text-green-500 mb-4">35%</div>
+
+                    <div className="w-full bg-secondary/20 rounded-full h-2 mb-4">
+                      <div className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full transition-all duration-1000" style={{ width: '35%' }}></div>
+                    </div>
+
+                    <p className="text-sm text-muted-foreground">Умные инструменты</p>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* After Effects - 50% */}
+              <div className="group relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-red-700/20 to-rose-700/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+                <Card className="relative bg-card/80 backdrop-blur-sm border-border/20 rounded-2xl overflow-hidden group-hover:border-red-600/40 transition-all duration-500">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-red-700/10 to-rose-700/10 rounded-full blur-2xl" />
+                  <CardContent className="p-6 text-center">
+                    <div className="relative mb-6">
+                      <div className="w-16 h-16 bg-gradient-to-br from-red-700 to-rose-700 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-red-700/20">
+                        <img 
+                          src={import.meta.env.BASE_URL + "i.png"} 
+                          alt="After Effects" 
+                          className="w-10 h-10 object-contain"
+                        />
+                      </div>
+                      {/* Floating particles */}
+                      <div className="absolute -top-2 -right-2 w-3 h-3 bg-red-700/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-ping"></div>
+                    </div>
+
+                    <h4 className="text-xl font-bold text-red-700 mb-2">After Effects</h4>
+                    <div className="text-3xl font-bold text-red-700 mb-4">50%</div>
+
+                    <div className="w-full bg-secondary/20 rounded-full h-2 mb-4">
+                      <div className="bg-gradient-to-r from-red-700 to-rose-700 h-2 rounded-full transition-all duration-1000" style={{ width: '50%' }}></div>
+                    </div>
+
+                    <p className="text-sm text-muted-foreground">Анимация и эффекты</p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -1011,15 +1050,15 @@ const VideoEditorPortfolio = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-background dark:from-black dark:via-gray-900 dark:to-black">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,theme(colors.primary)_0%,transparent_30%),radial-gradient(circle_at_80%_80%,theme(colors.primary)_0%,transparent_30%),radial-gradient(circle_at_50%_50%,theme(colors.primary)_0%,transparent_40%)] opacity-20 dark:bg-[radial-gradient(circle_at_30%_20%,#00ffff_0%,transparent_30%),radial-gradient(circle_at_80%_80%,#ff00ff_0%,transparent_30%),radial-gradient(circle_at_50%_50%,#00ff00_0%,transparent_40%)] dark:opacity-15 sm:opacity-25 sm:dark:opacity-20"></div>
             <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_40%,theme(colors.primary)_50%,transparent_60%)] opacity-[0.08] dark:bg-[linear-gradient(45deg,transparent_40%,cyan_50%,transparent_60%)] dark:opacity-[0.02] sm:opacity-[0.1] sm:dark:opacity-[0.03]"></div>
-            
+
             {/* Стильные анимированные частицы - адаптивные под тему */}
-            <div className="hidden sm:block absolute top-20 left-10 w-3 h-3 bg-primary dark:bg-cyan-400 rounded-full animate-pulse shadow-lg dark:shadow-[0_0_30px_#00ffff] opacity-60 dark:opacity-100" style={{animationDuration: '2s'}}></div>
-            <div className="hidden sm:block absolute top-40 right-20 w-4 h-4 bg-primary dark:bg-pink-400 rounded-full animate-bounce shadow-lg dark:shadow-[0_0_35px_#ff00ff] opacity-50 dark:opacity-100" style={{animationDelay: '1s', animationDuration: '3s'}}></div>
-            <div className="hidden sm:block absolute bottom-32 left-1/4 w-2 h-2 bg-primary dark:bg-green-400 rounded-full animate-ping shadow-lg dark:shadow-[0_0_25px_#00ff00] opacity-40 dark:opacity-100" style={{animationDelay: '2s'}}></div>
-            <div className="hidden sm:block absolute bottom-20 right-1/3 w-3.5 h-3.5 bg-primary dark:bg-yellow-400 rounded-full animate-pulse shadow-lg dark:shadow-[0_0_30px_#ffff00] opacity-60 dark:opacity-100" style={{animationDelay: '0.5s'}}></div>
-            <div className="hidden sm:block absolute top-60 left-1/3 w-2.5 h-2.5 bg-primary dark:bg-purple-400 rounded-full animate-bounce shadow-lg dark:shadow-[0_0_28px_#8000ff] opacity-50 dark:opacity-100" style={{animationDelay: '1.5s', animationDuration: '4s'}}></div>
+            <div className="hidden sm:block absolute top-20 left-10 w-3 h-3 bg-primary dark:bg-cyan-400 rounded-full animate-pulse shadow-lg dark:shadow-[0_0_30px_#00ffff] opacity-60 dark:opacity-100" style={{ animationDuration: '2s' }}></div>
+            <div className="hidden sm:block absolute top-40 right-20 w-4 h-4 bg-primary dark:bg-pink-400 rounded-full animate-bounce shadow-lg dark:shadow-[0_0_35px_#ff00ff] opacity-50 dark:opacity-100" style={{ animationDelay: '1s', animationDuration: '3s' }}></div>
+            <div className="hidden sm:block absolute bottom-32 left-1/4 w-2 h-2 bg-primary dark:bg-green-400 rounded-full animate-ping shadow-lg dark:shadow-[0_0_25px_#00ff00] opacity-40 dark:opacity-100" style={{ animationDelay: '2s' }}></div>
+            <div className="hidden sm:block absolute bottom-20 right-1/3 w-3.5 h-3.5 bg-primary dark:bg-yellow-400 rounded-full animate-pulse shadow-lg dark:shadow-[0_0_30px_#ffff00] opacity-60 dark:opacity-100" style={{ animationDelay: '0.5s' }}></div>
+            <div className="hidden sm:block absolute top-60 left-1/3 w-2.5 h-2.5 bg-primary dark:bg-purple-400 rounded-full animate-bounce shadow-lg dark:shadow-[0_0_28px_#8000ff] opacity-50 dark:opacity-100" style={{ animationDelay: '1.5s', animationDuration: '4s' }}></div>
           </div>
-          
+
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-8 sm:mb-12 md:mb-16">
               <div className="inline-flex items-center justify-center p-3 sm:p-4 bg-primary/20 dark:bg-black/60 backdrop-blur-sm rounded-xl sm:rounded-2xl mb-4 sm:mb-6 border border-primary/50 dark:border-cyan-400/50 shadow-lg dark:shadow-[0_0_15px_#00ffff] hover:shadow-xl dark:hover:shadow-[0_0_30px_#00ffff] transition-all duration-500">
@@ -1050,7 +1089,7 @@ const VideoEditorPortfolio = () => {
                 ];
                 const lightColor = lightColors[index % 4];
                 const darkColor = darkColors[index % 4];
-                
+
                 return (
                   <div key={index} className="group relative">
                     {/* Элегантное/Неоновое свечение при hover */}
@@ -1061,7 +1100,7 @@ const VideoEditorPortfolio = () => {
                         boxShadow: theme === 'dark' ? `0 0 40px ${darkColor.shadow}, 0 0 80px ${darkColor.shadow}60, 0 0 120px ${darkColor.shadow}30` : undefined
                       }}
                     ></div>
-                    
+
                     <div
                       className="relative bg-card/90 dark:bg-black/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 transition-all duration-500 group-hover:scale-105 sm:group-hover:scale-110 transform group-hover:-translate-y-1 sm:group-hover:-translate-y-3 shadow-lg hover:shadow-xl"
                       style={{
@@ -1082,7 +1121,7 @@ const VideoEditorPortfolio = () => {
                         }
                       }}
                     >
-                      
+
                       {/* Стильная/Неоновая иконка - адаптивные размеры */}
                       <div className="relative mb-4 sm:mb-6">
                         <div
@@ -1100,19 +1139,19 @@ const VideoEditorPortfolio = () => {
                             borderStyle: 'solid',
                             boxShadow: theme === 'dark' ? `inset 0 0 15px ${darkColor.shadow}20, 0 0 20px ${darkColor.shadow}30` : undefined
                           }}
-                          className={theme === 'dark' 
-                            ? `relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto rounded-2xl sm:rounded-3xl flex items-center justify-center group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500` 
+                          className={theme === 'dark'
+                            ? `relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto rounded-2xl sm:rounded-3xl flex items-center justify-center group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500`
                             : `relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto bg-gradient-to-br ${lightColor.bg} rounded-2xl sm:rounded-3xl flex items-center justify-center group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500 border border-primary/60 shadow-lg`}
                         >
-                           <stat.icon
-                             style={{
-                               color: theme === 'dark' ? darkColor.shadow : undefined,
-                               filter: theme === 'dark' ? `drop-shadow(0 0 5px ${darkColor.shadow})` : undefined
-                             }}
-                             className={theme === 'dark' 
-                               ? `w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500` 
-                               : `w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 ${lightColor.text} group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500`}
-                           />
+                          <stat.icon
+                            style={{
+                              color: theme === 'dark' ? darkColor.shadow : undefined,
+                              filter: theme === 'dark' ? `drop-shadow(0 0 5px ${darkColor.shadow})` : undefined
+                            }}
+                            className={theme === 'dark'
+                              ? `w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500`
+                              : `w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 ${lightColor.text} group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 sm:group-hover:rotate-12 transition-all duration-500`}
+                          />
                         </div>
 
                         {/* Декоративные/Неоновые частицы */}
@@ -1132,7 +1171,7 @@ const VideoEditorPortfolio = () => {
                           }}
                         ></div>
                       </div>
-                      
+
                       {/* Стильное/Неоновое число */}
                       <div
                         className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-1 sm:mb-2 group-hover:scale-110 sm:group-hover:scale-125 transition-all duration-500`}
@@ -1144,7 +1183,7 @@ const VideoEditorPortfolio = () => {
                       >
                         {stat.number}
                       </div>
-                      
+
                       {/* Подпись - адаптивные размеры */}
                       <div
                         className="text-xs sm:text-sm md:text-base font-medium transition-all duration-300 group-hover:font-bold leading-tight"
@@ -1165,7 +1204,7 @@ const VideoEditorPortfolio = () => {
                       >
                         {stat.label}
                       </div>
-                      
+
                       {/* Декоративные/Неоновые элементы - уменьшены для мобильных */}
                       <div
                         className="absolute top-3 right-3 sm:top-4 sm:right-4 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-pulse shadow-lg"
@@ -1182,7 +1221,7 @@ const VideoEditorPortfolio = () => {
                           boxShadow: theme === 'dark' ? `0 0 4px ${darkColor.shadow}, 0 0 8px ${darkColor.shadow}50` : undefined
                         }}
                       ></div>
-                      
+
                       {/* Волновой/Неоновый эффект */}
                       <div className="absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden">
                         <div
@@ -1192,7 +1231,7 @@ const VideoEditorPortfolio = () => {
                           }}
                         ></div>
                       </div>
-                      
+
                       {/* Рамка/Неоновая рамка при hover - уменьшена для мобильных */}
                       <div
                         className="absolute inset-0 rounded-2xl sm:rounded-3xl border transition-all duration-500 opacity-0 group-hover:opacity-100 shadow-inner"
@@ -1216,7 +1255,7 @@ const VideoEditorPortfolio = () => {
                 );
               })}
             </div>
-            
+
             {/* Декоративные/Неоновые элементы внизу - адаптивные */}
             <div className="flex justify-center mt-8 sm:mt-12 md:mt-16">
               <div className="flex space-x-2 sm:space-x-4">
@@ -1251,7 +1290,7 @@ const VideoEditorPortfolio = () => {
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-purple-500/15 to-transparent rounded-full blur-3xl"></div>
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-cyan-500/10 to-transparent rounded-full blur-2xl"></div>
           </div>
-          
+
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-12 sm:mb-16">
               <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-primary/10 to-purple-500/10 rounded-2xl mb-6 border border-primary/20">
@@ -1271,13 +1310,13 @@ const VideoEditorPortfolio = () => {
                 <div key={index} className={`group relative ${index === 1 ? 'lg:row-span-2' : ''}`}>
                   {/* Animated border */}
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/40 via-purple-500/40 to-cyan-500/40 rounded-3xl blur opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-                  
+
                   <div className="relative h-full">
                     {/* Card */}
                     <div className="relative bg-card/70 backdrop-blur-2xl rounded-3xl border border-border/50 overflow-hidden group-hover:border-primary/30 transition-all duration-500 h-full">
                       {/* Gradient overlay */}
                       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      
+
                       {/* Content */}
                       <div className="relative p-8 sm:p-10 flex flex-col h-full">
                         {/* Icon Section */}
@@ -1289,19 +1328,19 @@ const VideoEditorPortfolio = () => {
                           {/* Floating particles */}
                           <div className="absolute -top-2 -right-2 w-3 h-3 bg-primary/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ animation: 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite' }}></div>
                         </div>
-                        
+
                         {/* Title */}
                         <h3 className="text-2xl sm:text-3xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
                           {service.title}
                         </h3>
-                        
+
                         {/* Price */}
                         <div className="mb-6">
                           <span className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
                             {service.price}
                           </span>
                         </div>
-                        
+
                         {/* Features */}
                         <div className="flex-grow mb-8">
                           <ul className="space-y-3">
@@ -1328,94 +1367,56 @@ const VideoEditorPortfolio = () => {
                                       {sub.title}
                                     </h4>
                                     {sub.hasExamples && (
-                                      <Dialog onOpenChange={setIsDialogOpen}>
-                                        <DialogTrigger asChild>
-                                          <Button 
-                                            variant="outline" 
-                                            size="sm"
-                                            data-dialog-trigger="true"
-                                            className="bg-primary/10 hover:bg-primary/20 border-primary/30 text-primary hover:text-primary/80 transition-all duration-300 group/btn self-start sm:self-auto shrink-0 text-xs sm:text-sm"
+                                      <div className="flex flex-wrap gap-2">
+                                        {sub.examples?.map((example, exampleIndex) => (
+                                          <a
+                                            key={example.id}
+                                            href={example.isPlaceholder ? '#' : example.videoUrl}
+                                            target={example.isPlaceholder ? '_self' : '_blank'}
+                                            rel="noopener noreferrer"
+                                            className={`group/example ${example.isPlaceholder ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+                                            onClick={(e) => {
+                                              if (example.isPlaceholder) {
+                                                e.preventDefault();
+                                              }
+                                            }}
                                           >
-                                            <Play className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 group-hover/btn:scale-110 transition-transform duration-200" />
-                                            Примеры
-                                            <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3 ml-1 opacity-60" />
-                                          </Button>
-                                        </DialogTrigger>
-                                          <DialogContent className="max-w-[95vw] sm:max-w-[90vw] md:max-w-4xl max-h-[90vh] overflow-y-auto p-4 md:p-6 bg-card border border-border shadow-2xl rounded-2xl">
-                                            <DialogHeader className="sticky top-0 bg-card pb-4 z-10">
-                                              <div className="flex items-center justify-between">
-                                                <DialogTitle className="text-xl md:text-2xl bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                                                  Примеры работ: {sub.title}
-                                                </DialogTitle>
-                                                <DialogClose asChild>
-                                                  <Button
-                                                    variant="ghost"
-                                                    size="sm"
-                                                    className="h-8 w-8 p-0 rounded-full hover:bg-muted/50"
-                                                  >
-                                                    <X className="w-4 h-4" />
-                                                  </Button>
-                                                </DialogClose>
-                                              </div>
-                                            </DialogHeader>
-                                            <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-6 mt-3 sm:mt-4 md:mt-6">
-                                              {sub.examples && sub.examples.map((example: any, exampleIndex: number) => (
-                                                <div key={example.id} className="bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-xl p-3 sm:p-4 md:p-6 border border-border/20 backdrop-blur-sm">
-                                                  <div className="aspect-video bg-secondary/20 rounded-lg mb-3 md:mb-4 overflow-hidden relative">
-                                                    {example.isPlaceholder ? (
-                                                      <div className="w-full h-full flex items-center justify-center">
-                                                        <div className="text-center p-4">
-                                                          <div className="w-12 h-12 bg-muted rounded-full flex items-center justify-center mx-auto mb-3">
-                                                            <svg className="w-6 h-6 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                                            </svg>
-                                                          </div>
-                                                          <p className="text-muted-foreground text-sm md:text-base font-medium">Видео будет добавлено</p>
-                                                          <p className="text-xs text-muted-foreground/70 mt-1">Скоро здесь появится пример</p>
-                                                        </div>
-                                                      </div>
-                                                    ) : (
-                                                      <iframe
-                                                        src={example.videoUrl}
-                                                        className="w-full h-full rounded-lg"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                        allowFullScreen
-                                                        title={example.title}
-                                                        loading="lazy"
-                                                        onError={(e) => {
-                                                          console.error('Video loading error:', e);
-                                                          const target = e.target as HTMLIFrameElement;
-                                                          target.style.display = 'none';
-                                                          const parent = target.parentElement;
-                                                          if (parent) {
-                                                            parent.innerHTML = `
-                                                              <div class="w-full h-full flex items-center justify-center bg-secondary/20 rounded-lg">
-                                                                <div class="text-center p-4">
-                                                                  <div class="w-12 h-12 bg-muted rounded-full flex items-center justify-center mx-auto mb-3">
-                                                                    <svg class="w-6 h-6 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-                                                                    </svg>
-                                                                  </div>
-                                                                  <p class="text-muted-foreground text-sm md:text-base mb-2 font-medium">Видео временно недоступно</p>
-                                                                  <p class="text-xs text-muted-foreground/70">Попробуйте позже</p>
-                                                                </div>
-                                                              </div>
-                                                            `;
-                                                          }
-                                                        }}
-                                                      />
-                                                    )}
-                                                  </div>
-                                                  <h5 className="font-semibold mb-1 md:mb-2 text-sm sm:text-base md:text-lg">{example.title}</h5>
-                                                  <p className="text-xs sm:text-sm md:text-base text-muted-foreground">{example.description}</p>
-                                                </div>
-                                              ))}
-                                            </div>
-                                          </DialogContent>
-                                      </Dialog>
+                                            <Button
+                                              variant="outline"
+                                              size="sm"
+                                              disabled={example.isPlaceholder}
+                                              className={`
+                                                bg-gradient-to-r from-primary/10 to-purple-500/10 
+                                                hover:from-primary/20 hover:to-purple-500/20 
+                                                border-primary/30 hover:border-primary/50
+                                                text-primary hover:text-primary/90 
+                                                transition-all duration-300 
+                                                group/btn self-start sm:self-auto shrink-0 
+                                                text-xs sm:text-sm touch-manipulation
+                                                shadow-sm hover:shadow-md
+                                                ${example.isPlaceholder ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'}
+                                              `}
+                                            >
+                                              {example.isPlaceholder ? (
+                                                <>
+                                                  <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
+                                                  Скоро
+                                                </>
+                                              ) : (
+                                                <>
+                                                  <Play className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 group-hover/btn:scale-110 transition-transform duration-200" />
+                                                  Пример {exampleIndex + 1}
+                                                  <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3 ml-1 opacity-60 group-hover/btn:opacity-100 transition-opacity duration-200" />
+                                                </>
+                                              )}
+                                            </Button>
+                                          </a>
+                                        ))}
+                                      </div>
                                     )}
+
                                   </div>
-                                  
+
                                   <ul className="space-y-3">
                                     {sub.features.map((subFeature, subFeatureIdx) => (
                                       <li key={subFeatureIdx} className="flex items-center text-sm text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">
@@ -1426,7 +1427,7 @@ const VideoEditorPortfolio = () => {
                                       </li>
                                     ))}
                                   </ul>
-                                  
+
                                   {/* Decorative gradient line */}
                                   <div className="mt-4 h-0.5 bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
                                 </div>
@@ -1434,36 +1435,71 @@ const VideoEditorPortfolio = () => {
                             ))}
                           </div>
                         )}
-                        
-                        {/* CTA Button */}
-                          <div className="mt-6 sm:mt-8 mb-6 sm:mb-8">
-                            <div className="relative">
-                            <a href="https://t.me/vadimfom1n?text=Здравствуйте!%20Меня%20заинтересовали%20ваши%20услуги.%20Пожалуйста,%20расскажите%20подробнее%20о:%0A1)%20Какой%20тип%20заказа%20вас%20интересует%0A2)%20Бюджет%20проекта%0A3)%20Сроки%20реализации%0A4)%20Дополнительные%20пожелания"  target="_blank" rel="noopener noreferrer">
-                              <Button className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-primary-foreground border-0 py-4 sm:py-6 text-sm sm:text-base font-semibold group-hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-                              <span className="relative z-10">{content[language].getQuote}</span>
-                              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                        {/* CTA Button - Улучшенная мобильная адаптация */}
+                        <div className="mt-6 sm:mt-8 mb-6 sm:mb-8">
+                          <div className="relative">
+                            <a href="https://t.me/vadimfom1n?text=Здравствуйте!%20Меня%20заинтересовали%20ваши%20услуги.%20Пожалуйста,%20расскажите%20подробнее%20о:%0A1)%20Какой%20тип%20заказа%20вас%20интересует%0A2)%20Бюджет%20проекта%0A3)%20Сроки%20реализации%0A4)%20Дополнительные%20пожелания" target="_blank" rel="noopener noreferrer">
+                              <Button
+                                className="
+                        w-full 
+                        bg-gradient-to-r from-primary to-purple-600 
+                        hover:from-primary/90 hover:to-purple-600/90 
+                        text-primary-foreground 
+                        border-0 
+                        py-3 sm:py-4 md:py-6 
+                        text-sm sm:text-base 
+                        font-semibold 
+                        group-hover:scale-105 
+                        transition-all duration-300 
+                        shadow-lg hover:shadow-xl
+                        rounded-xl sm:rounded-2xl
+                        touch-manipulation
+                      "
+                              >
+                                <span className="relative z-10">
+                                  <span className="hidden sm:inline">{content[language].getQuote}</span>
+                                  <span className="sm:hidden">Заказать</span>
+                                </span>
+                                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-xl sm:rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                               </Button>
-                            </a> 
-                            </div>
+                            </a>
+                          </div>
                         </div>
                       </div>
-                      
+
                       {/* Decorative corner elements */}
                       <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-primary/20 group-hover:border-primary/40 transition-colors duration-300"></div>
                       <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-primary/20 group-hover:border-primary/40 transition-colors duration-300"></div>
                     </div>
                   </div>
                 </div>
-              ))}
+              ))
+              }
             </div>
-            
-            {/* Bottom CTA */}
-            <div className="text-center mt-16">
-                <p className="text-muted-foreground mb-6">Не нашли подходящий пакет?</p>
-              <a href="https://t.me/vadimfom1n?text=Здравствуйте!%20Меня%20заинтересовали%20ваши%20услуги.%20Пожалуйста,%20расскажите%20подробнее%20о:%0A1)%20Какой%20тип%20заказа%20вас%20интересует%0A2)%20Бюджет%20проекта%0A3)%20Сроки%20реализации%0A4)%20Дополнительные%20пожелания"  target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 hover:border-primary text-primary">
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  Обсудить индивидуальный проект
+
+            {/* Bottom CTA - Улучшенная мобильная адаптация */}
+            <div className="text-center mt-12 sm:mt-16 px-4">
+              <p className="text-muted-foreground mb-6 text-sm sm:text-base">Не нашли подходящий пакет?</p>
+              <a href="https://t.me/vadimfom1n?text=Здравствуйте!%20Меня%20заинтересовали%20ваши%20услуги.%20Пожалуйста,%20расскажите%20подробнее%20о:%0A1)%20Какой%20тип%20заказа%20вас%20интересует%0A2)%20Бюджет%20проекта%0A3)%20Сроки%20реализации%0A4)%20Дополнительные%20пожелания" target="_blank" rel="noopener noreferrer" className="inline-block w-full sm:w-auto">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="
+                    w-full sm:w-auto
+                    border-primary/30 hover:bg-primary/10 hover:border-primary text-primary
+                    px-6 py-4 sm:px-8 sm:py-6
+                    text-sm sm:text-base
+                    font-semibold
+                    rounded-xl sm:rounded-2xl
+                    transition-all duration-300
+                    hover:scale-105 hover:shadow-lg
+                    touch-manipulation
+                  "
+                >
+                  <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3" />
+                  <span className="hidden sm:inline">Обсудить индивидуальный проект</span>
+                  <span className="sm:hidden">Индивидуальный проект</span>
                 </Button>
               </a>
             </div>
@@ -1719,7 +1755,7 @@ const VideoEditorPortfolio = () => {
               }
             }
           `}</style>
-        </section>
+        </section >
 
         {/* Portfolio Videos Section - Красивый гармоничный дизайн */}
         {/* <section className="relative py-20 sm:py-32 overflow-hidden">
@@ -1865,39 +1901,41 @@ const VideoEditorPortfolio = () => {
         </section> */}
 
         {/* Video Modal */}
-        {selectedVideo && (
-          <div
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-2 sm:p-4"
-            onClick={() => setSelectedVideo(null)}
-          >
+        {
+          selectedVideo && (
             <div
-              className="bg-card rounded-lg overflow-hidden max-w-4xl w-full mx-2 sm:mx-0"
-              onClick={(e) => e.stopPropagation()}
+              className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-2 sm:p-4"
+              onClick={() => setSelectedVideo(null)}
             >
-              <div className="aspect-video">
-                <iframe
-                  src={portfolioVideos.find(v => v.id === selectedVideo)?.videoUrl}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-              <div className="p-4 sm:p-6">
-                <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-2">
-                  {portfolioVideos.find(v => v.id === selectedVideo)?.title}
-                </h3>
-                <p className="text-sm sm:text-base text-muted-foreground">
-                  {portfolioVideos.find(v => v.id === selectedVideo)?.description}
-                </p>
+              <div
+                className="bg-card rounded-lg overflow-hidden max-w-4xl w-full mx-2 sm:mx-0"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="aspect-video">
+                  <iframe
+                    src={portfolioVideos.find(v => v.id === selectedVideo)?.videoUrl}
+                    className="w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+                <div className="p-4 sm:p-6">
+                  <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-2">
+                    {portfolioVideos.find(v => v.id === selectedVideo)?.title}
+                  </h3>
+                  <p className="text-sm sm:text-base text-muted-foreground">
+                    {portfolioVideos.find(v => v.id === selectedVideo)?.description}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )
+        }
 
-      </div>
+      </div >
 
       {/* Enhanced CSS animations with mobile optimizations */}
-      <style>{`
+      < style > {`
         @keyframes slideUpFade {
           0% {
             opacity: 0;
@@ -1927,43 +1965,204 @@ const VideoEditorPortfolio = () => {
           animation: glowPulse 3s ease-in-out infinite;
         }
 
-        /* Mobile dialog optimizations */
-        @media (max-width: 768px) {
-          [data-radix-dialog-content] {
-            position: fixed !important;
-            top: 50% !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%) !important;
-            width: calc(100vw - 2rem) !important;
-            max-width: calc(100vw - 2rem) !important;
-            height: calc(100vh - 2rem) !important;
-            max-height: calc(100vh - 2rem) !important;
+
+            width: auto !important;
+            max-width: none !important;
+            height: auto !important;
+            max-height: none !important;
             margin: 0 !important;
             border-radius: 1rem !important;
             overflow-y: auto !important;
             z-index: 1000 !important;
+            -webkit-overflow-scrolling: touch !important;
+          }
+          
+          .mobile-dialog-content {
+            display: flex !important;
+            flex-direction: column !important;
+            height: 100% !important;
+          }
+          
+          .mobile-dialog-content > div:last-child {
+            flex: 1 !important;
+            overflow-y: auto !important;
+            -webkit-overflow-scrolling: touch !important;
           }
           
           [data-radix-dialog-overlay] {
             background-color: rgba(0, 0, 0, 0.8) !important;
+            position: fixed !important;
+            inset: 0 !important;
+            z-index: 999 !important;
+          }
+          
+          /* Ensure iframe videos are responsive in mobile dialog */
+          .mobile-dialog-content iframe {
+            width: 100% !important;
+            height: auto !important;
+            aspect-ratio: 16/9 !important;
+          }
+          
+          /* Prevent body scroll when dialog is open on mobile */
+          body:has([data-radix-dialog-content]) {
+            overflow: hidden !important;
+            position: fixed !important;
+            width: 100% !important;
           }
         }
-      `}</style>
+        
+        /* Additional mobile optimizations for better scrolling */
+        @media (max-width: 768px) {
+          .mobile-dialog-content {
+            scroll-behavior: smooth !important;
+          }
+          
+          /* Improve touch scrolling on iOS */
+          .mobile-dialog-content * {
+            -webkit-overflow-scrolling: touch !important;
+          }
+          
+          /* Ensure proper spacing for mobile */
+          .mobile-dialog-content .grid {
+            gap: 1rem !important;
+          }
+          
+          /* Make sure buttons are touch-friendly */
+          .mobile-dialog-content button {
+            min-height: 44px !important;
+            min-width: 44px !important;
+          }
+          
+          /* Ensure proper iframe responsiveness */
+          .mobile-responsive-iframe {
+            width: 100% !important;
+            height: auto !important;
+            aspect-ratio: 16/9 !important;
+            border-radius: 0.5rem !important;
+          }
+          
+          /* Fix dialog positioning on mobile landscape */
+          @media (max-width: 768px) and (orientation: landscape) {
+            [data-radix-dialog-content] {
+              top: 1rem !important;
+              bottom: 1rem !important;
+              left: 1rem !important;
+              right: 1rem !important;
+              max-height: calc(100vh - 2rem) !important;
+            }
+          }
+          
+          /* Improve scrolling performance on mobile */
+          .mobile-dialog-content {
+            -webkit-transform: translateZ(0) !important;
+            transform: translateZ(0) !important;
+            -webkit-backface-visibility: hidden !important;
+            backface-visibility: hidden !important;
+          }
+        }
+      `}</style >
 
       {/* Floating Elements */}
-      
-      {/* Scroll to Top Button */}
-      {showScrollTop && (
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 w-10 h-10 sm:w-12 sm:h-12 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 animate-fade-in"
-        >
-          <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5 mx-auto" />
-        </button>
-      )}
 
-      
-    </div>
+      {/* Contact Section - Красивая финальная секция */}
+      <section className="relative py-20 sm:py-32 overflow-hidden">
+        {/* Красивый фон */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-purple-500/5 to-cyan-500/10"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,theme(colors.primary)_0%,transparent_50%),radial-gradient(ellipse_at_top_right,theme(colors.purple.500)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_left,theme(colors.cyan.500)_0%,transparent_50%)] opacity-20"></div>
+
+          {/* Анимированные частицы */}
+          <div className="absolute top-20 left-10 w-4 h-4 bg-primary/30 rounded-full animate-pulse"></div>
+          <div className="absolute top-40 right-20 w-3 h-3 bg-purple-500/40 rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute bottom-32 left-20 w-2 h-2 bg-cyan-500/50 rounded-full animate-ping" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute bottom-20 right-40 w-5 h-5 bg-primary/20 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+        </div>
+
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          {/* Заголовок */}
+          <div className="mb-12 sm:mb-16">
+            <div className="inline-flex items-center justify-center p-3 mb-6 bg-gradient-to-r from-primary/10 via-purple-500/10 to-cyan-500/10 rounded-full border border-primary/20 backdrop-blur-sm">
+              <Heart className="w-5 h-5 text-primary mr-2 animate-pulse" />
+              <span className="text-primary font-semibold text-sm">Понравилось?</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-primary via-purple-600 to-cyan-600 bg-clip-text text-transparent">
+                Тогда смело связывайтесь со мной!
+              </span>
+            </h2>
+
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Готов воплотить ваши идеи в жизнь и создать видео, которое запомнится надолго
+            </p>
+          </div>
+
+          {/* CTA кнопка */}
+          <div className="relative">
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-purple-600 to-cyan-600 rounded-3xl blur-lg opacity-70 animate-pulse"></div>
+            <a href="https://t.me/vadimfom1n?text=Здравствуйте!%20Меня%20заинтересовали%20ваши%20услуги.%20Пожалуйста,%20расскажите%20подробнее%20о:%0A1)%20Какой%20тип%20заказа%20вас%20интересует%0A2)%20Бюджет%20проекта%0A3)%20Сроки%20реализации%0A4)%20Дополнительные%20пожелания"
+              target="_blank" rel="noopener noreferrer">
+              <Button
+                size="lg"
+                className="
+                  relative 
+                  bg-gradient-to-r from-primary to-purple-600 
+                  hover:from-primary/90 hover:to-purple-600/90 
+                  text-primary-foreground 
+                  px-8 py-6 sm:px-12 sm:py-8 
+                  text-lg sm:text-xl 
+                  font-bold 
+                  rounded-3xl 
+                  border-0 
+                  hover:scale-105 
+                  transition-all duration-300 
+                  shadow-2xl
+                  touch-manipulation
+                  group
+                "
+              >
+                <Mail className="w-5 h-5 sm:w-6 sm:h-6 mr-3 group-hover:rotate-12 transition-transform duration-300" />
+                <span className="hidden sm:inline">Связаться со мной</span>
+                <span className="sm:hidden">Связаться</span>
+                <Send className="w-5 h-5 sm:w-6 sm:h-6 ml-3 group-hover:translate-x-1 transition-transform duration-300" />
+
+                {/* Блик */}
+                <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </Button>
+            </a>
+          </div>
+
+          {/* Дополнительная информация */}
+          <div className="mt-8 sm:mt-12">
+            <p className="text-sm sm:text-base text-muted-foreground mb-4">
+              Отвечаю быстро и всегда готов обсудить детали проекта
+            </p>
+            <div className="flex justify-center items-center space-x-4 text-xs sm:text-sm text-muted-foreground">
+              <div className="flex items-center">
+                <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                <span>Онлайн</span>
+              </div>
+              <div className="w-1 h-1 bg-muted-foreground/30 rounded-full"></div>
+              <span>Обычно отвечаю в течение часа</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Scroll to Top Button */}
+      {
+        showScrollTop && (
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 w-10 h-10 sm:w-12 sm:h-12 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 animate-fade-in"
+          >
+            <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5 mx-auto" />
+          </button>
+        )
+      }
+
+
+    </div >
   );
 };
 
